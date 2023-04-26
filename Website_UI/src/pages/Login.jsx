@@ -65,12 +65,12 @@ return (<div>Loading....</div>)
   return (
     <main className='container d-flex justify-content-center mt-5'>
       <section className='d-flex flex-column'>
-        <article className='w-50 mx-auto mb-3'>
+        <article className='m-auto mb-3 '>
           {error && (
             <Information msg={'There is an error'} color='danger'  />
           )}
         </article>
-        <article className='registration   p-4 rounded shadow-lg w-75 m-auto'>
+        <article className='registration   p-4 rounded shadow-lg w-75 m-auto mt-3'>
           <form onSubmit={handleSubmit(onSubmit)}>
             <h1 className='text-center py-3'>Login Form</h1>
             <div className='form-row row'>

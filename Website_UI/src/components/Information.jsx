@@ -21,7 +21,7 @@ const Information = ({msg, color, temp=false}) => {
       className='p-3 bg-dark  rounded text-center mb-3'
     >
       <small className={`text-${color} me-5`}>{msg}</small>
-      <button type='button' className='btn btn-close btn-danger' onClick={terminate}>
+      <button type='button' className={`btn  btn-${color}`} onClick={terminate}>
         <span>&times;</span>
       </button>
     </span>

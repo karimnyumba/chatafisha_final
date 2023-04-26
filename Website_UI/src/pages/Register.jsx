@@ -90,9 +90,9 @@ if(isLoading){
   return (
     <main className='container d-flex justify-content-center form mt-5'>
       <section className='d-flex flex-column'>
-        <article className='w-50 mx-auto mb-3'>
+        <article className='mx-auto mb-3 '>
           {error && (
-            <Information msg={'There is an error'} color='danger' temp={true} />
+            <Information msg={'There is an error'} color='danger' />
           )}
         </article>
         <article className='registration   p-4 rounded shadow-lg w-75 m-auto'>
