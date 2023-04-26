@@ -4,6 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import useFetch from '../hooks/useFetch'
 import Information from '../components/Information'
+import { Navigate, redirect } from 'react-router-dom'
 const schema = yup
   .object({
     //name
@@ -82,7 +83,8 @@ const Register = () => {
  const role = watch('role')
  if(data){
   //set to localStorage
-  localStorage.setItem()
+  <Information msg={data.aset} color='success'/>
+  return <Navigate to={'/login'}/>
  }
 if(isLoading){
  return <div><h1>Loading.....</h1></div>

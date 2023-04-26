@@ -4,7 +4,7 @@ import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
 import Information from '../components/Information'
 import useFetch from '../hooks/useFetch'
-import { redirect } from 'react-router-dom'
+import { Navigate, redirect } from 'react-router-dom'
 
 //Validation Schema
 const schema = yup
@@ -52,12 +52,15 @@ const Login = () => {
      email, password
     })
   }
+  if(error){
+    console.log(error)
+  }
   if(data){
+    <Information msg={data.aset} color='success'/>
    localStorage.setItem('Chatafisha', JSON.stringify({
     token: data.token,
-    name:data.name
    }))
-   redirect('/')
+   return <Navigate to={'/'}/>
   }
 if(isLoading)
 return (<div>Loading....</div>)
@@ -66,8 +69,8 @@ return (<div>Loading....</div>)
     <main className='container d-flex justify-content-center mt-5'>
       <section className='d-flex flex-column'>
         <article className='m-auto mb-3 '>
-          {error && (
-            <Information msg={'There is an error'} color='danger'  />
+          {error && error.code === 'ERR_BAD_REQUEST' && (
+            <Information msg={error.response.data.aset} color='danger' />
           )}
         </article>
         <article className='registration   p-4 rounded shadow-lg w-75 m-auto mt-3'>
