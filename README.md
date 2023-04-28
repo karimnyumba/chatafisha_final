@@ -3,7 +3,7 @@
 ## Technologies used 
 * ReactJs
 * Tailwind CSS
-* Vite
+* BootStrap
 
 ## Getting Started
 To get started with our website, you will need to clone the repository to your local machine. Follow the steps below to do so:
@@ -30,7 +30,7 @@ npm install
 5. Start the development server by running the following command:
 
 ```
-npm run dev
+npm start
 ```
 
 6. Open your browser and navigate to `http://localhost:port` to view the website.
