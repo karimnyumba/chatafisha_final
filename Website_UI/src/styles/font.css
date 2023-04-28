@@ -1,0 +1,4 @@
+@font-face { font-display: swap; font-style : bold; src: url("assets/fonts/SyneMedium.ttf"); font-family : "Syne"; font-weight : 500;  }
+ @font-face { font-display: swap; font-style : bold; src: url("assets/fonts/SyneBold.ttf"); font-family : "Syne"; font-weight : 700;  }
+ @font-face { font-display: swap; font-style : bold; src: url("assets/fonts/SyneSemiBold.ttf"); font-family : "Syne"; font-weight : 600;  }
+ @font-face { font-display: swap; font-style : normal; src: url("assets/fonts/SyneRegular.ttf"); font-family : "Syne"; font-weight : 400;  }
