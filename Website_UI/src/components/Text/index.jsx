@@ -17,6 +17,7 @@ const Text = ({ children, className, variant, as, ...restProps }) => {
     <Component
       className={`${className} ${variant && variantClasses[variant]}`}
       {...restProps}
+      
     >
       {children}
     </Component>

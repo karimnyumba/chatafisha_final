@@ -34,11 +34,11 @@ const LOGINPAGEPage = () => {
             connect wallet
           </Text>
         </div>
-        <div className="flex md:flex-col flex-row gap-10 items-center justify-start max-w-[1123px] mb-[55px] mx-auto w-full">
+        <div className="flex flex-row md:flex-wrap sm:flex-wrap gap-10 items-center justify-start max-w-[1123px] mb-[55px] mx-auto w-full">
           <div className="flex md:flex-1 flex-col justify-start w-[48%] md:w-full">
-            <div className="h-[125px] md:ml-[0] ml-[15px] relative w-[86%] sm:w-full">
+            <div className="h-[125px] md:ml-[0] ml-[15px] relative w-[86%] sm:w-full sm:mt-15">
               <Text
-                className="m-auto text-black_900 text-left mt-10"
+                className="m-auto text-black_900 text-left mt-25 "
                 as="h1"
                 variant="h1"
               >
@@ -77,8 +77,8 @@ const LOGINPAGEPage = () => {
               </Button>
             </div>
           </div>
-          <div className="flex md:flex-1 flex-col justify-start w-1/2 md:w-full">
-            <div className="h-[344px] md:h-[505px] mr-[3px] mt-[50px] relative w-full sm:h-[374px]">
+          <div className="flex flex-col justify-start w-1/2 md:w-full">
+            <div className="h-[344px] md:h-[345px] mr-[3px] mt-[50px] relative w-full sm:h-[374px]">
               <Img
                 src="images/img_rectangle4.png"
                 className="h-[344px] m-auto object-cover rounded-[16px] w-full"
@@ -87,7 +87,7 @@ const LOGINPAGEPage = () => {
               <div className="absolute mb-0 top-[0] right-0 h-16 w-16">
                 <Img
                   src="images/img_cut_white_a700.svg"
-                  className="h-[51px] md:ml-[0] ml-[404px] w-auto ml-[0.5rem]"
+                  className="h-[51px] md:ml-[0] ml-[404px] w-auto ml-[0.5rem] p-3"
                   alt="cut"
                 />
               </div>
@@ -106,7 +106,7 @@ const LOGINPAGEPage = () => {
                 </Text>
               </div>
             </div>
-            <div className="flex sm:flex-row sm:flex-wrap flex-row sm:gap-10 items-center justify-between w-full mt-3">
+            <div className="grid grid-cols-4 sm:grid-cols-2 md:gap-2 sm:gap-3 items-center  justify-between w-full mt-1">
               <div className="common-pointer bg-black_900 flex sm:flex-1 flex-col gap-[45px] items-end justify-start sm:mt-0 mt-0.5 p-[9px] rounded-[23px] w-[120px] sm:w-[120px]">
                 <Img
                   src="images/img_plus.svg"
