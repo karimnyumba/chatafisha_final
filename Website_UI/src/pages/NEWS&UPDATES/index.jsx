@@ -46,8 +46,9 @@ function NEWSUPDATESPAGE() {
                         <ul className="flex flex-col lg:flex-row sm:mt-[50px]  md:mt-[20px]  list-none lg:ml-auto">
                             <li className="flex items-center">
                                 <Text
-                                    className="font-medium mt-[3px] text-black_900 text-left w-auto"
+                                    className="font-medium mt-[3px] text-black_900 text-left w-auto transform hover:scale-y-90 transition-transform"
                                     variant="body2"
+                                    onClick={() => navigate("/")}
                                 >
                                     Home{" "}
                                 </Text>
@@ -55,7 +56,7 @@ function NEWSUPDATESPAGE() {
 
                             <li className="flex items-center">
                                 <Text
-                                    className="common-pointer font-medium ml-[39px] mt-1 text-black_900 text-left w-auto"
+                                    className="common-pointer font-medium ml-[39px] mt-1 text-black_900 text-left w-auto  transform hover:scale-x-90 transition-transform"
                                     variant="body2"
                                     onClick={() => navigate("/loginpage")}
                                 >
@@ -65,7 +66,7 @@ function NEWSUPDATESPAGE() {
 
                             <li className="flex items-center">
                                 <Text
-                                    className="bg-bluegray_100 font-medium h-[22px] ml-[37px] px-[9px] py-[3px] rounded-[11px] text-black_900 text-left text-shadow-ts1 w-[104px]"
+                                    className="bg-bluegray_100 font-medium h-[22px] ml-[37px] px-[9px] py-[3px] rounded-[11px] text-black_900 text-left text-shadow-ts1 w-[104px]  transform hover:scale-x-90 transition-transform"
                                     variant="body2"
                                 >
                                     connect wallet

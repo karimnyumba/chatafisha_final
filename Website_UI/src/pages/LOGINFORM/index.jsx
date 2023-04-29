@@ -6,7 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Information } from "components";
 import useFetch from "hooks";
 
-import { Navigate, redirect } from "react-router-dom";
+import { Navigate, redirect, useNavigate } from "react-router-dom";
 
 //Validation Schema
 const schema = yup
@@ -27,6 +27,7 @@ const schema = yup
   })
   .required();
 const LoginForm = () => {
+  const navigate = useNavigate();
   const {
     register,
     watch,
@@ -77,7 +78,7 @@ const LoginForm = () => {
             <Information msg={error.response.data.aset} color="danger" />
           )}
         </article>
-        <article className="registration   p-4 rounded shadow-lg w-75 m-auto mt-3">
+        <article className="registration   p-4 rounded shadow-lg w-90 m-auto mt-3">
           <div class="mb-3 pb-1border-b-2 text-center font-base text-gray-700">
             <div className="flex justify-center ">
               <Text
@@ -99,10 +100,17 @@ const LoginForm = () => {
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="form-row row">
-              <div className="col-md-12 mb-3">
+              <div className="col-md-12 flex flex-wrap items-stretch w-full relative h-15 bg-white items-center rounded mb-3 ">
+              <div class="flex -mr-px justify-center w-10 p-2">
+              <span
+                class="flex items-center leading-normal bg-white px-3 border-0 rounded rounded-r-none text-2xl text-gray-600"
+              >
+                <i class="fas fa-envelope"></i>
+              </span>
+            </div>
                 <input
                   type="email"
-                  className={`form-control ${errors.email ? "is-invalid" : ""}`}
+                  className={`flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border-0 h-5 border-grey-light rounded rounded-l-none px-1 self-center relative text-sm outline-none ${errors.email ? "is-invalid" : ""}`}
                   placeholder="Email"
                   {...register("email")}
                   value={email}
@@ -115,10 +123,17 @@ const LoginForm = () => {
                   <div className="text-success"></div>
                 )}
               </div>
-              <div className="col-md-12 mb-3">
+              <div className="col-md-12 flex flex-wrap items-stretch w-full mb-4 relative h-15 bg-white items-center rounded mb-6 pr-1">
+              <div class="flex -mr-px justify-center w-10 p-2">
+              <span
+                class="flex items-center leading-normal bg-white px-3 border-0 rounded rounded-r-none text-2xl text-gray-600"
+              >
+                <i class="fas fa-lock"></i>
+              </span>
+               </div>
                 <input
                   type="password"
-                  className={`form-control ${
+                  className={`flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border-0 h-10 border-grey-light rounded rounded-l-none px-3 self-center relative text-sm outline-none ${
                     errors.password ? "is-invalid" : ""
                   }`}
                   placeholder="password"
@@ -134,6 +149,7 @@ const LoginForm = () => {
                 )}
               </div>
             </div>
+          
             <div class="flex justify-between">
               <label class="block text-gray-500 font-bold mb-2">
                 <input type="checkbox" class="leading-loose text-pink-600" />{" "}
@@ -150,16 +166,15 @@ const LoginForm = () => {
               </button>
             </div>
             <div class="my-2 pb-1 border-b-2 text-center font-base text-gray-700">
-           <span> <a class="text-blue-500" href="/">home</a></span>
            <label class="block text-gray-500 font-normal mb-1">
                 <a
                   href="#"
-                  class="cursor-pointer tracking-tighter text-black border-b-2 border-gray-200 hover:border-gray-400"
+                  class="cursor-pointer tracking-tighter text-black border-b-2 border-gray-200 hover:border-gray-400 no-underline                  "
                 >
                   <span>Forgot Password?</span>
                 </a>
               </label>
-              <button className=" btn btn-secondary text-left" >
+              <button className=" btn bg-white rounded-sm text-left ml-[110px] my-3 hover:text-blueGray-300  transform hover:scale-y-75 transition-transform" onClick={() => {navigate('/registerform')}} >
                 create an account here
               </button>
           </div>
@@ -168,10 +183,10 @@ const LoginForm = () => {
           <div className="text-sm text-blueGray-500 font-semibold py-1 text-center md:text-left">
                 Copyright © {new Date().getFullYear()}{" "}
                 <a
-                  href="https://www.creative-tim.com?ref=nr-footer-small"
-                  className="text-white hover:text-blueGray-300 text-sm font-semibold py-1"
+                  href="/"
+                  className="text-blueGray-500 hover:text-blueGray-300 text-sm font-semibold py-1"
                 >
-                  Creative Tim
+                  Chatafisha
                 </a>
               </div>
        

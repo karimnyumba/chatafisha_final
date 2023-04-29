@@ -15,20 +15,21 @@ const HOMEPAGEPage = () => {
         <div className="flex flex-col justify-start max-w-[1175px] mx-auto my-[11px] md:px-5 w-full">
           <div className="flex flex-row items-start justify-end ml-auto w-[23%] md:w-full">
             <Text
-              className="font-medium mt-[3px] text-black_900 text-left w-auto"
+              className="font-medium mt-[3px] text-black_900 text-left w-auto transform hover:scale-y-90 transition-transform hover:underline"
               variant="body2"
+              onClick={() => navigate("/homepage")}
             >
               Home{" "}
             </Text>
             <Text
-              className="common-pointer font-medium ml-[49px] mt-1 text-black_900 text-left w-auto"
+              className="common-pointer font-medium ml-[49px] mt-1 text-black_900 text-left w-auto transform hover:scale-x-75 transition-transform"
               variant="body2"
               onClick={() => navigate("/loginpage")}
             >
               Log in
             </Text>
             <Text
-              className="bg-bluegray_100 font-medium h-[22px] ml-[37px] px-[9px] py-[3px] rounded-[11px] text-black_900 text-left text-shadow-ts1 w-[104px]"
+              className="bg-bluegray_100 font-medium h-[22px] ml-[37px] px-[9px] py-[3px] rounded-[11px] text-black_900 text-left text-shadow-ts1 w-[104px] transform hover:scale-x-90 transition-transform"
               variant="body2"
             >
               connect wallet
