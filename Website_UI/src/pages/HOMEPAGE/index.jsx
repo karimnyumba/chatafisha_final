@@ -15,20 +15,21 @@ const HOMEPAGEPage = () => {
         <div className="flex flex-col justify-start max-w-[1175px] mx-auto my-[11px] md:px-5 w-full">
           <div className="flex flex-row items-start justify-end ml-auto w-[23%] md:w-full">
             <Text
-              className="font-medium mt-[3px] text-black_900 text-left w-auto"
+              className="font-medium mt-[3px] text-black_900 text-left w-auto transform hover:scale-y-90 transition-transform hover:underline"
               variant="body2"
+              onClick={() => navigate("/homepage")}
             >
               Home{" "}
             </Text>
             <Text
-              className="common-pointer font-medium ml-[49px] mt-1 text-black_900 text-left w-auto"
+              className="common-pointer font-medium ml-[49px] mt-1 text-black_900 text-left w-auto transform hover:scale-x-75 transition-transform"
               variant="body2"
               onClick={() => navigate("/loginpage")}
             >
               Log in
             </Text>
             <Text
-              className="bg-bluegray_100 font-medium h-[22px] ml-[37px] px-[9px] py-[3px] rounded-[11px] text-black_900 text-left text-shadow-ts1 w-[104px]"
+              className="bg-bluegray_100 font-medium h-[22px] ml-[37px] px-[9px] py-[3px] rounded-[11px] text-black_900 text-left text-shadow-ts1 w-[104px] transform hover:scale-x-90 transition-transform"
               variant="body2"
             >
               connect wallet
@@ -56,7 +57,7 @@ const HOMEPAGEPage = () => {
             />
           </div>
           <div className="flex flex-col items-center justify-start mt-[5px] w-full">
-            <div className="flex md:flex-col flex-row md:gap-[46px] items-start justify-between w-[97%] md:w-full">
+            <div className="flex flex-wrap sm:flex-col items-start justify-between w-full md:w-full">
               <div className="h-[344px] md:h-[354px] mb-2.5 relative w-[49%] md:w-full">
                 <Img
                   src="images/img_rectangle4_344x549.png"
@@ -66,7 +67,7 @@ const HOMEPAGEPage = () => {
                 <div className="absolute flex flex-col md:gap-10 gap-[118px] h-max inset-[0] justify-center m-auto w-[85%]">
                   <Img
                     src="images/img_cut_white_a700.svg"
-                    className="h-[51px] md:ml-[0] ml-[404px] w-auto"
+                    className="h-[51px] md:ml-[390px] ml-[404px] w-auto sm:ml-[190px]"
                     alt="cut"
                   />
                   <Text
@@ -83,17 +84,18 @@ const HOMEPAGEPage = () => {
                   </Text>
                 </div>
               </div>
-              <div className="flex flex-col items-start justify-start md:mt-0 mt-[17px] w-[48%] md:w-full">
-                <div className="flex sm:flex-col flex-row sm:gap-10 items-center justify-between w-full">
-                  <div className="common-pointer bg-black_900 flex sm:flex-1 flex-col gap-[45px] items-end justify-start sm:mt-0 mt-0.5 p-[9px] rounded-[23px] w-[120px] sm:w-[120px]">
-                    <Img
-                      src="images/img_plus.svg"
-                      className="h-4 mt-0.5 w-4"
-                      alt="plus"
-                    />
+              <div className="flex flex-wrap items-start justify-start md:mt-0 mt-[17px] w-[48%] md:w-full">
+                <div className="grid grid-cols-4 gap-5 sm:grid-cols-2 md:columns-2 sm:gap-10 items-center justify-between w-full">
+                <div className="common-pointer bg-black_900 flex sm:flex-1 flex-col gap-[45px] items-end justify-start sm:mt-0 mt-0.5 p-[9px] rounded-[23px] w-[120px] sm:w-[120px]">
+                <Img
+                  src="images/img_plus.svg"
+                  className="h-4 mt-0.5 w-4"
+                  alt="plus"
+                />
                     <Text
                       className="font-bold mb-2.5 md:ml-[0] ml-[5px] mr-[31px] text-left text-white_A700"
                       variant="body2"
+                      onClick={() => {navigate('/news_and_updates')}}
                     >
                       <>
                         News &<br />
@@ -159,6 +161,7 @@ const HOMEPAGEPage = () => {
                   className="font-bold ml-0.5 md:ml-[0] mt-[43px] text-black_900 text-left"
                   as="h4"
                   variant="h4"
+
                 >
                   <>
                     Get all the latest news happening around the
@@ -190,9 +193,9 @@ const HOMEPAGEPage = () => {
               >
                 PROJECTS
               </Text>
-              <div className="flex flex-row gap-2.5 items-center justify-between my-1 w-[9%]">
+              <div className="flex flex-row gap-2 items-center justify-between my-1 w-[16%] sm:w-[35%]">
                 <Text
-                  className="font-normal not-italic text-black_900 text-left w-auto h-auto"
+                  className="font-normal not-italic text-black_900 text-left w-auto h-auto "
                   as="h6"
                   variant="h6"
                 >
