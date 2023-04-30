@@ -17,8 +17,9 @@ const ProtectedRoute = ({children}) => {
   return children
   // return React.cloneElement(children, { token: details.token })
  } 
-
+ dispatch({type:'CREATE_REDIRECT_MESSAGE', payload:{message:'Please login!', color:'danger'}})
   return (
+
     <Navigate to={'/loginform'}/>
   )
 }

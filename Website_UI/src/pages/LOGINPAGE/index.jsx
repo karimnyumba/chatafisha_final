@@ -3,8 +3,12 @@ import React from "react";
 import { Text, Img, Button } from "components";
 import { useNavigate } from "react-router-dom";
 
+import { Information } from "components";
+import { useGlobalContext } from "context";
+
 const LOGINPAGEPage = () => {
   const navigate = useNavigate();
+  const {user_redirect_message} = useGlobalContext()
 
   return (
     <>
@@ -34,6 +38,9 @@ const LOGINPAGEPage = () => {
             connect wallet
           </Text>
         </div>
+       { user_redirect_message &&<div>
+        <Information msg={user_redirect_message.message} color={user_redirect_message.color} temp={true} clearState={'REMOVE_REDIRECT_MESSAGE'}/>
+       </div>}
         <div className="flex flex-row md:flex-wrap sm:flex-wrap gap-10 items-center justify-start max-w-[1123px] mb-[55px] mx-auto w-full">
           <div className="flex md:flex-1 flex-col justify-start w-[48%] md:w-full">
             <div className="h-[125px] md:ml-[0] ml-[15px] relative w-[86%] sm:w-full sm:mt-15">

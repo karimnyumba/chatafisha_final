@@ -1,15 +1,18 @@
 import React, { useEffect } from "react";
 
-import { Text, Img, Carousel } from "components";
+import { Text, Img, Carousel, Information } from "components";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "context";
 
   const HOMEPAGEPage = () => {
   const { user_details } = useGlobalContext()
+  const {user_redirect_message, dispatch} = useGlobalContext()
   const navigate = useNavigate();
   const handleLogout = ()=>{
     localStorage.clear()
+    dispatch({type:'CREATE_REDIRECT_MESSAGE', payload: {message:'Logout Successful', color:'success'}})
     window.location.pathname= '/';
+
   }
   return (
     <>
@@ -39,6 +42,11 @@ import { useGlobalContext } from "context";
             >
               connect wallet
             </Text>
+          </div>
+          <div>
+            {user_redirect_message &&
+            <Information msg={user_redirect_message.message} color={user_redirect_message.color} temp={true} clearState={'REMOVE_REDIRECT_MESSAGE'}/>
+            }
           </div>
           <div className='flex md:flex-col flex-row md:gap-5 items-start justify-start md:ml-[0] ml-[13px] mt-[43px] w-[95%] md:w-full'>
             <Text

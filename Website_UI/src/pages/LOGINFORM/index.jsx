@@ -1,10 +1,11 @@
-import React, {useRef} from "react";
+import React, {useEffect, useRef} from "react";
 import { Text, Img, Button } from "components";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Information } from "components";
 import useFetch from "hooks";
+import { useGlobalContext } from 'context'
 
 import { Navigate,  useNavigate } from "react-router-dom";
 
@@ -32,6 +33,7 @@ const schema = yup
   .required();
 const LoginForm = () => {
   const navigate = useNavigate()
+  const { user_redirect_message, dispatch } = useGlobalContext()
   const {
     register,
     watch,
@@ -71,7 +73,7 @@ const LoginForm = () => {
         })
       )
     }
-    
+    dispatch({type: 'CREATE_REDIRECT_MESSAGE', payload:{message:`${data.name} you are logged in successfully`, color:'success'}})
     return <Navigate to={'/homepage'} />
   }
   if (isLoading) return <div>Loading....</div>
@@ -87,6 +89,16 @@ const LoginForm = () => {
             <Information msg={error.response.data.aset} color='danger' />
           )}
         </article>
+        {user_redirect_message && (
+          <article className='m-auto mb-3 '>
+            <Information
+              msg={user_redirect_message.message}
+              color={user_redirect_message.color}
+              temp={true}
+              clearState={'REMOVE_REDIRECT_MESSAGE'}
+            />
+          </article>
+        )}
         <article className='registration   p-4 rounded shadow-lg w-90 m-auto mt-3'>
           <div class='mb-3 pb-1border-b-2 text-center font-base text-gray-700'>
             <div className='flex justify-center '>

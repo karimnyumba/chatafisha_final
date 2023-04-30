@@ -1,6 +1,9 @@
+import { useGlobalContext } from 'context';
 import React, { useEffect, useRef } from 'react'
 
-const Information = ({msg, color, temp=false}) => {
+const Information = ({msg, color, temp=false, clearState}) => {
+  const {dispatch} = useGlobalContext();
+  //Note: clear state take action on temp=true only!
  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
  const remove = useRef();
  const terminate = ()=>{
@@ -9,7 +12,13 @@ const Information = ({msg, color, temp=false}) => {
  useEffect(
   ()=>{
    if(temp){
-    delay(2000).then(()=>terminate())
+    delay(1500).then(()=>{
+      //clear state if required
+      if(clearState){
+      dispatch({type:clearState});
+      }
+      terminate()
+    })
     
    }
 
@@ -18,12 +27,20 @@ const Information = ({msg, color, temp=false}) => {
   return (
     <span
       ref={remove}
-      className='p-3 bg-dark  rounded text-center mb-3'
+      className={`${msg ? 'p-3 bg-dark  rounded text-center mb-3' : ''}`}
     >
-      <small className={`text-${color} me-5`}>{msg}</small>
-      <button type='button' className={`btn  btn-${color}`} onClick={terminate}>
-        <span>&times;</span>
-      </button>
+      {msg &&
+        <>
+          <small className={`text-${color} me-5`}>{msg}</small>
+          <button
+            type='button'
+            className={`btn  btn-${color}`}
+            onClick={terminate}
+          >
+            <span>&times;</span>
+          </button>
+        </>
+      }
     </span>
   )
 }
