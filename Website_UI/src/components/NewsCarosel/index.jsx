@@ -56,7 +56,7 @@ function NewsCarousel() {
         autoplay: true,
         interval: 3000,
       },
-      950: {
+      990: {
         perPage: 2,
         gap: "1rem",
         autoplay: true,
@@ -94,7 +94,7 @@ function NewsCarousel() {
       <Splide options={options}>
         {cards.map((card, index) => (
           <SplideSlide key={index}>
-            <div className="relative w-[290PX] ">
+            <div className="relative w-[290PX] sm:ml-[0px] md:ml-[30px]">
               <img
                 src={card.imgUrl}
                 className="w-[100%] h-40 mb-[-14px] ml-auto  object-cover z-[1]"
