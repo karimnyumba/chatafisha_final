@@ -17,7 +17,7 @@ import { useGlobalContext } from "context";
   return (
     <>
       <div
-        className='bg-cover bg-no-repeat bg-white_A700 flex flex-col font-syne h-[832px] items-center justify-start mx-auto p-[38px] sm:px-5 w-full'
+        className="bg-cover bg-no-repeat bg-white_A700 flex flex-col font-syne h-[832px] items-center justify-start mx-auto p-[38px] sm:px-5 w-full"
         style={{ backgroundImage: "url('images/img_homepage.png')" }}
       >
         <div className='flex flex-col justify-start max-w-[1175px] mx-auto my-[11px] md:px-5 w-full'>
@@ -86,9 +86,9 @@ import { useGlobalContext } from "context";
                 />
                 <div className='absolute flex flex-col md:gap-10 gap-[118px] h-max inset-[0] justify-center m-auto w-[85%]'>
                   <Img
-                    src='images/img_cut_white_a700.svg'
-                    className='h-[51px] md:ml-[390px] ml-[404px] w-auto sm:ml-[190px]'
-                    alt='cut'
+                    src="images/img_cut_white_a700.svg"
+                    className="h-[51px] md:ml-[390px] ml-[404px] w-auto sm:ml-[190px]"
+                    alt="cut"
                   />
                   <Text
                     className='font-semibold mr-[25px] text-left text-white_A700'
