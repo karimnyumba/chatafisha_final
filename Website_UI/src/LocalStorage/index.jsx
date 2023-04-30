@@ -1,8 +1,8 @@
 const validateLocalStorage = () => {
-    const details = JSON.parse(localStorage.getItem('Chatafisha'))
-    if (details) {
-      if (details.token && details.name) {
-        return details
+    const user_details = JSON.parse(localStorage.getItem('Chatafisha'))
+    if (user_details) {
+      if (user_details.token) {
+        return user_details
       }
     }
     return null

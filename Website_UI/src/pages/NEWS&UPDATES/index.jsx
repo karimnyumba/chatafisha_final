@@ -5,6 +5,10 @@ import { useNavigate } from "react-router-dom";
 function NEWSUPDATESPAGE() {
     const [navbarOpen, setNavbarOpen] = React.useState(true);
     const navigate = useNavigate();
+     const handleLogout = () => {
+       localStorage.clear()
+       window.location.pathname = '/'
+     }
 
     return (
         <div
@@ -48,9 +52,9 @@ function NEWSUPDATESPAGE() {
                                 <Text
                                     className="common-pointer font-medium ml-[39px] mt-1 text-black_900 text-left w-auto  transform hover:scale-x-90 transition-transform"
                                     variant="body2"
-                                    onClick={() => navigate("/loginpage")}
+                                    onClick={handleLogout}
                                 >
-                                    Login
+                                    Logout
                                 </Text>
                             </li>
 
