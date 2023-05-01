@@ -2,13 +2,15 @@ import React from "react";
 
 import { Text, Img, Button } from "components";
 import { useNavigate } from "react-router-dom";
+import { useGlobalContext } from "context";
 
 // import { Information } from "components";
 // import { useGlobalContext } from "context";
 
 const LOGINPAGEPage = () => {
   const navigate = useNavigate();
-  // const {user_redirect_message} = useGlobalContext();
+  const {user_details} = useGlobalContext();
+  console.log(user_details)
 
   return (
     <>
@@ -29,7 +31,7 @@ const LOGINPAGEPage = () => {
             variant="body2"
             onClick={() => navigate("/loginpage")}
           >
-            Log in
+            Login
           </Text>
           <Text
             className="bg-bluegray_100 flex sm:flex-row sm:flex-nowrap font-medium h-[22px] ml-[37px] px-[9px] py-[3px] rounded-[11px] text-black_900 text-left text-shadow-ts1 w-[104px]"

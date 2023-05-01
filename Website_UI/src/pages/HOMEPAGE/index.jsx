@@ -5,10 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "context";
 
   const HOMEPAGEPage = () => {
-  const { user_details } = useGlobalContext()
+  const { user_details,dispatch } = useGlobalContext()
   const { user_redirect_message } = useGlobalContext()
   const navigate = useNavigate();
   const handleLogout = ()=>{
+    dispatch({type:'REMOVE_USER_DETAILS'})
     localStorage.clear()
     // dispatch({type:'CREATE_REDIRECT_MESSAGE', payload: {message:'Logout Successful', color:'success'}})
     window.location.pathname= '/';
@@ -43,7 +44,7 @@ import { useGlobalContext } from "context";
               connect wallet
             </Text>
           </div>
-          <div>
+          <div className="mb-4">
             {user_redirect_message && (
               <Information
                 msg={user_redirect_message.message}
