@@ -91,8 +91,9 @@ if(isLoading){
 }
   return (
     <main
-    className='container d-flex justify-content-center form mt-5 bg-cover bg-no-repeat bg-white_A700 flex flex-col font-syne h-[100vh] items-center justify-start mx-auto p-[38px] sm:px-5 w-full'
-      style={{ backgroundImage: "url('images/img_homepage.png')" }}>
+    className=' bg-cover bg-repeat bg-white_A700 flex flex-col font-syne h-[100vh] items-center justify-start mx-auto p-[38px] sm:px-5 w-full'
+      style={{ backgroundImage: "url('images/img_homepage.png')" }}
+    >
       <section className='d-flex flex-column'>
         <article className='mx-auto mb-3 '>
           {error && (
