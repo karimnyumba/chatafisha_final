@@ -90,7 +90,9 @@ if(isLoading){
  return <div><h1>Loading.....</h1></div>
 }
   return (
-    <main className='container d-flex justify-content-center form mt-5'>
+    <main
+    className='container d-flex justify-content-center form mt-5 bg-cover bg-no-repeat bg-white_A700 flex flex-col font-syne h-[100vh] items-center justify-start mx-auto p-[38px] sm:px-5 w-full'
+      style={{ backgroundImage: "url('images/img_homepage.png')" }}>
       <section className='d-flex flex-column'>
         <article className='mx-auto mb-3 '>
           {error && (

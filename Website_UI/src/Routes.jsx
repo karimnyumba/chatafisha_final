@@ -2,6 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "pages/Home";
 import NotFound from "pages/NotFound";
+import AdminLayout from "components/adminComponents/AdminLayout";
+import { AdminHomePage, Blogs, CreateBlog } from "pages/ADMINPAGES";
 import { ProtectedRoute } from "components";
 const HOMEPAGE = React.lazy(() => import("pages/HOMEPAGE"));
 const LOGINPAGE = React.lazy(() => import("pages/LOGINPAGE"));
@@ -21,7 +23,11 @@ const ProjectRoutes = () => {
           <Route path="/news_and_updates" element={<NEWSUPDATESPAGE />} />
           <Route path="/registerform" element={<REGISTERFORM />} />
           <Route path="/loginform" element={<LOGINFORM />} />
-
+          <Route path="/AdminHome/*" element={<AdminLayout />} >
+            <Route index element={< AdminHomePage/>} />
+             <Route path="allBlogs" element={<Blogs />}/>
+             <Route path="createBlog" element={<CreateBlog />}/>
+          </Route>
         </Routes>
       </Router>
     </React.Suspense>
