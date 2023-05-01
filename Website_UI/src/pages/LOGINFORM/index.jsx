@@ -7,6 +7,7 @@ import { Information } from "components";
 import useFetch from "hooks";
 
 import { Navigate, redirect, useNavigate } from "react-router-dom";
+import { useGlobalContext } from "context";
 
 //Validation Schema
 const schema = yup
@@ -28,11 +29,13 @@ const schema = yup
   .required();
 const LoginForm = () => {
   const navigate = useNavigate();
+  const {dispatch } = useGlobalContext();
   const {
     register,
     watch,
     handleSubmit,
     formState: { errors },
+    setValue
   } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
@@ -41,6 +44,8 @@ const LoginForm = () => {
   //Watch states
   const email = watch("email");
   const password = watch("password");
+  const rememberMe = watch("rememberMe")
+  
 
   //Set fetch
   const { data, isLoading, error, obtainData } = useFetch();
@@ -157,7 +162,9 @@ const LoginForm = () => {
           
             <div class="flex justify-between">
               <label class="block text-gray-500 font-bold mb-2">
-                <input type="checkbox" class="leading-loose text-pink-600" />{" "}
+                <input type="checkbox" class="leading-loose text-pink-600"
+                onClick={(e) => {setValue("rememberMe", e.target.checked)}}
+                 />{" "}
                 <span class="p text-sm text-gray-600 leading-snug">
                   {" "}
                   Remember Me{" "}
