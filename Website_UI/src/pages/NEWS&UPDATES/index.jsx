@@ -12,7 +12,7 @@ function NEWSUPDATESPAGE() {
 
     return (
         <div
-            className="bg-cover bg-no-repeat bg-white_A700 flex flex-col font-syne h-[800px] items-center justify-start mx-auto p-[38px] sm:px-5 w-full"
+            className="bg-cover bg-repeat bg-white_A700 flex flex-col font-syne h-[100vh] sm:h-[100%] items-center justify-start mx-auto p-[38px] sm:px-5 w-full"
             style={{ backgroundImage: "url('images/img_homepage.png')" }}
         >
             <nav className=" w-full flex flex-wrap items-center justify-between px-2 ">
@@ -32,19 +32,9 @@ function NEWSUPDATESPAGE() {
                                 alt="mainlogo"
                             />
                         </div>
-                        <button
-                            className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-white sm:flex   md:hidden  lg:hidden   outline-none focus:outline-none"
-                            type="button"
-                            onClick={() => setNavbarOpen(!navbarOpen)}
-                        >
-                            <i className="fas fa-bars"></i>
-                        </button>
                     </div>
                     <div
-                        className={
-                            "lg:flex flex-grow items-center mt-[-35px] sm:ml-[-50px]  lg:bg-opacity-0 lg:shadow-none" +
-                            (navbarOpen ? "block" : " hidden")
-                        }
+                        className= "lg:flex flex-grow items-center mt-[-35px] sm:ml-[-50px]  lg:bg-opacity-0 lg:shadow-none"
                         id="example-navbar-warning"
                     >
                         <ul className="flex flex-col lg:flex-row sm:mt-[50px]  md:mt-[20px]  list-none lg:ml-auto">
@@ -159,7 +149,7 @@ function NEWSUPDATESPAGE() {
                         </Text>
                     </div>
                 </div>
-                <div className="common-pointer bg-black_900 flex sm:flex-1 flex-col gap-[60%] items-end justify-start sm:mt-[-23px] mt-0.5 p-[9px] w-[210px] md:w-[50%] md:h-[150px] rounded-[23px] w-[120px] sm:w-[120px] sm:h-[150px] sm:mr-5">
+                <div className="common-pointer bg-black_900 sm:flex-1 flex flex-col  items-end justify-between sm:mt-[-23px] mt-0.5 p-[9px] w-[210px] md:w-[50%] md:h-[150px] rounded-[23px] w-[120px] sm:w-[120px] sm:h-[150px]">
                     <Img
                         src="images/img_plus.svg"
                         className="h-4 mt-0.5 w-4"
@@ -182,7 +172,7 @@ function NEWSUPDATESPAGE() {
             </div>
 
             <div className="flex flex-col items-center justify-start mt-[50px] shadow-bs w-full">
-                <div className="flex md:flex-col flex-row gap-[11px] items-start justify-start max-w-[1175px] overflow-auto sm:pr-5 pr-[25px] w-full sm:w-[100%]">
+                <div className="flex md:flex-col flex-row gap-[11px] items-start justify-start max-w-[1175px] overflow-auto sm:pr-5 sm:ml-[50px]  w-full ">
                     <NewsCarousel />
                 </div>
             </div>

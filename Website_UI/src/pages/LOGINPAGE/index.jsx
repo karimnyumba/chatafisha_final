@@ -13,7 +13,7 @@ const LOGINPAGEPage = () => {
   return (
     <>
       <div
-        className="bg-cover bg-repeat bg-white_A700 flex flex-col font-syne h-[100%] items-center justify-start mx-auto p-[49px] md:px-10 sm:px-5 w-full"
+        className="bg-cover bg-repeat bg-white_A700 flex flex-col font-syne h-[100vh] sm:h-[100%] items-center justify-start mx-auto p-[49px] md:px-10 sm:px-5 w-full"
         style={{ backgroundImage: "url('images/img_loginpage.png')" }}
       >
         <div className="flex flex-row items-start justify-end ml-auto w-[23%] md:w-full">
@@ -98,7 +98,7 @@ const LOGINPAGEPage = () => {
                   alt="cut"
                 />
               </div>
-              <div className="absolute flex flex-col md:gap-10 gap-[118px] h-max inset-[0] justify-center m-auto w-[85%]">
+              <div className="absolute flex flex-col md:gap-10 gap-[118px] h-max inset-[0] justify-center mx-auto mt-[220px] sm:mt-[150px] w-[85%]">
                 <Text
                   className="font-semibold mr-[25px] text-left text-white_A700"
                   as="h6"
@@ -113,7 +113,7 @@ const LOGINPAGEPage = () => {
                 </Text>
               </div>
             </div>
-            <div className="grid grid-cols-4 sm:grid-cols-2 md:gap-2 sm:gap-3 items-center  justify-between w-full mt-1">
+            <div className="grid grid-cols-4 sm:grid-cols-2 md:gap-2 sm:gap-3 sm:ml-[10px] md:ml-[15px] items-center  justify-center w-full mt-1">
               <div className="common-pointer bg-black_900 flex sm:flex-1 flex-col gap-[45px] items-end justify-start sm:mt-0 mt-0.5 p-[9px] rounded-[23px] w-[120px] sm:w-[120px]">
                 <Img
                   src="images/img_plus.svg"
