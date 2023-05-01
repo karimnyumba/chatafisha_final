@@ -4,14 +4,13 @@ import reducer from "reducers";
 import validateLocalStorage from "LocalStorage";
 const AppContext = React.createContext();
 const initialState = {
-
+user_details: {},
+user_redirect_message: null
 }
 const AppProvider = ({children})=>{
  const [state, dispatch] = useReducer(reducer, initialState)
-
- const[userDetails, setUserDetails] = useState(validateLocalStorage())
  return (
-  <AppContext.Provider value={{...state, userDetails, setUserDetails, dispatch} }>
+  <AppContext.Provider value={{...state, dispatch} }>
    {children}
   </AppContext.Provider>
  )

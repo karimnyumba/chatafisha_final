@@ -3,13 +3,17 @@ import React from "react";
 import { Text, Img, Button } from "components";
 import { useNavigate } from "react-router-dom";
 
+// import { Information } from "components";
+// import { useGlobalContext } from "context";
+
 const LOGINPAGEPage = () => {
   const navigate = useNavigate();
+  // const {user_redirect_message} = useGlobalContext();
 
   return (
     <>
       <div
-        className="bg-cover bg-repeat bg-white_A700 flex flex-col font-syne h-[100%] items-center justify-start mx-auto p-[49px] md:px-10 sm:px-5 w-full"
+        className="bg-cover bg-repeat bg-white_A700 flex flex-col font-syne h-[100vh] sm:h-[100%] items-center justify-start mx-auto p-[49px] md:px-10 sm:px-5 w-full"
         style={{ backgroundImage: "url('images/img_loginpage.png')" }}
       >
         <div className="flex flex-row items-start justify-end ml-auto w-[23%] md:w-full">
@@ -34,6 +38,9 @@ const LOGINPAGEPage = () => {
             connect wallet
           </Text>
         </div>
+       {/* { user_redirect_message &&<div>
+        <Information msg={user_redirect_message.message} color={user_redirect_message.color} temp={true} clearState={'REMOVE_REDIRECT_MESSAGE'}/>
+       </div>} */}
         <div className="flex flex-row md:flex-wrap sm:flex-wrap gap-10 items-center justify-start max-w-[1123px] mb-[55px] mx-auto w-full">
           <div className="flex md:flex-1 flex-col justify-start w-[48%] md:w-full">
             <div className="h-[125px] md:ml-[0] ml-[15px] relative w-[86%] sm:w-full sm:mt-15">
@@ -91,7 +98,7 @@ const LOGINPAGEPage = () => {
                   alt="cut"
                 />
               </div>
-              <div className="absolute flex flex-col md:gap-10 gap-[118px] h-max inset-[0] justify-center m-auto w-[85%]">
+              <div className="absolute flex flex-col md:gap-10 gap-[118px] h-max inset-[0] justify-center mx-auto mt-[220px] sm:mt-[150px] w-[85%]">
                 <Text
                   className="font-semibold mr-[25px] text-left text-white_A700"
                   as="h6"
@@ -106,7 +113,7 @@ const LOGINPAGEPage = () => {
                 </Text>
               </div>
             </div>
-            <div className="grid grid-cols-4 sm:grid-cols-2 md:gap-2 sm:gap-3 items-center  justify-between w-full mt-1">
+            <div className="grid grid-cols-4 sm:grid-cols-2 md:gap-2 sm:gap-3 sm:ml-[10px] md:ml-[15px] items-center  justify-center w-full mt-1">
               <div className="common-pointer bg-black_900 flex sm:flex-1 flex-col gap-[45px] items-end justify-start sm:mt-0 mt-0.5 p-[9px] rounded-[23px] w-[120px] sm:w-[120px]">
                 <Img
                   src="images/img_plus.svg"

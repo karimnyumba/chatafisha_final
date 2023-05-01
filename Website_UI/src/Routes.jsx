@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "pages/Home";
 import NotFound from "pages/NotFound";
-import { NavBar } from "components";
+import { ProtectedRoute } from "components";
 const HOMEPAGE = React.lazy(() => import("pages/HOMEPAGE"));
 const LOGINPAGE = React.lazy(() => import("pages/LOGINPAGE"));
 const REGISTERFORM = React.lazy(() => import("pages/REGISTERFORM"));
@@ -21,11 +21,10 @@ const ProjectRoutes = () => {
           <Route path="/news_and_updates" element={<NEWSUPDATESPAGE />} />
           <Route path="/registerform" element={<REGISTERFORM />} />
           <Route path="/loginform" element={<LOGINFORM />} />
-          <Route path="/nav" element={<NavBar />} />
-          
+
         </Routes>
       </Router>
     </React.Suspense>
-  );
+  )
 };
 export default ProjectRoutes;

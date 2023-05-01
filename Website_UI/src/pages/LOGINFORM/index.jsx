@@ -56,20 +56,25 @@ const LoginForm = () => {
     console.log(error);
   }
   if (data) {
-    <Information msg={data.aset} color="success" />;
-    localStorage.setItem(
-      "Chatafisha",
-      JSON.stringify({
-        token: data.token,
-      })
-    );
-    return <Navigate to={"/homepage"} />;
+    // <Information msg={data.aset} color="success" />;
+    if(rememberMe){
+      console.log(data)
+      localStorage.setItem(
+        'Chatafisha',
+        JSON.stringify({
+          token: data.token,
+          user_data: data.user_data,
+        })
+      )
+    }
+    dispatch({type: 'CREATE_REDIRECT_MESSAGE', payload:{message:`${data.user_data.name} you are logged in successfully`, color:'success'}})
+    return <Navigate to={'/homepage'} />
   }
   if (isLoading) return <div>Loading....</div>;
 
   return (
     <main
-      className="bg-cover bg-no-repeat bg-white_A700 flex flex-col font-syne h-[800px] items-center justify-start mx-auto p-[38px] sm:px-5 w-full"
+      className='bg-cover bg-no-repeat bg-white_A700 flex flex-col font-syne h-[100vh] items-center justify-start mx-auto p-[38px] sm:px-5 w-full'
       style={{ backgroundImage: "url('images/img_homepage.png')" }}
     >
       <section className="d-flex flex-column">
@@ -133,7 +138,7 @@ const LoginForm = () => {
                </div>
                 <input
                   type="password"
-                  className={`flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border-0 h-10 border-grey-light rounded rounded-l-none px-3 self-center relative text-sm outline-none ${
+                  className={`flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border-0 h-10 border-grey-light rounded rounded-l-none px- self-center relative text-sm outline-none ${
                     errors.password ? "is-invalid" : ""
                   }`}
                   placeholder="password"

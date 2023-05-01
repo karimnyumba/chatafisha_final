@@ -83,7 +83,7 @@ const Register = () => {
  const role = watch('role')
  if(data){
   //set to localStorage
-  <Information msg={data.aset} color='success'/>
+  // <Information msg={data.aset} color='success'/>
   return <Navigate to={'/loginform'}/>
  }
 if(isLoading){
