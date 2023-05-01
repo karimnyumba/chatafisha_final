@@ -7,6 +7,8 @@ const reducer =(state, action)=>{
     return {...state, user_redirect_message:action.payload}
   case 'REMOVE_REDIRECT_MESSAGE':
     return {...state, user_redirect_message:{}};
+  case 'REMOVE_USER_DETAILS':
+    return {...state, user_details:{}};
  }
  return state
 }
