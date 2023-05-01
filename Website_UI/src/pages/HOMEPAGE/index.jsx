@@ -44,18 +44,25 @@ import { useGlobalContext } from "context";
             </Text>
           </div>
           <div>
-            {user_redirect_message &&
-            <Information msg={user_redirect_message.message} color={user_redirect_message.color} temp={true} clearState={'REMOVE_REDIRECT_MESSAGE'}/>
-            }
+            {user_redirect_message && (
+              <Information
+                msg={user_redirect_message.message}
+                color={user_redirect_message.color}
+                temp={true}
+                clearState={'REMOVE_REDIRECT_MESSAGE'}
+              />
+            )}
           </div>
-          <div className='flex md:flex-col flex-row md:gap-5 items-start justify-start md:ml-[0] ml-[13px] mt-[43px] w-[95%] md:w-full'>
+          <div>
             <Text
-              className='font-medium text-black_900 text-left w-auto'
+              className='font-medium text-black_900 text-left text-success  w-auto mb-3 text-3xl capitalize'
               as='h2'
               variant='h2'
             >
-              {user_details.name}
+              {user_details.user_data.name}
             </Text>
+          </div>
+          <div className='flex md:flex-col flex-row md:gap-5 items-start justify-start md:ml-[0] ml-[13px] mt-[43px] w-[95%] md:w-full'>
             <Text
               className='font-medium text-black_900 text-left w-auto'
               as='h4'

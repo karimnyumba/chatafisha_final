@@ -65,15 +65,16 @@ const LoginForm = () => {
   if (data) {
     // <Information msg={data.aset} color="success" />;
     if(rememberMe){
+      console.log(data)
       localStorage.setItem(
         'Chatafisha',
         JSON.stringify({
           token: data.token,
-          name: data.name
+          user_data: data.user_data,
         })
       )
     }
-    dispatch({type: 'CREATE_REDIRECT_MESSAGE', payload:{message:`${data.name} you are logged in successfully`, color:'success'}})
+    dispatch({type: 'CREATE_REDIRECT_MESSAGE', payload:{message:`${data.user_data.name} you are logged in successfully`, color:'success'}})
     return <Navigate to={'/homepage'} />
   }
   if (isLoading) return <div>Loading....</div>
