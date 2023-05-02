@@ -14,7 +14,6 @@ function Sidebar({
   width = 280
 }) {
   const isSmall = useBreakpoint("sm", "down");
-  console.log(width);
 
   if (setOpen && isSmall) {
     return (

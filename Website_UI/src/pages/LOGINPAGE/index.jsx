@@ -1,10 +1,9 @@
 import React from "react";
 
-import { Text, Img, Button } from "components";
+import { Text, Img, Button, NavBar } from "components";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "context";
 
-// import { Information } from "components";
 // import { useGlobalContext } from "context";
 
 const LOGINPAGEPage = () => {
@@ -18,6 +17,7 @@ const LOGINPAGEPage = () => {
         className='bg-cover bg-repeat bg-white_A700 flex flex-col font-syne h-[100vh] sm:h-[100%] items-center justify-start mx-auto p-[49px] md:px-10 sm:px-5 w-full'
         style={{ backgroundImage: "url('images/img_loginpage.png')" }}
       >
+<<<<<<< HEAD
         <div className='flex flex-row items-start justify-end ml-auto w-[23%] md:w-full'>
           <Text
             className='common-pointer font-medium mt-[3px] text-black_900 text-left w-auto'
@@ -41,6 +41,10 @@ const LOGINPAGEPage = () => {
           </Text>
         </div>
         {/* { user_redirect_message &&<div>
+=======
+        <NavBar/>
+       {/* { user_redirect_message &&<div>
+>>>>>>> f6b6a8ec265c3075e3f719f6dcf13d841163ba14
         <Information msg={user_redirect_message.message} color={user_redirect_message.color} temp={true} clearState={'REMOVE_REDIRECT_MESSAGE'}/>
        </div>} */}
         <div className='flex flex-row md:flex-wrap sm:flex-wrap gap-10 items-center justify-start max-w-[1123px] mb-[55px] mx-auto w-full'>
