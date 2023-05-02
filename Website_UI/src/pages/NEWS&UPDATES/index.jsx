@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Img, Button, NewsCarousel } from "components";
+import { Text, Img, NavBar, NewsCarousel } from "components";
 import { useNavigate } from "react-router-dom";
 
 function NEWSUPDATESPAGE() {
@@ -15,61 +15,7 @@ function NEWSUPDATESPAGE() {
             className="bg-cover bg-repeat bg-white_A700 flex flex-col font-syne h-[100vh] sm:h-[100%] items-center justify-start mx-auto p-[38px] sm:px-5 w-full"
             style={{ backgroundImage: "url('images/img_homepage.png')" }}
         >
-            <nav className=" w-full flex flex-wrap items-center justify-between px-2 ">
-                <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
-                    <div className="w-full  flex justify-between  md:w-auto  ">
-                        <div className="flex">
-                            <Text
-                                className="font-bold md:ml-[0] md:mt-0 mt-2.5 text-black_900 text-left w-auto"
-                                as="h4"
-                                variant="h4"
-                            >
-                                CHATAFISHA
-                            </Text>
-                            <Img
-                                src="images/img_mainlogo_black_901.svg"
-                                className="h-8 md:ml-[13px] ml-[15px] md:mt-0 mt-[5px] w-auto "
-                                alt="mainlogo"
-                            />
-                        </div>
-                    </div>
-                    <div
-                        className= "lg:flex flex-grow items-center mt-[-35px] sm:ml-[-50px]  lg:bg-opacity-0 lg:shadow-none"
-                        id="example-navbar-warning"
-                    >
-                        <ul className="flex flex-col lg:flex-row sm:mt-[50px]  md:mt-[20px]  list-none lg:ml-auto">
-                            <li className="flex items-center">
-                                <Text
-                                    className="font-medium mt-[3px] text-black_900 text-left w-auto transform hover:scale-y-90 transition-transform"
-                                    variant="body2"
-                                    onClick={() => navigate("/")}
-                                >
-                                    Home{" "}
-                                </Text>
-                            </li>
-
-                            <li className="flex items-center">
-                                <Text
-                                    className="common-pointer font-medium ml-[39px] mt-1 text-black_900 text-left w-auto  transform hover:scale-x-90 transition-transform"
-                                    variant="body2"
-                                    onClick={handleLogout}
-                                >
-                                    Logout
-                                </Text>
-                            </li>
-
-                            <li className="flex items-center">
-                                <Text
-                                    className="bg-bluegray_100 font-medium h-[22px] ml-[37px] px-[9px] py-[3px] rounded-[11px] text-black_900 text-left text-shadow-ts1 w-[104px]  transform hover:scale-x-90 transition-transform"
-                                    variant="body2"
-                                >
-                                    connect wallet
-                                </Text>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+            <NavBar/>
 
             <div className="flex flex-wrap gap-8 space-x-16 mt-[50px]">
                 <div className="flex flex-col">

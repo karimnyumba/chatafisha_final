@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Text, Img, Carousel, Information } from "components";
+import { Text, Img, Carousel, Information, NavBar } from "components";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "context";
 
@@ -21,29 +21,7 @@ import { useGlobalContext } from "context";
         className="bg-cover bg-no-repeat bg-white_A700 flex flex-col font-syne h-[832px] items-center justify-start mx-auto p-[38px] sm:px-5 w-full"
         style={{ backgroundImage: "url('images/img_homepage.png')" }}
       >
-        <div className='flex flex-col justify-start max-w-[1175px] mx-auto my-[11px] md:px-5 w-full'>
-          <div className='flex flex-row items-start justify-end ml-auto w-[23%] md:w-full'>
-            <Text
-              className='font-medium mt-[3px] text-black_900 text-left w-auto transform hover:scale-y-90 transition-transform hover:underline'
-              variant='body2'
-              onClick={() => navigate('/homepage')}
-            >
-              Home{' '}
-            </Text>
-            <Text
-              className='common-pointer font-medium ml-[49px] mt-1 text-black_900 text-left w-auto transform hover:scale-x-75 transition-transform'
-              variant='body2'
-              onClick={handleLogout}
-            >
-              Logout
-            </Text>
-            <Text
-              className='bg-bluegray_100 font-medium h-[22px] ml-[37px] px-[9px] py-[3px] rounded-[11px] text-black_900 text-left text-shadow-ts1 w-[104px] transform hover:scale-x-90 transition-transform'
-              variant='body2'
-            >
-              connect wallet
-            </Text>
-          </div>
+          <NavBar/>
           <div className="mb-4">
             {user_redirect_message && (
               <Information
