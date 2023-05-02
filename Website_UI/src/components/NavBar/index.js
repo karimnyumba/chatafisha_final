@@ -1,15 +1,17 @@
 import React from 'react';
+import useBreakpoint from "@restart/hooks/useBreakpoint";
 import { Text, Img, Button, NewsCarousel } from "components";
 import { useNavigate } from 'react-router-dom';
 
 
 function NavBar() {
   const [isOpen, setIsOpen] = React.useState(false);
+  const isSmall = useBreakpoint("sm", "down");
   const navigate = useNavigate()
 
   return (
-    <nav className="mt-3 w-full max-w-7xl mx-auto px-2 sm:px-6 lg:px-8  ">
-    <div className="relative flex items-center justify-between h-16 ml-[10%]">
+    <nav className="mt-1 w-full max-w-7xl mx-auto px-2 sm:px-6 lg:px-8  ">
+    <div className="relative flex items-center justify-between h-16 ml-[5%]">
             <div className="flex-1 flex items-center justify-start ml-auto sm:items-stretch sm:justify-start">
                 <Text
                     className="font-bold md:ml-[0] md:mt-0 mt-2.5 text-black_900 text-left w-auto"
@@ -36,7 +38,7 @@ function NavBar() {
               <span className="sr-only">Open main menu</span>
               {/* Icon when menu is closed. */}
               <svg
-                className={`${isOpen ? 'hidden' : 'block'} h-6 w-6`}
+                className={`${isOpen  ? 'hidden' : 'block'} h-6 w-6`}
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -69,11 +71,11 @@ function NavBar() {
             </button>
           </div>
    
-        <div className={`flex flex-grow sm:${isOpen ? 'block' : 'hidden'}  lg:ml-[40%] md:ml-[15%]`}>
-            <ul className={`flex flex-row list-none sm:absolute sm:left-3 sm:top-16 h-8 w-[100%] sm:ml-[0%]`}>
+        <div className={`flex flex-grow sm:${ isOpen ? 'block' : 'hidden'} sm:mb-5  lg:ml-[60%] md:ml-[15%]`}>
+            <ul className={`flex flex-row list-none sm:bg-white sm:h-[100px] sm:rounded-md sm:absolute sm:z-10 sm:block  sm:p-3 left-1 sm:top-16 h-8 w-[100%] sm:ml-[-9%]`}>
                 <li className="flex items-center">
                     <Text
-                        className="font-medium mt-[3px] text-black_900 text-left w-auto transform hover:scale-y-90 transition-transform"
+                        className="font-medium mt-[3px] text-black_900 text-left w-auto transform sm:mx-auto sm:my-1 hover:scale-y-90 transition-transform"
                         variant="body2"
                         onClick={() => navigate("/")}
                     >
@@ -83,7 +85,7 @@ function NavBar() {
 
                 <li className="flex items-center">
                     <Text
-                        className="common-pointer font-medium ml-[39px] mt-1 text-black_900 text-left w-auto  transform hover:scale-x-90 transition-transform"
+                        className="common-pointer font-medium ml-[39px] mt-1 text-black_900 sm:my-1  sm:mx-auto text-left w-auto  transform hover:scale-x-90 transition-transform"
                         variant="body2"
                         onClick={() => navigate("/loginpage")}
                     >
@@ -93,7 +95,7 @@ function NavBar() {
 
                 <li className="flex items-center">
                     <Text
-                        className="bg-bluegray_100 font-medium h-[22px] ml-[37px] px-[9px] py-[3px] rounded-[11px] text-black_900 text-left text-shadow-ts1 w-[104px]  transform hover:scale-x-90 transition-transform"
+                        className="bg-bluegray_100 font-medium h-[22px] ml-[37px] sm:my-1 sm:mx-auto px-[9px] py-[3px] rounded-[11px] text-black_900 text-left text-shadow-ts1 w-[104px]  transform hover:scale-x-90 transition-transform"
                         variant="body2"
                     >
                         connect wallet
