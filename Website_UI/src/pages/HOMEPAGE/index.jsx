@@ -60,7 +60,7 @@ import { useGlobalContext } from "context";
               as='h2'
               variant='h2'
             >
-              {user_details.user_data.name}
+              {user_details.user_data?.name}
             </Text>
           </div>
           <div className='flex md:flex-col flex-row md:gap-5 items-start justify-start md:ml-[0] ml-[13px] mt-[43px] w-[95%] md:w-full'>

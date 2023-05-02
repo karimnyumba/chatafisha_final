@@ -16,17 +16,24 @@ const ProjectRoutes = () => {
     <React.Suspense fallback={<>Loading...</>}>
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="*" element={<NotFound />} />
-          <Route path="/loginpage" element={<LOGINPAGE />} />
-          <Route path="/homepage" element={<HOMEPAGE />} />
-          <Route path="/news_and_updates" element={<NEWSUPDATESPAGE />} />
-          <Route path="/registerform" element={<REGISTERFORM />} />
-          <Route path="/loginform" element={<LOGINFORM />} />
-          <Route path="/AdminHome/*" element={<AdminLayout />} >
-            <Route index element={< AdminHomePage/>} />
-             <Route path="allBlogs" element={<Blogs />}/>
-             <Route path="createBlog" element={<CreateBlog />}/>
+          <Route path='/' element={<Home />} />
+          <Route path='*' element={<NotFound />} />
+          <Route path='/loginpage' element={<LOGINPAGE />} />
+          <Route
+            path='/homepage'
+            element={
+              <ProtectedRoute>
+                <HOMEPAGE />
+              </ProtectedRoute>
+            }
+          />
+          <Route path='/news_and_updates' element={<NEWSUPDATESPAGE />} />
+          <Route path='/registerform' element={<REGISTERFORM />} />
+          <Route path='/loginform' element={<LOGINFORM />} />
+          <Route path='/AdminHome/*' element={<AdminLayout />}>
+            <Route index element={<AdminHomePage />} />
+            <Route path='allBlogs' element={<Blogs />} />
+            <Route path='createBlog' element={<CreateBlog />} />
           </Route>
         </Routes>
       </Router>

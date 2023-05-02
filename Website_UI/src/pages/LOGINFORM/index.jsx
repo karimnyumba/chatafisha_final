@@ -93,6 +93,11 @@ const LoginForm = () => {
             <Information msg={error.response.data.aset} color='danger' />
           )}
         </article>
+        {/* <article className='m-auto mb-3 '>
+          {error && (
+            <Information msg={error.response} color='danger' />
+          )}
+        </article> */}
         {user_redirect_message && (
           <article className='m-auto mb-3 '>
             <Information
