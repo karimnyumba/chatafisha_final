@@ -71,7 +71,7 @@ function NavBar() {
             </button>
           </div>
    
-        <div className={`flex flex-grow sm:${ isOpen ? 'block' : 'hidden'} sm:mb-5  lg:ml-[60%] md:ml-[15%]`}>
+        <div className={`flex flex-row sm:${ isOpen ? 'block' : 'hidden'} sm:mb-5  justfy-end`}>
             <ul className={`flex flex-row list-none sm:bg-white sm:h-[100px] sm:rounded-md sm:absolute sm:z-10 sm:block  sm:p-3 left-1 sm:top-16 h-8 w-[100%] sm:ml-[-9%]`}>
                 <li className="flex items-center">
                     <Text

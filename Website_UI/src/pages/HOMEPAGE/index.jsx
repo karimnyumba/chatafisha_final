@@ -21,6 +21,7 @@ import { useGlobalContext } from "context";
         className="bg-cover bg-no-repeat bg-white_A700 flex flex-col font-syne h-[832px] items-center justify-start mx-auto p-[38px] sm:px-5 w-full"
         style={{ backgroundImage: "url('images/img_homepage.png')" }}
       >
+        <div className='flex flex-col justify-start max-w-[1175px] mx-auto my-[11px] md:px-5 w-full'>
           <NavBar/>
           <div className="mb-4">
             {user_redirect_message && (
