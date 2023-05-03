@@ -72,7 +72,7 @@ export default function AdminHomePage() {
       <PageHeader>
         <Typography variant="h1">Home</Typography>
       </PageHeader>
-      <PageBody className="grid grid-cols-1 md:grid-cols-12 gap-4">
+      <PageBody className="grid grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4">
         {overviews.map((overview) => (
           <Card className="md:col-span-3" key={overview.name}>
             <CardBody>

@@ -8,7 +8,14 @@ function NavBar() {
   const [isOpen, setIsOpen] = React.useState(false);
   const isSmall = useBreakpoint("sm", "down");
   const navigate = useNavigate()
+  console.log(isOpen);
+  React.useEffect(() => {
+     if (!isSmall) {
+      setIsOpen(true)
+     } 
 
+  }, [])
+  
   return (
     <nav className="mt-1 w-full max-w-7xl mx-auto px-2 sm:px-6 lg:px-8  ">
     <div className="relative flex items-center justify-between h-16 ml-[5%]">
@@ -71,8 +78,8 @@ function NavBar() {
             </button>
           </div>
    
-        <div className={`flex flex-row sm:${ isOpen ? 'block' : 'hidden'} sm:mb-5  justfy-end`}>
-            <ul className={`flex flex-row list-none sm:bg-white sm:h-[100px] sm:rounded-md sm:absolute sm:z-10 sm:block  sm:p-3 left-1 sm:top-16 h-8 w-[100%] sm:ml-[-9%]`}>
+        <div className={`flex ${ isOpen ? 'block' : 'hidden'}  sm:mb-5  justfy-end`}>
+            <ul className={`flex flex-row list-none   sm:bg-white sm:h-[100px] sm:rounded-md sm:absolute sm:z-40 sm:block  sm:p-3 left-1 sm:top-16 h-8 w-[100%] sm:ml-[-9%]`}>
                 <li className="flex items-center">
                     <Text
                         className="font-medium mt-[3px] text-black_900 text-left w-auto transform sm:mx-auto sm:my-1 hover:scale-y-90 transition-transform"
