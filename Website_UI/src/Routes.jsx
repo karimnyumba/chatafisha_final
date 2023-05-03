@@ -10,6 +10,7 @@ const LOGINPAGE = React.lazy(() => import("pages/LOGINPAGE"));
 const REGISTERFORM = React.lazy(() => import("pages/REGISTERFORM"));
 const LOGINFORM = React.lazy(() => import("pages/LOGINFORM"));
 const NEWSUPDATESPAGE = React.lazy(() => import("pages/NEWS&UPDATES"))
+const NEWSDETAILPAGE = React.lazy(() => import("pages/NEWSDETAILPAGE"))
 
 const ProjectRoutes = () => {
   return (
@@ -21,6 +22,7 @@ const ProjectRoutes = () => {
           <Route path="/loginpage" element={<LOGINPAGE />} />
           <Route path="/homepage" element={<HOMEPAGE />} />
           <Route path="/news_and_updates" element={<NEWSUPDATESPAGE />} />
+          <Route path="/news_detail" element={<NEWSDETAILPAGE />} />
           <Route path="/registerform" element={<REGISTERFORM />} />
           <Route path="/loginform" element={<LOGINFORM />} />
           <Route path="/AdminHome/*" element={<AdminLayout />} >

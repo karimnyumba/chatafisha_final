@@ -84,7 +84,7 @@ const LoginForm = () => {
 
   return (
     <main
-      className='bg-cover bg-no-repeat bg-white_A700 flex flex-col font-syne h-[800px] items-center justify-start mx-auto p-[38px] sm:px-5 w-full'
+      className='bg-cover bg-no-repeat bg-white_A700 flex flex-col font-syne  h-[100vh] sm:h-[100%] md:h-[100%] items-center justify-start mx-auto p-[38px] sm:px-5 w-full'
       style={{ backgroundImage: "url('images/img_homepage.png')" }}
     >
       <section className='d-flex flex-column'>
