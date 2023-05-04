@@ -67,7 +67,7 @@ const LoginForm = () => {
         'Chatafisha',
         JSON.stringify({
           token: data.token,
-          user_data: data.user_data,
+          user_data: {...data.user_data, isLoggedIn: true},
         })
       )
     }

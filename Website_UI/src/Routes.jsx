@@ -33,7 +33,14 @@ const ProjectRoutes = () => {
           <Route path='/news_detail' element={<NEWSDETAILSPAGE />} />
           <Route path='/registerform' element={<REGISTERFORM />} />
           <Route path='/loginform' element={<LOGINFORM />} />
-          <Route path='/AdminHome/*' element={<AdminLayout />}>
+          <Route
+            path='/AdminHome/*'
+            element={
+              <ProtectedRoute>
+                <AdminLayout />
+              </ProtectedRoute>
+            }
+          >
             <Route index element={<AdminHomePage />} />
             <Route path='allBlogs' element={<Blogs />} />
             <Route path='createBlog' element={<CreateBlog />} />

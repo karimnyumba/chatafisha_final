@@ -2,11 +2,24 @@ import React from 'react';
 import useBreakpoint from "@restart/hooks/useBreakpoint";
 import { Text, Img, Button, NewsCarousel } from "components";
 import { useNavigate } from 'react-router-dom';
-
+import { useGlobalContext } from 'context';
+import validateLocalStorage from 'LocalStorage';
 
 function NavBar() {
   const [isOpen, setIsOpen] = React.useState(false);
   const isSmall = useBreakpoint("sm", "down");
+  //global context
+  const { user_details, dispatch, handleLogout } = useGlobalContext()
+  //authentication: check from local storage
+  const isAuthenticated = validateLocalStorage() ? true : false  
+  const loginLogout = ()=>{
+    if(isAuthenticated){
+      handleLogout()
+    }else{
+      navigate('/loginpage')
+    }
+  }
+
   const navigate = useNavigate()
   console.log(isOpen);
   React.useEffect(() => {
@@ -15,6 +28,8 @@ function NavBar() {
      } 
 
   }, [])
+
+  
   
   return (
     <nav className="mt-1 w-full max-w-7xl mx-auto px-2 sm:px-6 lg:px-8  ">
@@ -22,8 +37,12 @@ function NavBar() {
             <div className="flex-1 flex items-center justify-start ml-auto sm:items-stretch sm:justify-start">
                 <Text
                     className="font-bold md:ml-[0] md:mt-0 mt-2.5 text-black_900 text-left w-auto"
+                    style= {{cursor:'pointer'}}
                     as="h4"
                     variant="h4"
+                    onClick= {()=>navigate('/')}
+                    
+                    
                 >
                     CHATAFISHA
                 </Text>
@@ -80,23 +99,23 @@ function NavBar() {
    
         <div className={`flex ${ isOpen ? 'block' : 'hidden'}  sm:mb-5  justfy-end`}>
             <ul className={`flex flex-row list-none   sm:bg-white sm:h-[100px] sm:rounded-md sm:absolute sm:z-40 sm:block  sm:p-3 left-1 sm:top-16 h-8 w-[100%] sm:ml-[-9%]`}>
-                <li className="flex items-center">
+                {isAuthenticated &&  <li className="flex items-center">
                     <Text
                         className="font-medium mt-[3px] text-black_900 text-left w-auto transform sm:mx-auto sm:my-1 hover:scale-y-90 transition-transform"
                         variant="body2"
-                        onClick={() => navigate("/")}
+                        onClick={() => navigate("/homepage")}
                     >
                         Home{" "}
                     </Text>
-                </li>
+                </li>}
 
                 <li className="flex items-center">
                     <Text
                         className="common-pointer font-medium ml-[39px] mt-1 text-black_900 sm:my-1  sm:mx-auto text-left w-auto  transform hover:scale-x-90 transition-transform"
                         variant="body2"
-                        onClick={() => navigate("/loginpage")}
+                        onClick={loginLogout}
                     >
-                        Login
+                        {isAuthenticated ? 'Logout' : 'Login'}
                     </Text>
                 </li>
 

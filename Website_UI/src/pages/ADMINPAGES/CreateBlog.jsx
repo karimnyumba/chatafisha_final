@@ -6,27 +6,60 @@ import TextArea from "components/adminComponents/TextArea";
 import Button from "components/adminComponents/Button";
 import Typography from "components/adminComponents/Typography";
 import { useNavigate } from "react-router-dom";
+import { useGlobalContext } from "context";
+import useFetch from "hooks";
+import { Information } from "components";
 
 function CreateBlog() {
   const formRef = useRef();
   const navigate = useNavigate();
+  const {user_details} = useGlobalContext()
+  const {error, data, obtainData, loading} = useFetch();
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    //for image submission
+    if (user_details?.token) {
+      const formData = new FormData()
+      const editedData = {  }
+      const target = event.target
+      const title = target.title.value
+      const description = target.description.value
+      let img
+      if (target.img) {
+        formData.append('newImage', target.img.files[0])
+        img = formData
+      }
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const data = new FormData(formRef.current);
-    console.log(data);
-    try {
-      // post the data to endpoint hear
+      if (title && img && description) {
+        editedData.title = title
+        editedData.description = description
+        editedData.img = img
+      }
+      else
+      return ;
 
-      navigate("/Admin/allBlogs");
-      window.location.reload();
-    } catch (error) {
-      // handle errors
-
-      console.log(error);
+      let url, method, body, options
+      obtainData(
+        (url = 'blog/article_data'),
+        (method = 'post'),
+        (body = editedData),
+        (options = {
+          headers: {
+            token: user_details.token,
+          },
+        })
+      )
     }
-    event.target.reset();
-  };
+  }
+  const [message, setMessage] = React.useState(null)
+  React.useEffect(() => {
+    if (error) {
+      setMessage({ message: 'Something went wrong!!!', color: 'danger' })
+    }
+    if (data) {
+      setMessage({ message: 'Successful post!!!', color: 'success' })
+    }
+  }, [data, error])
   return (
     <Page>
       <PageHeader
@@ -61,11 +94,15 @@ function CreateBlog() {
                     </p>
                   </div>
                 </div>
+                <div>
+                  {message && <Information msg={message.message} color={message.color} clear={setMessage} temp={true}/>}
+                </div>
                 <form
                   enctype="multipart/form-data"
                   onSubmit={handleSubmit}
                   ref={formRef}
                 >
+
                   <div className="divide-y divide-gray-200">
                     <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                       <div className="flex flex-col">

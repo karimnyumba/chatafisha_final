@@ -8,13 +8,7 @@ import { useGlobalContext } from "context";
   const { user_details,dispatch } = useGlobalContext()
   const { user_redirect_message } = useGlobalContext()
   const navigate = useNavigate();
-  const handleLogout = ()=>{
-    dispatch({type:'REMOVE_USER_DETAILS'})
-    localStorage.clear()
-    // dispatch({type:'CREATE_REDIRECT_MESSAGE', payload: {message:'Logout Successful', color:'success'}})
-    window.location.pathname= '/';
 
-  }
   return (
     <>
       <div
@@ -93,7 +87,11 @@ import { useGlobalContext } from "context";
               </div>
               <div className='flex flex-wrap items-start justify-start md:mt-0 mt-[17px] w-[48%] md:w-full'>
                 <div className='grid grid-cols-4 gap-5 sm:grid-cols-2 md:columns-2 sm:gap-10 items-center justify-between w-full'>
-                  <div className='common-pointer bg-black_900 flex sm:flex-1 flex-col gap-[45px] items-end justify-start sm:mt-0 mt-0.5 p-[9px] rounded-[23px] w-[120px] sm:w-[120px]'>
+                  <div className='common-pointer bg-black_900 flex sm:flex-1 flex-col gap-[45px] items-end justify-start sm:mt-0 mt-0.5 p-[9px] rounded-[23px] w-[120px] sm:w-[120px]'
+                   onClick={() => {
+                        navigate('/news_and_updates')
+                      }}
+                  >
                     <Img
                       src='images/img_plus.svg'
                       className='h-4 mt-0.5 w-4'
@@ -102,9 +100,7 @@ import { useGlobalContext } from "context";
                     <Text
                       className='font-bold mb-2.5 md:ml-[0] ml-[5px] mr-[31px] text-left text-white_A700'
                       variant='body2'
-                      onClick={() => {
-                        navigate('/news_and_updates')
-                      }}
+                     
                     >
                       <>
                         News &<br />

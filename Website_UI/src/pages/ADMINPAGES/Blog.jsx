@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../../components/adminComponents/Button";
 import Card from "../../components/adminComponents/Card";
 import CardBody from "../../components/adminComponents/CardBody";
@@ -9,10 +9,19 @@ import PageHeader from "../../components/adminComponents/PageHeader";
 import Typography from "../../components/adminComponents/Typography";
 import { useNavigate } from "react-router-dom";
 import ProductModal from "./BlogModal";
+import useFetch from "hooks";
+import { useGlobalContext } from "context";
+import axios from 'axios'
+import { Information } from "components";
 
-function BlogCards({ blogs }) {
+function BlogCards({ blog }) {
+  console.log(blog)
   const [modalOpen, setModalOpen] = useState(false);
   const [CurrentBlog, setCurrentBlog] = useState();
+  const [showMore, setShowMore] = useState(false)
+  const {user_details} = useGlobalContext();
+  const {loading, error, data, obtainData} = useFetch();
+  const [deleteMessage, setDeleteMessage] = useState('');
 
   function closeProductModal() {
     setModalOpen(false);
@@ -26,32 +35,36 @@ function BlogCards({ blogs }) {
     console.log("open modal");
     setModalOpen(true);
   }
-
-  if (!blogs || !blogs.length) {
-    return <Empty message="You don't have any Blogs yet." />;
-  }
-
-  const handle_delete = async (id) => {
-    try {
-      alert("comfirm delete");
-      // handle delete request hear
-      alert("user deleted");
-    } catch (error) {
-      // handle delete errors
-      console.log(error);
-    }
+  const handle_delete =() => {
+    //delete
+    let url, method, options,body;
+    obtainData(url=`blog/article_to_delete/${blog.id}`, method='delete', body={},options={
+      headers:{
+        token:user_details.token,
+      }
+    })
   };
+  if(data){
+    window.location.pathname = 'AdminHome/allBlogs'
 
+  }
+  if(error){
+    console.log(error)
+  }
   return (
     <div className="grid gap-12 lg:grid-cols-3">
-      {blogs.map((blog) => (
-        <div class="p-1 rounded-xl group sm:flex space-x-6 bg-white bg-opacity-50 shadow-xl hover:rounded-2xl">
+    {
+      deleteMessage && <Information msg={deleteMessage} temp={true} />
+    }
+        <div class="p-1 rounded-xl group sm:flex space-x-6 bg-white bg-opacity-50 shadow-xl hover:rounded-2xl"
+        key={blog.id}
+        >
           <img
-            src={blog.img}
+            src={'http://139.162.249.220:9292/'+blog.img}
             alt="art cover"
             loading="lazy"
             width="100"
-            height="66"
+            height="100"
             class="h-20 sm:h-full w-full sm:w-5/12 object-cover object-top rounded-lg transition duration-500 group-hover:rounded-xl"
           />
           <div class="sm:w-7/12 pl-0 p-5">
@@ -60,7 +73,8 @@ function BlogCards({ blogs }) {
                 <h4 class="text-lg font-semibold text-cyan-900">
                   {blog.title}
                 </h4>
-                <p class="text-gray-600">{blog.description}</p>
+                <p class="text-gray-600">{(showMore)? blog.content : blog.content.substring(0,300)}</p>
+                {(blog.content.length>=300)&&<button className="btn btn-outline-primary" onClick={()=>setShowMore(!showMore)}>{(showMore)?'Show Less': 'Show More'}</button>}
               </div>
               <div className="flex flex-row gap-4 mt-3">
                 <button
@@ -75,7 +89,7 @@ function BlogCards({ blogs }) {
                 <button
                   class="block btn btn-danger w-max text-cyan-600"
                   onClick={() => {
-                    handle_delete(1);
+                    handle_delete();
                   }}
                 >
                   Delete
@@ -89,49 +103,82 @@ function BlogCards({ blogs }) {
             blog={CurrentBlog}
           />
         </div>
-      ))}
     </div>
   );
 }
 
 export default function Blogs() {
-  const [isLoading, setisLoading] = useState(false);
-  const [Blogs, setBlogs] = useState();
+  //user
+  const {details, user_details} = useGlobalContext();
+  const [blogs, setBlogs] = useState();
   const navigate = useNavigate();
+  const {data, isLoading, error, obtainData} = useFetch();
 
-  const loadData = async () => {
-    setisLoading(true);
-    // handle fetch request
-    const response = ["blogs"];
-    if (response) {
-      setBlogs(response);
-      setisLoading(false);
-    }
-  };
+  // const loadData = async () => {
+  //   setisLoading(true);
+  //   // handle fetch request
+  //   const response = ["blogs"];
+  //   if (response) {
+  //     setBlogs(response);
+  //     setisLoading(false);
+  //   }
+  // };
+  
+  //   if(user_details?.token)
+  //   axios.get('http://139.162.249.220:9292/api/blog/article_data', {
+  //     headers:{
+  //  token:user_details.token,
+  // }}).then((response)=>{
+  //     console.log(response.data)
+  //   }).catch((err)=>console.log(err));
+    // console.log(user_details)
+  
+    //fetch data
+  useEffect(()=>{
+  let url,  options, method, body;
+  if(user_details?.token)
+    obtainData(url='blog/article_data',method='get',body=null, options={
+      headers:{
+      token:user_details.token
+      }
+    })}, [user_details])
+  //obtained data
+    useEffect(
+    ()=>{
+      if(data){
+        setBlogs(data.data)
+      }
+      if(error){
+        console.log(error)
+      }
 
-  React.useEffect(() => {
-    loadData();
-  }, []);
+    }, [data, error]
 
+  )
+  if (isLoading)
+  return <h1>Loading.....</h1>;
+  if (!blogs || !blogs.length) {
+    return <Empty message="You don't have any Blogs yet." />
+  }
   return (
     <Page>
       <PageHeader
         extra={
           <Button
-            color="primary"
+            color='primary'
             onClick={() => {
-              navigate("/AdminHome/createBlog");
+              navigate('/AdminHome/createBlog')
             }}
           >
             Create Blog
           </Button>
         }
       >
-        <Typography variant="h1">Blogs</Typography>
+        <Typography variant='h1'>Blogs</Typography>
       </PageHeader>
       <PageBody>
-        <BlogCards blogs={Blogs} />
+        {blogs && blogs.map((blog) => <BlogCards blog={blog} />)}
       </PageBody>
     </Page>
-  );
+  )
 }
