@@ -33,7 +33,7 @@ function CreateBlog() {
       if (title && img && description) {
         editedData.title = title
         editedData.description = description
-        editedData.img = img
+        editedData.img = img.get('newImage')
       }
       else
       return ;
@@ -46,6 +46,7 @@ function CreateBlog() {
         (options = {
           headers: {
             token: user_details.token,
+            'Content-Type': 'multipart/form-data',
           },
         })
       )

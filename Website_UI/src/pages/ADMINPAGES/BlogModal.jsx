@@ -34,15 +34,20 @@ export default function ProductModal({
 
   if(title) editedData.title= title;
   if(description) editedData.description = description;
-  if(img) editedData.img = img;
+  if(img) editedData.img = img.get('newImage');
 
   let url, method,body, options;
-  obtainData(url='blog/update_article_data', method='patch', body=editedData, options={
-    headers:{
-      token:user_details.token,
-    }
-
-  })
+  obtainData(
+    (url = 'blog/update_article_data'),
+    (method = 'patch'),
+    (body = editedData),
+    (options = {
+      headers: {
+        token: user_details.token,
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+  )
 
   }
 };
