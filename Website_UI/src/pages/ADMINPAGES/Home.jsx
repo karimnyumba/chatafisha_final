@@ -17,6 +17,7 @@ import TableCell from "../../components/adminComponents/TableCell";
 import TableHead from "../../components/adminComponents/TableHead";
 import TableRow from "../../components/adminComponents/TableRow";
 import Typography from "../../components/adminComponents/Typography";
+import { useEffect } from "react";
 
 const overviews = [
   {
@@ -67,6 +68,9 @@ const targets = [
 ];
 
 export default function AdminHomePage() {
+  useEffect(() => {
+    
+  })
   return (
     <Page>
       <PageHeader>

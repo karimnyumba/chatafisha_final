@@ -1,7 +1,7 @@
 import { useGlobalContext } from 'context';
 import React, { useEffect, useRef } from 'react'
 
-const Information = ({msg, color, temp=false, clearState}) => {
+const Information = ({msg, color, temp=false, clearState, clear}) => {
   const {dispatch} = useGlobalContext();
   //Note: clear state take action on temp=true only!
  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
@@ -16,6 +16,9 @@ const Information = ({msg, color, temp=false, clearState}) => {
       //clear state if required
       if(clearState){
       dispatch({type:clearState});
+      }
+      if(clear){
+        clear(null);
       }
       terminate()
     })

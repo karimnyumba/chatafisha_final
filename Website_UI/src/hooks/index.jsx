@@ -7,6 +7,7 @@ const useFetch = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
   const obtainData = (url, method = 'get', body = null, options = {}) => {
+    console.log(options)
     const fetchData = async () => {
       setIsLoading(true)
 
@@ -14,8 +15,8 @@ const useFetch = () => {
         const response = await api({
           method,
           url,
-          data: body,
           ...options,
+          data: body,
         })
         setData(response.data)
       } catch (error) {
@@ -25,7 +26,7 @@ const useFetch = () => {
       setIsLoading(false)
     }
 
-    fetchData()
+    return fetchData()
   }
 
   // useEffect(() => {

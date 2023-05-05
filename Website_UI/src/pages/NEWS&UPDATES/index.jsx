@@ -27,6 +27,7 @@ function NEWSUPDATESPAGE() {
                             viewBox="0 0 74 54"
                             fill="none"
                             xmlns="http://www.w3.org/2000/svg"
+                            onClick={()=>navigate('/homepage')}
                         >
                             <path
                                 d="M26.7313 1.61938L1.53076 26.8199L26.7313 52.0205M72.1089 26.8199H2.23654"
