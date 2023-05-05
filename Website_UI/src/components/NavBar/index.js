@@ -21,7 +21,6 @@ function NavBar() {
   }
 
   const navigate = useNavigate()
-  console.log(isOpen);
   React.useEffect(() => {
      if (!isSmall) {
       setIsOpen(true)
@@ -56,7 +55,7 @@ function NavBar() {
             {/* Mobile menu button */}
             <button
               type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-black_900_3f focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
               aria-controls="mobile-menu"
               aria-expanded="false"
               onClick={() => setIsOpen(!isOpen)}
@@ -64,7 +63,7 @@ function NavBar() {
               <span className="sr-only">Open main menu</span>
               {/* Icon when menu is closed. */}
               <svg
-                className={`${isOpen  ? 'hidden' : 'block'} h-6 w-6`}
+                className={`${isOpen  ? 'hidden' : 'block'} h-6 w-6 text-black`}
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -80,7 +79,7 @@ function NavBar() {
               </svg>
               {/* Icon when menu is open. */}
               <svg
-                className={`${isOpen ? 'block' : 'hidden'} h-6 w-6`}
+                className={`${isOpen ? 'block' : 'hidden'} h-6 w-6 text-black`}
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"

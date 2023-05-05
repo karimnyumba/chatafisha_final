@@ -161,7 +161,7 @@ const LoginForm = () => {
                 </div>
                 <input
                   type='password'
-                  className={`flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border-0 h-10 border-grey-light rounded rounded-l-none px-3 self-center relative text-sm outline-none ${
+                  className={`flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border-0 h-10 border-grey-light rounded rounded-l-none px-1 self-center relative text-sm outline-none ${
                     errors.password ? 'is-invalid' : ''
                   }`}
                   placeholder='password'

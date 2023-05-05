@@ -3,9 +3,12 @@ import "@splidejs/splide/dist/css/splide.min.css";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { Text } from "components";
 import { useNavigate } from "react-router-dom";
+import { useGlobalContext } from "context";
 
 function NewsCarousel() {
   const navigate = useNavigate()
+  const { dispatch } = useGlobalContext()
+
 
 
   const cards = [
@@ -96,7 +99,16 @@ function NewsCarousel() {
     <div className="w-full h-[290px]">
       <Splide options={options} >
         {cards.map((card, index) => (
-          <SplideSlide key={index} onClick={() => {navigate('/news_detail')}}>
+          <SplideSlide key={index} onClick={() => {
+            console.log(card);
+            dispatch({
+              type: 'CURRENT_BLOG_ARTICLE',
+              payload: {
+                article:card
+              }
+            });
+            navigate('/news_detail');
+            }}>
             <div className="relative w-[290PX] sm:ml-[0px] md:ml-[30px]">
               <img
                 src={card.imgUrl}
