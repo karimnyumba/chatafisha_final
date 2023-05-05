@@ -6,6 +6,7 @@ import AdminLayout from "components/adminComponents/AdminLayout";
 import { AdminHomePage, Blogs, CreateBlog } from "pages/ADMINPAGES";
 import { ProtectedRoute } from "components";
 import NEWSDETAILSPAGE from "pages/NEWSDETAILPAGE";
+import TupeSupport from "pages/TUPESUPPORTPAGE";
 const HOMEPAGE = React.lazy(() => import("pages/HOMEPAGE"));
 const LOGINPAGE = React.lazy(() => import("pages/LOGINPAGE"));
 const REGISTERFORM = React.lazy(() => import("pages/REGISTERFORM"));
@@ -31,6 +32,7 @@ const ProjectRoutes = () => {
           />
           <Route path='/news_and_updates' element={<NEWSUPDATESPAGE />} />
           <Route path='/news_detail' element={<NEWSDETAILSPAGE />} />
+          <Route path='/tupe_support' element={<TupeSupport />} />
           <Route path='/registerform' element={<REGISTERFORM />} />
           <Route path='/loginform' element={<LOGINFORM />} />
           <Route path='/AdminHome/*' element={<AdminLayout />}>

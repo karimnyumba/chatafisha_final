@@ -17,28 +17,7 @@ const LOGINPAGEPage = () => {
         className='bg-cover bg-repeat bg-white_A700 flex flex-col font-syne h-[100vh] sm:h-[100%] items-center justify-start mx-auto p-[49px] md:px-10 sm:px-5 w-full'
         style={{ backgroundImage: "url('images/img_loginpage.png')" }}
       >
-        <div className='flex flex-row items-start justify-end ml-auto w-[23%] md:w-full'>
-          <Text
-            className='common-pointer font-medium mt-[3px] text-black_900 text-left w-auto'
-            variant='body2'
-            onClick={() => navigate('/homepage')}
-          >
-            Home
-          </Text>
-          <Text
-            className='common-pointer font-medium ml-[49px] mt-1 text-black_900 text-left w-auto'
-            variant='body2'
-            onClick={() => navigate('/loginpage')}
-          >
-            Login
-          </Text>
-          <Text
-            className='bg-bluegray_100 flex sm:flex-row sm:flex-nowrap font-medium h-[22px] ml-[37px] px-[9px] py-[3px] rounded-[11px] text-black_900 text-left text-shadow-ts1 w-[104px]'
-            variant='body2'
-          >
-            connect wallet
-          </Text>
-        </div>
+        <NavBar />
         {/* { user_redirect_message &&<div>
         <Information msg={user_redirect_message.message} color={user_redirect_message.color} temp={true} clearState={'REMOVE_REDIRECT_MESSAGE'}/>
        </div>} */}

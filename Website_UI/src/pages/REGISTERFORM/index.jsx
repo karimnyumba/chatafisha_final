@@ -1,10 +1,11 @@
 import React from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form';
+import { Text, Img } from 'components';
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import useFetch from 'hooks'
 import { Information } from 'components'
-import { Navigate, redirect } from 'react-router-dom'
+import { Navigate, redirect, useNavigate } from 'react-router-dom'
 const schema = yup
   .object({
     //name
@@ -64,7 +65,7 @@ const Register = () => {
    mode: 'onChange',
  })
  
-
+ const navigate = useNavigate();
  //Fetch data
  const { data, isLoading, error, obtainData } = useFetch()
  //Handle Submit
@@ -101,8 +102,26 @@ if(isLoading){
           )}
         </article>
         <article className='registration   p-4 rounded shadow-lg w-75 m-auto'>
+        <div class='mb-3 pb-1border-b-2 text-center font-base text-gray-700'>
+            <div className='flex justify-center '>
+              <Text
+                className='font-bold md:ml-[0] md:mt-0 mt-2.5 text-black_900 text-center w-auto'
+                as='h4'
+                variant='h4'
+              >
+                CHATAFISHA
+              </Text>
+              <Img
+                src='images/img_mainlogo_black_901.svg'
+                className='h-8 md:ml-[13px] ml-[15px] md:mt-0 mt-[5px] w-auto '
+                alt='mainlogo'
+              />
+            </div>
+          </div>
+          <div class='mb-3 text-center font-semibold text-black'>
+            Create account
+          </div>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <h1 className='text-center py-3'>Registration Form</h1>
             <div className='form-row row'>
               <div className='col-md-12 mb-3'>
                 <input
@@ -232,9 +251,28 @@ if(isLoading){
               </div>
             </div>
             <div className='text-center'>
-              <button className='btn btn-primary ' type='submit'>
+              <button className='btn btn-primary form-control' type='submit'>
                 register
               </button>
+            </div>
+            <div class='my-2 py-3 border-b-2 text-center font-base text-gray-700'>
+              <label class='block text-gray-500 font-normal mb-1'>
+                <a
+                  href='/loginform'
+                  class='cursor-pointer tracking-tighter text-black border-b-2 border-gray-200 hover:border-gray-400 no-underline                  '
+                >
+                  <span>Have an account alredy? Login here</span>
+                </a>
+              </label>
+            </div>
+            <div className='text-sm text-blueGray-500 font-semibold py-1 text-center md:text-left'>
+              Copyright © {new Date().getFullYear()}{' '}
+              <a
+                href='/'
+                className='text-blueGray-500 hover:text-blueGray-300 text-sm font-semibold py-1'
+              >
+                Chatafisha
+              </a>
             </div>
           </form>
         </article>
