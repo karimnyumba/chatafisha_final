@@ -4,7 +4,7 @@ import Home from "pages/Home";
 import NotFound from "pages/NotFound";
 import AdminLayout from "components/adminComponents/AdminLayout";
 import { AdminHomePage, Blogs, CreateBlog } from "pages/ADMINPAGES";
-import { ProtectedRoute } from "components";
+import { Loading, ProtectedRoute } from "components";
 import NEWSDETAILSPAGE from "pages/NEWSDETAILPAGE";
 import TupeSupport from "pages/TUPESUPPORTPAGE";
 const HOMEPAGE = React.lazy(() => import("pages/HOMEPAGE"));
@@ -16,7 +16,7 @@ const NEWSDETAILPAGE = React.lazy(() => import("pages/NEWSDETAILPAGE"))
 
 const ProjectRoutes = () => {
   return (
-    <React.Suspense fallback={<>Loading...</>}>
+    <React.Suspense fallback={<Loading/>}>
       <Router>
         <Routes>
           <Route path='/' element={<Home />} />
