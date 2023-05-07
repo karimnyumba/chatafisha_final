@@ -7,5 +7,6 @@ import { Information } from "./Information";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { NewsCarousel } from "./NewsCarosel";
 import NavBar from "./NavBar";
-export { Text, Img, Button, List, Carousel, Information, ProtectedRoute, NewsCarousel, NavBar};
+import Loading from "./Loading";
+export { Text, Img, Button, List, Carousel, Information, ProtectedRoute, NewsCarousel, NavBar , Loading};
 

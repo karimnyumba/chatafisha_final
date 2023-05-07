@@ -4,7 +4,6 @@ import Modal from "../../components/adminComponents/Modal";
 import ModalBody from "../../components/adminComponents/ModalBody";
 import ModalFooter from "../../components/adminComponents/ModalFooter";
 import ModalHeader from "../../components/adminComponents/ModalHeader";
-import TextArea from "../../components/adminComponents/TextArea";
 import useFetch from "hooks";
 import { useGlobalContext } from "context";
 import { Information } from "components";
