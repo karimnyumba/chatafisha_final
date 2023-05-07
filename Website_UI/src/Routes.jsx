@@ -7,6 +7,7 @@ import { AdminHomePage, Blogs, CreateBlog } from "pages/ADMINPAGES";
 import { Loading, ProtectedRoute } from "components";
 import NEWSDETAILSPAGE from "pages/NEWSDETAILPAGE";
 import TupeSupport from "pages/TUPESUPPORTPAGE";
+import StudentRegForm from "pages/STUDENTREGFORM";
 const HOMEPAGE = React.lazy(() => import("pages/HOMEPAGE"));
 const LOGINPAGE = React.lazy(() => import("pages/LOGINPAGE"));
 const REGISTERFORM = React.lazy(() => import("pages/REGISTERFORM"));
@@ -35,6 +36,7 @@ const ProjectRoutes = () => {
           <Route path='/tupe_support' element={<TupeSupport />} />
           <Route path='/registerform' element={<REGISTERFORM />} />
           <Route path='/loginform' element={<LOGINFORM />} />
+          <Route path='/student_reg_form' element={<StudentRegForm />} />
           <Route
             path='/AdminHome/*'
             element={
