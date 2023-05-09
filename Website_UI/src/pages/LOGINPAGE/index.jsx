@@ -148,10 +148,13 @@ const LOGINPAGEPage = () => {
                   src="images/img_plus.svg"
                   className="h-4 w-4"
                   alt="plus_Two"
+                  
                 />
                 <Text
                   className="font-bold mb-2.5 md:ml-[0] ml-[5px] mr-[31px] text-left text-white_A700"
                   variant="body2"
+                  onClick={() => navigate("/tupe_support")}
+
                 >
                   <>
                     Tupe
