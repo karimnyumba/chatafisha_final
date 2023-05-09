@@ -85,7 +85,7 @@ function StudentRegForm() {
       className=" bg-cover bg-repeat bg-white_A700 flex flex-col font-syne h-[100vh] items-center justify-start mx-auto p-[38px] sm:px-5 w-full"
       style={{ backgroundImage: "url('images/img_homepage.png')" }}
     >
-      <section className="d-flex flex-column">
+      <section className="d-flex flex-column w-[50%] md:w-[75%] sm:w-full">
         <article className="mx-auto mb-3 ">
         </article>
         <article className="registration   p-4 rounded shadow-lg w-75 m-auto">
