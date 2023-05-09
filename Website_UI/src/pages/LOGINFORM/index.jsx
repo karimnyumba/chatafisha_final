@@ -30,7 +30,7 @@ const schema = yup
   .required()
 const LoginForm = () => {
   const navigate = useNavigate()
-  const [ShowPassword, setShowPassword] = useState(true);
+  const [ShowPassword, setShowPassword] = useState(false);
   const { user_redirect_message, dispatch } = useGlobalContext()
   const {
     register,
