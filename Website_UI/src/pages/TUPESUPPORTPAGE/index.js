@@ -13,7 +13,7 @@ function TupeSupport() {
       <div className="w-full">
         <NavBar />
       </div>
-      <div className="flex flex-row sm:flex-wrap md:flex-wrap gap-6 justify-center align-middle space-x-16 mt-[50px]">
+      <div className="flex flex-row sm:flex-wrap md:flex-wrap gap-6 justify-center align-middle space-x-16 mt-[50px] w-[80%]">
         <div className=" mb-2.5 relative md:w-full">
           <Img
             src="images/Rectangle 17.png"

@@ -105,7 +105,7 @@ if(isLoading){
       className=' bg-cover bg-repeat bg-white_A700 flex flex-col font-syne h-[100vh] items-center justify-start mx-auto p-[38px] sm:px-5 w-full'
       style={{ backgroundImage: "url('images/img_homepage.png')" }}
     >
-      <section className='d-flex flex-column'>
+      <section className='d-flex flex-column w-[50%] md:w-[75%] sm:w-full'>
         <article className='mx-auto mb-3 '>
           {error && <Information msg={'There is an error'} color='danger' />}
         </article>
@@ -113,7 +113,7 @@ if(isLoading){
           <div class='mb-3 pb-1border-b-2 text-center font-base text-gray-700'>
             <div className='flex justify-center '>
               <Text
-                className='font-bold md:ml-[0] md:mt-0 mt-2.5 text-black_900 text-center w-auto'
+                className='font-bold md:ml-[0] md:mt-0 mt-2.5 text-black_900 text-center w-auto sm:text-lg'
                 as='h4'
                 variant='h4'
               >

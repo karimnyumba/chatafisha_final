@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Text, Img, Button } from 'components'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
@@ -30,6 +30,7 @@ const schema = yup
   .required()
 const LoginForm = () => {
   const navigate = useNavigate()
+  const [ShowPassword, setShowPassword] = useState(false);
   const { user_redirect_message, dispatch } = useGlobalContext()
   const {
     register,
@@ -130,7 +131,7 @@ const LoginForm = () => {
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className='form-row row'>
-              <div className='col-md-12 flex flex-wrap items-stretch w-full relative h-15 bg-white items-center rounded mb-3 '>
+              <div className='col-md-12 flex flex-wrap items-stretch w-full relative h-15 bg-white  rounded mb-3 '>
                 <div class='flex -mr-px justify-center w-10 p-2'>
                   <span class='flex items-center leading-normal bg-white px-3 border-0 rounded rounded-r-none text-2xl text-gray-600'>
                     <i class='fas fa-envelope'></i>
@@ -138,7 +139,7 @@ const LoginForm = () => {
                 </div>
                 <input
                   type='email'
-                  className={`flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border-0 h-5 border-grey-light rounded rounded-l-none px-1 self-center relative text-sm outline-none ${
+                  className={`flex-shrink flex-grow flex-auto leading-normal w-px  border-0 h-5 border-grey-light rounded rounded-l-none px-1 self-center relative text-sm outline-none ${
                     errors.email ? 'is-invalid' : ''
                   }`}
                   placeholder='Email'
@@ -153,21 +154,28 @@ const LoginForm = () => {
                   <div className='text-success'></div>
                 )}
               </div>
-              <div className='col-md-12 flex flex-wrap items-stretch w-full mb-4 relative h-15 bg-white items-center rounded mb-6 pr-1'>
+              <div className='col-md-12 flex flex-wrap items-stretch w-full  relative h-15 bg-white  rounded mb-6 pr-1'>
                 <div class='flex -mr-px justify-center w-10 p-2'>
                   <span class='flex items-center leading-normal bg-white px-3 border-0 rounded rounded-r-none text-2xl text-gray-600'>
                     <i class='fas fa-lock'></i>
                   </span>
                 </div>
                 <input
-                  type='password'
-                  className={`flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border-0 h-10 border-grey-light rounded rounded-l-none px-1 self-center relative text-sm outline-none ${
+                  type={ShowPassword? 'text':'password'}
+                  className={`flex-shrink flex-grow flex-auto leading-normal w-px  border-0 h-10 border-grey-light rounded rounded-l-none px-1 self-center relative text-sm outline-none ${
                     errors.password ? 'is-invalid' : ''
                   }`}
                   placeholder='password'
                   {...register('password')}
                   value={password}
                 />
+                 <div class='flex -mr-px justify-center w-10 p-2'>
+                  <span class='flex items-center leading-normal bg-white px-3 border-0 rounded rounded-r-none text-2xl text-gray-600'
+                  onClick={() => setShowPassword(!ShowPassword)}
+                  >
+                    {ShowPassword? <i class='fas fa-eye-slash'></i>:<i class='fas fa-eye'></i>}
+                  </span>
+                </div>
                 {errors.password ? (
                   <div className='invalid-feedback'>
                     {errors.password?.message}
