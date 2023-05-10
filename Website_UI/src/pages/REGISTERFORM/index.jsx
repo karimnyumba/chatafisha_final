@@ -224,7 +224,7 @@ if(isLoading){
 
               <div className='col-md-12 mb-3'>
                 <input
-                  type='text'
+                  type='password'
                   className={`form-control ${
                     errors.password ? 'is-invalid' : ''
                   }`}
