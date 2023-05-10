@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Text, Img } from "components";
+import { Text, Img, Loading } from "components";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import useFetch from "hooks";
@@ -33,6 +33,7 @@ const schema = yup
     registration: yup
       .number()
       .positive("Registration number can't be negative")
+
       .integer("Registration should be an integer!")
       .required("Please provide your registration number"),
     //contact
@@ -48,10 +49,14 @@ const schema = yup
       .required("Please provide your password!")
       .min(4, "password must be at least 4 characters")
       .max(50, "password must be at most 50 characters"),
+    verifyPassword: yup.string().required('Please verify your password!')
+    .test('password-match', 'Password doesnt match, Please try again', function(value){
+      return value===this.resolve(yup.ref('password'));
+    }),
 
     //role
     collage: yup.string().required("Please enter your collage name!"),
-    phone: yup.number("Entered text instead of digit number").required("Please enter your phone number!").max(10, "Invalid number: exceeded 10 digits")
+    phone: yup.string().required("Please enter your phone number!").matches(/^\d{10}$/, 'Please ensure the phone number is in correct format!')
   })
   .required();
 function StudentRegForm() {
@@ -76,10 +81,38 @@ function StudentRegForm() {
   const collage = watch("collage");
   const password = watch("password");
   const phone = watch('phone')
+  const verifyPassword = watch('verifyPassword')
+  
 
-  const onSubmit = () => {
-
-  }
+   const { data, isLoading, error, obtainData } = useFetch()
+   //Handle Submit
+   const onSubmit = (data) => {
+     const {
+      university: uniID,
+      collage:collegeID,
+      department,
+       registration: reg_no,
+       email,
+       phone,
+       password,
+     } = data
+     console.log(data)
+     //backend requirement!
+     const u_name = data.first_name + '|' + data.last_name
+     obtainData('user/registration_data', 'post', {
+       u_name,
+       reg_no,
+       email,
+       phone,
+       password,
+       uniID,
+       collegeID,
+       department,
+     })
+   }
+   if(data){
+    return <Navigate to={'/loginform'} />
+   }
 
   return (
     <main
@@ -87,7 +120,9 @@ function StudentRegForm() {
       style={{ backgroundImage: "url('images/img_homepage.png')" }}
     >
       <section className='d-flex flex-column'>
-        <article className='mx-auto mb-3 '></article>
+        <article className='mx-auto mb-3 '>
+          {error && <Information msg={'There is an error'} color='danger' />}
+        </article>
         <article className='registration   p-4 rounded shadow-lg w-75 m-auto'>
           <div class='mb-3 pb-1border-b-2 text-center font-base text-gray-700'>
             <div className='flex justify-center '>
@@ -108,6 +143,7 @@ function StudentRegForm() {
           <div class='mb-3 text-center font-semibold text-black'>
             Create a student account
           </div>
+          <div>{isLoading && <h1>Loading....</h1>}</div>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className='form-row row'>
               <div className='col-md-6 mb-3'>
@@ -168,16 +204,12 @@ function StudentRegForm() {
                   type='text'
                   className={`form-control ${errors.email ? 'is-invalid' : ''}`}
                   placeholder='Phone number, ie: 0628630936'
-                  onChange={(e) => setValue('phone',e.target.value)}
+                  onChange={(e) => setValue('phone', e.target.value)}
                   {...register('phone')}
                   value={phone}
                 />
-                {errors.phone ? (
-                  <div className='invalid-feedback'>
-                    {errors.phone?.message}
-                  </div>
-                ) : (
-                  <div className='text-success'></div>
+                {errors.phone && (
+                  <div className='text-danger'>{errors.phone?.message}</div>
                 )}
               </div>
               <div className='col-md-12 mb-3'>
@@ -189,7 +221,7 @@ function StudentRegForm() {
                   value={university}
                 >
                   <option value=''>Select your university</option>
-                  <option value='UDSM'>University of Daresalaam</option>
+                  <option value='1'>University of Daresalaam</option>
                 </select>
                 {errors.university ? (
                   <div className='invalid-feedback'>
@@ -208,7 +240,7 @@ function StudentRegForm() {
                   value={collage}
                 >
                   <option value=''>Select your College</option>
-                  <option value='COICT'>COICT</option>
+                  <option value='1'>COICT</option>
                 </select>
                 {errors.collage ? (
                   <div className='invalid-feedback'>
@@ -244,7 +276,7 @@ function StudentRegForm() {
                   className={`form-control ${
                     errors.registration ? 'is-invalid' : ''
                   }`}
-                  placeholder='Registration Number'
+                  placeholder='Registration Number: ie 2021-04-03821'
                   {...register('registration')}
                   value={registration}
                 />
@@ -259,7 +291,7 @@ function StudentRegForm() {
 
               <div className='col-md-12 mb-3'>
                 <input
-                  type='text'
+                  type='password'
                   className={`form-control ${
                     errors.password ? 'is-invalid' : ''
                   }`}
@@ -270,6 +302,24 @@ function StudentRegForm() {
                 {errors.password ? (
                   <div className='invalid-feedback'>
                     {errors.password?.message}
+                  </div>
+                ) : (
+                  <div className='text-success'></div>
+                )}
+              </div>
+              <div className='col-md-12 mb-3'>
+                <input
+                  type='password'
+                  className={`form-control ${
+                    errors.verifyPassword ? 'is-invalid' : ''
+                  }`}
+                  placeholder='Verify Password'
+                  {...register('verifyPassword')}
+                  value={verifyPassword}
+                />
+                {errors.verifyPassword ? (
+                  <div className='invalid-feedback'>
+                    {errors.verifyPassword?.message}
                   </div>
                 ) : (
                   <div className='text-success'></div>

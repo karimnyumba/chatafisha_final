@@ -27,9 +27,7 @@ const schema = yup
       .number()
       .positive("Registration number can't be negative")
       .integer('Registration should be an integer!')
-      .required('Please provide your registration number')
-     ,
-
+      .required('Please provide your registration number'),
     //contact
     contact: yup
       .string()
@@ -46,8 +44,18 @@ const schema = yup
       .required('Please provide your password!')
       .min(4, 'password must be at least 4 characters')
       .max(50, 'password must be at most 50 characters'),
+    verifyPassword: yup
+      .string()
+      .required('Please verify your password!')
+      .test(
+        'password-match',
+        'Password doesnt match, Please try again',
+        function (value) {
+          return value === this.resolve(yup.ref('password'))
+        }
+      ),
 
-      //role
+    //role
     role: yup.string().required('Please select your role!'),
   })
   .required()
@@ -82,6 +90,8 @@ const Register = () => {
  const location = watch('location')
  const password = watch('password')
  const role = watch('role')
+ const verifyPassword = watch('verifyPassword')
+  
  if(data){
   //set to localStorage
   // <Information msg={data.aset} color='success'/>
@@ -92,17 +102,15 @@ if(isLoading){
 }
   return (
     <main
-    className=' bg-cover bg-repeat bg-white_A700 flex flex-col font-syne h-[100vh] items-center justify-start mx-auto p-[38px] sm:px-5 w-full'
+      className=' bg-cover bg-repeat bg-white_A700 flex flex-col font-syne h-[100vh] items-center justify-start mx-auto p-[38px] sm:px-5 w-full'
       style={{ backgroundImage: "url('images/img_homepage.png')" }}
     >
       <section className='d-flex flex-column'>
         <article className='mx-auto mb-3 '>
-          {error && (
-            <Information msg={'There is an error'} color='danger' />
-          )}
+          {error && <Information msg={'There is an error'} color='danger' />}
         </article>
         <article className='registration   p-4 rounded shadow-lg w-75 m-auto'>
-        <div class='mb-3 pb-1border-b-2 text-center font-base text-gray-700'>
+          <div class='mb-3 pb-1border-b-2 text-center font-base text-gray-700'>
             <div className='flex justify-center '>
               <Text
                 className='font-bold md:ml-[0] md:mt-0 mt-2.5 text-black_900 text-center w-auto'
@@ -227,6 +235,24 @@ if(isLoading){
                 {errors.password ? (
                   <div className='invalid-feedback'>
                     {errors.password?.message}
+                  </div>
+                ) : (
+                  <div className='text-success'></div>
+                )}
+              </div>
+              <div className='col-md-12 mb-3'>
+                <input
+                  type='password'
+                  className={`form-control ${
+                    errors.verifyPassword ? 'is-invalid' : ''
+                  }`}
+                  placeholder='Verify Password'
+                  {...register('verifyPassword')}
+                  value={verifyPassword}
+                />
+                {errors.verifyPassword ? (
+                  <div className='invalid-feedback'>
+                    {errors.verifyPassword?.message}
                   </div>
                 ) : (
                   <div className='text-success'></div>

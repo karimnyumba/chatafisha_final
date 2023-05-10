@@ -7,7 +7,7 @@ const useFetch = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
   const obtainData = (url, method = 'get', body = null, options = {}) => {
-    console.log(options)
+
     const fetchData = async () => {
       setIsLoading(true)
 

@@ -7,6 +7,7 @@ import Page from "../../components/adminComponents/Page";
 import PageBody from "../../components/adminComponents/PageBody";
 import PageHeader from "../../components/adminComponents/PageHeader";
 import Typography from "../../components/adminComponents/Typography";
+import BlogDescription from "components/BlogDescription";
 import { useNavigate } from "react-router-dom";
 import ProductModal from "./BlogModal";
 import useFetch from "hooks";
@@ -73,8 +74,7 @@ function BlogCards({ blog }) {
                 <h4 class="text-lg font-semibold text-cyan-900">
                   {blog.title}
                 </h4>
-                <p class="text-gray-600">{(showMore)? blog.content : blog.content.substring(0,300)}</p>
-                {(blog.content.length>=300)&&<button className="btn btn-outline-primary" onClick={()=>setShowMore(!showMore)}>{(showMore)?'Show Less': 'Show More'}</button>}
+                <BlogDescription content={blog.content}/>
               </div>
               <div className="flex flex-row gap-4 mt-3">
                 <button

@@ -4,36 +4,58 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { Text } from "components";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "context";
-
+import useFetch from "hooks";
+import BlogDescription from "components/BlogDescription";
 function NewsCarousel() {
   const navigate = useNavigate()
   const { dispatch } = useGlobalContext()
-
-
-
   const cards = [
     {
-      imgUrl: "images/voice.png",
+      id:1,
+      img: "images/voice.png",
       title: "Join our open house event",
-      description: "Chatafisha will be hosting it’s second open house event this year to share our"
+      content: "Chatafisha will be hosting it’s second open house event this year to share our"
     },
     {
-      imgUrl: "images/chatafisha final.00_00_21_23 1.png",
+      id:2,
+      img: "images/chatafisha final.00_00_21_23 1.png",
       title: "Rangi Chanya Festival",
-      description: "Exciting news! CHATAFISHA is hosting 'RANGI CHANYA'  to drive community impact through a circular economy. "
+      content: "Exciting news! CHATAFISHA is hosting 'RANGI CHANYA'  to drive community impact through a circular economy. "
     },
     {
-      imgUrl: "images/wasteInitiative.png",
+      id:3,
+      img: "images/wasteInitiative.png",
       title: "Waste Collection Initiative",
-      description: "Chatafisha and Nipe Fagio are partnering in a waste collection initiative..."
+      content: "Chatafisha and Nipe Fagio are partnering in a waste collection initiative..."
     },
     {
-      imgUrl: "images/near.jpeg",
+      id:4,
+      img: "images/near.jpeg",
       title: "Building on NEAR Protocol",
-      description: "As a Decentralized Autonomous Organization (DAO), we are building our platform on..."
+      content: "As a Decentralized Autonomous Organization (DAO), we are building our platform on..."
     },
-
+  
   ];
+  const [blogs, setBlogs] = React.useState(cards);
+  const { data, isLoading, error, obtainData } = useFetch()
+  React.useEffect(() => {
+    let url, method;
+    obtainData(
+      (url = 'blog/article_data'),
+      (method = 'get')
+    )
+
+  }, [])
+
+React.useEffect(
+  ()=>{
+    if(data){
+      setBlogs(data.data)
+    }
+  
+  },[data]
+)
+
 
   const options = {
     type: "carousel",
@@ -96,53 +118,70 @@ function NewsCarousel() {
   };
 
   return (
-    <div className="w-full h-[290px]">
-      <Splide options={options} >
-        {cards.map((card, index) => (
-          <SplideSlide key={index} onClick={() => {
-            console.log(card);
-            dispatch({
-              type: 'CURRENT_BLOG_ARTICLE',
-              payload: {
-                article:card
-              }
-            });
-            navigate('/news_detail');
-            }}>
-            <div className="relative w-[290PX] sm:ml-[0px] md:ml-[30px]">
+    <div className='w-full h-[290px]'>
+      <Splide options={options}>
+        {blogs.map((card, index) => (
+          <SplideSlide
+            key={index}
+            onClick={() => {
+              console.log(card)
+              dispatch({
+                type: 'CURRENT_BLOG_ARTICLE',
+                payload: {
+                  article: card,
+                },
+              })
+              navigate('/news_detail')
+            }}
+          >
+            <div className='relative w-[290PX] sm:ml-[0px] md:ml-[30px]'>
               <img
-                src={card.imgUrl}
-                className="w-[100%] h-40 mb-[-14px] ml-auto  object-cover z-[1]"
+                src={'http://139.162.249.220:9292/' + card.img}
+                className='w-[100%] h-40 mb-[-14px] ml-auto  object-cover z-[1]'
                 alt={card.title}
               />
-              <div className="w-full bg-black p-[11px] h-30 flex flex-col items-center justify-center ">
-                <div className="flex gap-8 pt-2
-                ">
-                <Text
-                  className="font-bold text-white text-left text-xl w-full"
-                  variant="h4"
-
+              <div className='w-full bg-black p-[11px] h-30 flex flex-col items-center justify-center '>
+                <div
+                  className='flex gap-8 pt-2
+                '
                 >
-                  {card.title}
-                </Text>
-                <svg width="14" height="20" className="float-right" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M13.0701 7.57L7.00005 1.5L0.930054 7.57M7.00005 18.5V1.67" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
+                  <Text
+                    className='font-bold text-white text-left text-xl w-full'
+                    variant='h4'
+                  >
+                    {card.title}
+                  </Text>
+                  <svg
+                    width='14'
+                    height='20'
+                    className='float-right'
+                    viewBox='0 0 14 20'
+                    fill='none'
+                    xmlns='http://www.w3.org/2000/svg'
+                  >
+                    <path
+                      d='M13.0701 7.57L7.00005 1.5L0.930054 7.57M7.00005 18.5V1.67'
+                      stroke='white'
+                      stroke-width='1.5'
+                      stroke-miterlimit='10'
+                      stroke-linecap='round'
+                      stroke-linejoin='round'
+                    />
+                  </svg>
                 </div>
                 <Text
-                  className="text-white pt-1 text-left text-xs "
-                  variant="body2"
+                  className='text-white pt-1 text-left text-xs '
+                  variant='body2'
                 >
-                  {card.description}
+                  {card.content && <BlogDescription content={card.content}/>}
                 </Text>
-
               </div>
             </div>
           </SplideSlide>
         ))}
       </Splide>
     </div>
-  );
+  )
 }
 
 export { NewsCarousel };
