@@ -1,11 +1,12 @@
 import React from "react";
 import "@splidejs/splide/dist/css/splide.min.css";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-import { Text } from "components";
+import { Information, Text } from "components";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "context";
 import useFetch from "hooks";
 import BlogDescription from "components/BlogDescription";
+import ApiErrorDisplay from "components/ApiErrorDisplay";
 function NewsCarousel() {
   const navigate = useNavigate()
   const { dispatch } = useGlobalContext()
@@ -40,21 +41,18 @@ function NewsCarousel() {
   const { data, isLoading, error, obtainData } = useFetch()
   React.useEffect(() => {
     let url, method;
+    if(!data){
     obtainData(
       (url = 'blog/article_data'),
       (method = 'get')
     )
+  }
+  else{
+    setBlogs(data.data)
+  }
 
-  }, [])
+  }, [data])
 
-React.useEffect(
-  ()=>{
-    if(data){
-      setBlogs(data.data)
-    }
-  
-  },[data]
-)
 
 
   const options = {
@@ -119,12 +117,32 @@ React.useEffect(
 
   return (
     <div className='w-full h-[290px]'>
+      {isLoading && (
+        <div>
+          <Information msg={'Fetching blogs for you!!'} color={'warning'} />
+        </div>
+      )}
+      {error && (
+        <ApiErrorDisplay
+          errObject={
+            new Map([
+              [
+                'ERR_NETWORK',
+                {
+                  msg: 'Can\'t fetch blogs because of Network Error, Please check your internet connection!',
+                  color: 'danger',
+                },
+              ],
+            ])
+          }
+          errCode={error.code}
+        />
+      )}
       <Splide options={options}>
         {blogs.map((card, index) => (
           <SplideSlide
             key={index}
             onClick={() => {
-              console.log(card)
               dispatch({
                 type: 'CURRENT_BLOG_ARTICLE',
                 payload: {
@@ -173,7 +191,9 @@ React.useEffect(
                   className='text-white pt-1 text-left text-xs '
                   variant='body2'
                 >
-                  {card.content && <BlogDescription content={card.content}/>}
+                  {card.content && (
+                    <BlogDescription content={card.content.substring(0, 100)} />
+                  )}
                 </Text>
               </div>
             </div>

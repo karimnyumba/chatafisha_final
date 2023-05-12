@@ -11,7 +11,7 @@ function NavBar() {
   //global context
   const { user_details, dispatch, handleLogout } = useGlobalContext()
   //authentication: check from local storage
-  const isAuthenticated = validateLocalStorage() ? true : false  
+  const isAuthenticated = (user_details?.token || validateLocalStorage()) ? true : false  
   const loginLogout = ()=>{
     if(isAuthenticated){
       handleLogout()

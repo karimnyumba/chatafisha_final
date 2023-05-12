@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "context";
 
   const HOMEPAGEPage = () => {
-  const { user_details,dispatch } = useGlobalContext()
+  const { user_details} = useGlobalContext()
   const { user_redirect_message } = useGlobalContext()
   const navigate = useNavigate();
 

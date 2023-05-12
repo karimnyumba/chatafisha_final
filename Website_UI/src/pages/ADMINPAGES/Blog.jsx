@@ -109,31 +109,11 @@ function BlogCards({ blog }) {
 
 export default function Blogs() {
   //user
-  const {details, user_details} = useGlobalContext();
+  const {user_details} = useGlobalContext();
   const [blogs, setBlogs] = useState();
   const navigate = useNavigate();
   const {data, isLoading, error, obtainData} = useFetch();
-
-  // const loadData = async () => {
-  //   setisLoading(true);
-  //   // handle fetch request
-  //   const response = ["blogs"];
-  //   if (response) {
-  //     setBlogs(response);
-  //     setisLoading(false);
-  //   }
-  // };
-  
-  //   if(user_details?.token)
-  //   axios.get('http://139.162.249.220:9292/api/blog/article_data', {
-  //     headers:{
-  //  token:user_details.token,
-  // }}).then((response)=>{
-  //     console.log(response.data)
-  //   }).catch((err)=>console.log(err));
-    // console.log(user_details)
-  
-    //fetch data
+  //fetch blogs
   useEffect(()=>{
   let url,  options, method, body;
   if(user_details?.token)

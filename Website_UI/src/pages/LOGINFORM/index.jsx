@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Text, Img, Button } from 'components'
+import { Text, Img, Button, ApiErrorDisplay } from 'components'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -51,19 +51,31 @@ const LoginForm = () => {
   const { data, isLoading, error, obtainData } = useFetch()
   //Handle Submit
   const onSubmit = (data) => {
+    //delete the previous login if any:
+    localStorage.clear();
     const { email, password } = data
     obtainData('user/login_credential', 'post', {
       email,
       password,
     })
   }
-  if (error) {
-    console.log(error)
-  }
   if (data) {
     // <Information msg={data.aset} color="success" />;
-    if (rememberMe) {
-      console.log(data)
+    dispatch({
+      type: 'CREATE_TOKEN',
+      payload: {
+        user_details: {
+          token: data.token,
+          user_data: { ...data.user_data, isLoggedIn: true },
+        },
+      },
+    })
+
+    if(!rememberMe){
+     
+
+    }
+    else if(rememberMe) {
       localStorage.setItem(
         'Chatafisha',
         JSON.stringify({
@@ -90,15 +102,32 @@ const LoginForm = () => {
     >
       <section className='d-flex flex-column'>
         <article className='m-auto mb-3 '>
-          {error && error.code === 'ERR_BAD_REQUEST' && (
-            <Information msg={error.response.data.aset} color='danger' />
+          {error && (
+            <ApiErrorDisplay
+              errObject={
+                new Map([
+                  [
+                    'ERR_NETWORK',
+                    {
+                      msg: 'Network error, Please check your internet connection...',
+                      color: 'danger',
+                    },
+                  ],
+                  [
+                    'ERR_BAD_REQUEST',
+                    {
+                      msg:error?.response?.data?.aset,
+                      color:'danger'
+
+                    }
+                  ]
+                ])
+              }
+              errCode={error.code}
+            />
           )}
         </article>
-        {/* <article className='m-auto mb-3 '>
-          {error && (
-            <Information msg={error.response} color='danger' />
-          )}
-        </article> */}
+       
         {user_redirect_message && (
           <article className='m-auto mb-3 '>
             <Information
@@ -161,7 +190,7 @@ const LoginForm = () => {
                   </span>
                 </div>
                 <input
-                  type={ShowPassword? 'text':'password'}
+                  type={ShowPassword ? 'text' : 'password'}
                   className={`flex-shrink flex-grow flex-auto leading-normal w-px  border-0 h-10 border-grey-light rounded rounded-l-none px-1 self-center relative text-sm outline-none ${
                     errors.password ? 'is-invalid' : ''
                   }`}
@@ -169,11 +198,16 @@ const LoginForm = () => {
                   {...register('password')}
                   value={password}
                 />
-                 <div class='flex -mr-px justify-center w-10 p-2'>
-                  <span class='flex items-center leading-normal bg-white px-3 border-0 rounded rounded-r-none text-2xl text-gray-600'
-                  onClick={() => setShowPassword(!ShowPassword)}
+                <div class='flex -mr-px justify-center w-10 p-2'>
+                  <span
+                    class='flex items-center leading-normal bg-white px-3 border-0 rounded rounded-r-none text-2xl text-gray-600'
+                    onClick={() => setShowPassword(!ShowPassword)}
                   >
-                    {ShowPassword? <i class='fas fa-eye-slash'></i>:<i class='fas fa-eye'></i>}
+                    {ShowPassword ? (
+                      <i class='fas fa-eye-slash'></i>
+                    ) : (
+                      <i class='fas fa-eye'></i>
+                    )}
                   </span>
                 </div>
                 {errors.password ? (

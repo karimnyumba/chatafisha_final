@@ -8,5 +8,6 @@ import { ProtectedRoute } from "./ProtectedRoute";
 import { NewsCarousel } from "./NewsCarosel";
 import NavBar from "./NavBar";
 import Loading from "./Loading";
-export { Text, Img, Button, List, Carousel, Information, ProtectedRoute, NewsCarousel, NavBar , Loading};
+import ApiErrorDisplay from "./ApiErrorDisplay";
+export { Text, Img, Button, List, Carousel, Information, ProtectedRoute, NewsCarousel, NavBar , Loading, ApiErrorDisplay};
 
