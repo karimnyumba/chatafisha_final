@@ -7,6 +7,8 @@ import { useGlobalContext } from "context";
 import useFetch from "hooks";
 import BlogDescription from "components/BlogDescription";
 import ApiErrorDisplay from "components/ApiErrorDisplay";
+
+
 function NewsCarousel() {
   const navigate = useNavigate()
   const { dispatch } = useGlobalContext()
@@ -107,7 +109,7 @@ function NewsCarousel() {
         interval: 3000,
       },
       1920: {
-        perPage: 6,
+        perPage: 3,
         gap: "1rem",
         autoplay: true,
         interval: 3000,

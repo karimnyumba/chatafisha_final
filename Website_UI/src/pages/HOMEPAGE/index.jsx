@@ -116,13 +116,13 @@ import { useGlobalContext } from "context";
                     />
                     <div className='flex flex-col items-start justify-start mr-1 w-auto md:w-full'>
                       <Text
-                        className='font-bold  text-center ml-[10px] text-center text-white_A700'
+                        className='font-bold  text-center ml-[10px]  text-white_A700'
                         variant='body2'
                       >
                         Sokoni
                       </Text>
                       <Text
-                        className='font-bold text-center ml-[10px] text-center text-white_A700'
+                        className='font-bold text-center ml-[10px]  text-white_A700'
                         variant='body2'
                       >
                         Market place
