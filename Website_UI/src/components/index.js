@@ -11,6 +11,6 @@ import Loading from "./Loading";
 import ApiErrorDisplay from "./ApiErrorDisplay";
 import SokoniCarosel from "./SokoniCarosel";
 
-export { Text, Img, Button, List, Carousel, Information, ProtectedRoute, NewsCarousel, NavBar , Loading, ApiErrorDisplay, SokoniCarosel};
+export { Text, Img, Button, List, Carousel, Information, ProtectedRoute, NewsContentDisplay, NavBar , Loading, ApiErrorDisplay, SokoniCarosel};
 
 
