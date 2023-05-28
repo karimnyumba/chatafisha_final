@@ -11,6 +11,8 @@ const reducer =(state, action)=>{
     return {...state, user_details:{}, user_redirect_message:{}};
   case 'CURRENT_BLOG_ARTICLE':
       return {...state, article:action.payload};
+  case 'CURRENT_CREDIT_DETAIL':
+      return {...state, credit:action.payload};
  }
  return state
 }

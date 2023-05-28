@@ -8,6 +8,8 @@ import { Loading, ProtectedRoute } from "components";
 import NEWSDETAILSPAGE from "pages/NEWSDETAILPAGE";
 import TupeSupport from "pages/TUPESUPPORTPAGE";
 import StudentRegForm from "pages/STUDENTREGFORM";
+import SokoniPage from "pages/SOKONIPAGE";
+import SokoniDetail from "pages/SOKONIDETAILPAGE";
 const HOMEPAGE = React.lazy(() => import("pages/HOMEPAGE"));
 const LOGINPAGE = React.lazy(() => import("pages/LOGINPAGE"));
 const REGISTERFORM = React.lazy(() => import("pages/REGISTERFORM"));
@@ -34,8 +36,10 @@ const ProjectRoutes = () => {
           />
           <Route path='/news_and_updates' element={<NEWSUPDATESPAGE />} />
           <Route path='/news_detail' element={<NEWSDETAILSPAGE />} />
+          <Route path='/sokoni_detail' element={<SokoniDetail />} />
           <Route path='/news_detail/blog/:blog_id' element={<SINGLE_NEWS />} />
           <Route path='/tupe_support' element={<TupeSupport />} />
+          <Route path='/market_place' element={<SokoniPage />} />
           <Route path='/registerform' element={<REGISTERFORM />} />
           <Route path='/loginform' element={<LOGINFORM />} />
           <Route path='/student_reg_form' element={<StudentRegForm />} />

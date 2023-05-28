@@ -9,5 +9,8 @@ import { NewsContentDisplay } from "./NewsContent";
 import NavBar from "./NavBar";
 import Loading from "./Loading";
 import ApiErrorDisplay from "./ApiErrorDisplay";
-export { Text, Img, Button, List, Carousel, Information, ProtectedRoute, NewsContentDisplay, NavBar , Loading, ApiErrorDisplay};
+import SokoniCarosel from "./SokoniCarosel";
+
+export { Text, Img, Button, List, Carousel, Information, ProtectedRoute, NewsCarousel, NavBar , Loading, ApiErrorDisplay, SokoniCarosel};
+
 
