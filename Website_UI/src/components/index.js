@@ -5,9 +5,9 @@ import { List } from "./List";
 import {Carousel} from "./Carousel";
 import { Information } from "./Information";
 import { ProtectedRoute } from "./ProtectedRoute";
-import { NewsCarousel } from "./NewsCarosel";
+import { NewsContentDisplay } from "./NewsContent";
 import NavBar from "./NavBar";
 import Loading from "./Loading";
 import ApiErrorDisplay from "./ApiErrorDisplay";
-export { Text, Img, Button, List, Carousel, Information, ProtectedRoute, NewsCarousel, NavBar , Loading, ApiErrorDisplay};
+export { Text, Img, Button, List, Carousel, Information, ProtectedRoute, NewsContentDisplay, NavBar , Loading, ApiErrorDisplay};
 

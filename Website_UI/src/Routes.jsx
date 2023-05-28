@@ -13,6 +13,7 @@ const LOGINPAGE = React.lazy(() => import("pages/LOGINPAGE"));
 const REGISTERFORM = React.lazy(() => import("pages/REGISTERFORM"));
 const LOGINFORM = React.lazy(() => import("pages/LOGINFORM"));
 const NEWSUPDATESPAGE = React.lazy(() => import("pages/NEWS&UPDATES"))
+const SINGLE_NEWS = React.lazy(() => import("pages/SINGLE_NEWS"))
 const NEWSDETAILPAGE = React.lazy(() => import("pages/NEWSDETAILPAGE"))
 
 const ProjectRoutes = () => {
@@ -26,13 +27,14 @@ const ProjectRoutes = () => {
           <Route
             path='/homepage'
             element={
-              <ProtectedRoute>
+              <ProtectedRoute role='User'>
                 <HOMEPAGE />
               </ProtectedRoute>
             }
           />
           <Route path='/news_and_updates' element={<NEWSUPDATESPAGE />} />
           <Route path='/news_detail' element={<NEWSDETAILSPAGE />} />
+          <Route path='/news_detail/blog/:blog_id' element={<SINGLE_NEWS />} />
           <Route path='/tupe_support' element={<TupeSupport />} />
           <Route path='/registerform' element={<REGISTERFORM />} />
           <Route path='/loginform' element={<LOGINFORM />} />
@@ -40,7 +42,7 @@ const ProjectRoutes = () => {
           <Route
             path='/AdminHome/*'
             element={
-              <ProtectedRoute>
+              <ProtectedRoute role='Admin'>
                 <AdminLayout />
               </ProtectedRoute>
             }

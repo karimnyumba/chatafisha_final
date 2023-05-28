@@ -66,3 +66,37 @@ li:hover{
   transition: 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
 }
 
+/* custom css */
+.hr_style{
+  width: 30vw;
+  height: 0.1rem;
+  display: inline-block;
+  border: black solid 0.5px;
+}
+.card_img{
+  width: 32093px;
+
+}
+.page-pagination{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2rem;
+  margin-bottom: 5rem;
+}
+.page_links{
+cursor: pointer;
+color: rgb(73, 73, 239);
+}
+.profile-photo{
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 100%;
+  background-color: royalblue;
+}
+.profile-name{
+  font-size: 0.6rem;
+  font-weight: 400;
+  margin-left: 0.5rem;
+}

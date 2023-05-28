@@ -13,6 +13,7 @@ function NavBar() {
   //authentication: check from local storage
   const isAuthenticated = (user_details?.token || validateLocalStorage()) ? true : false  
   const loginLogout = ()=>{
+    //login and logout carried out by single function
     if(isAuthenticated){
       handleLogout()
     }else{
