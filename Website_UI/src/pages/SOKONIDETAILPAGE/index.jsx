@@ -122,7 +122,7 @@ function SokoniDetail() {
         </div>
       </div>
       <div
-        className="relative w-[80%] h-[450px]  sm:w-full rounded-xl overflow-x-visible bg-green-500 mb-28  float-left"
+        className="relative w-[80%] h-[300px]  sm:w-full rounded-xl overflow-x-visible bg-green-500   float-left"
         style={{ backgroundColor: "#38C18C" }}
         onClick={() => {
           navigate("/sokoni_detail");
@@ -177,7 +177,7 @@ function SokoniDetail() {
           </div>
         </div>
         <div
-          className="absolute top-[44%] mb-10 w-full h-auto p-[11px] rounded-3xl flex flex-wrap items-center justify-around"
+          className="absolute top-[48%] p-[10px] w-full h-auto  rounded-3xl flex flex-wrap items-center justify-around"
           style={{ backgroundColor: "#D8DFE0" }}
         >
           <div className="flex flex-col space-x-6 mb-4">
@@ -243,7 +243,7 @@ function SokoniDetail() {
                 </Text>
                 <div className="h-9 border-r-2"></div>
                 <Text style={{ fontSize: "11px" }} className="flex flex-col">
-                  WCC
+                  WRC
                   <span style={{ fontSize: "5px" }}>
                     waste collected credit
                   </span>
