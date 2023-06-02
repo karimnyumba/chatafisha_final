@@ -7,7 +7,7 @@ function SokoniPage() {
 
   return (
     <div
-      className="bg-cover bg-repeat bg-white_A700 flex flex-col font-syne h-[100vh] sm:h-[100%] items-center justify-start mx-auto p-[38px] sm:px-5 w-full"
+      className="bg-cover bg-repeat bg-white_A700 flex flex-col font-syne h-auto sm:h-[100%] items-center justify-start mx-auto p-[38px] sm:px-5 w-full"
       style={{ backgroundImage: "url('images/img_homepage.png')" }}
     >
       <NavBar />

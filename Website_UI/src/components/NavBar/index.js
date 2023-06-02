@@ -32,8 +32,8 @@ function NavBar() {
   
   
   return (
-    <nav className="mt-1 w-full max-w-7xl mx-auto px-2 sm:px-6 lg:px-8  ">
-    <div className="relative flex items-center justify-between h-16 ml-[5%]">
+    <nav className=" w-full max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 -mt-3 ">
+    <div className="relative flex items-center justify-between  ml-[5%]">
             <div className="flex-1 flex items-center justify-start ml-auto sm:items-stretch sm:justify-start">
                 <Text
                     className="font-bold md:ml-[0] md:mt-0 mt-2.5 text-black_900 text-left w-auto"

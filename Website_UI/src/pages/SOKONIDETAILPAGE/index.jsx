@@ -11,12 +11,12 @@ function SokoniDetail() {
   console.log(credit);
   return (
     <div
-      className="bg-cover bg-repeat bg-white_A700 flex flex-col  font-syne h-[100vh] sm:h-[100%] items-center justify-start mx-auto p-[38px] sm:px-5 w-full"
+      className="bg-cover bg-repeat bg-white_A700 flex flex-col h-fit font-syne sm:h-[100%] items-center justify-start mx-auto p-[38px] sm:px-5 w-full"
       style={{ backgroundImage: "url('images/img_homepage.png')" }}
     >
        
       <NavBar />
-      <div className="flex flex-col ml-[-40%] mt-1 sm:ml-0">
+      <div className="flex flex-col ml-[-40%] mt- sm:ml-0">
         <div className="flex justify-between ">
           <svg
             width="70"
@@ -122,7 +122,7 @@ function SokoniDetail() {
         </div>
       </div>
       <div
-        className="relative w-[80%] h-[450px]  sm:w-full rounded-xl overflow-x-visible bg-green-500 mb-28  float-left"
+        className="relative w-[80%] h-[300px]  sm:w-full rounded-xl overflow-x-visible bg-green-500   float-left"
         style={{ backgroundColor: "#38C18C" }}
         onClick={() => {
           navigate("/sokoni_detail");
@@ -177,7 +177,7 @@ function SokoniDetail() {
           </div>
         </div>
         <div
-          className="absolute top-[44%] mb-10 w-full h-auto p-[11px] rounded-3xl flex flex-wrap items-center justify-around"
+          className="absolute top-[48%] p-[10px] w-full h-auto  rounded-3xl flex flex-wrap items-center justify-around"
           style={{ backgroundColor: "#D8DFE0" }}
         >
           <div className="flex flex-col space-x-6 mb-4">
@@ -243,7 +243,7 @@ function SokoniDetail() {
                 </Text>
                 <div className="h-9 border-r-2"></div>
                 <Text style={{ fontSize: "11px" }} className="flex flex-col">
-                  WCC
+                  WRC
                   <span style={{ fontSize: "5px" }}>
                     waste collected credit
                   </span>
