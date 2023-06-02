@@ -3,11 +3,16 @@ import { NavBar, Text, Img } from "components";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "context";
 import Button from "components/adminComponents/Button";
+import Select from 'react-select'
+
 
 const RegistrationBio = () => {
   const navigate = useNavigate();
   const { credit } = useGlobalContext();
   console.log(credit);
+  const options = [
+    { value: '2023', label: '2023' },
+  ]
 
   const data = {
     id: 12354,
@@ -31,19 +36,19 @@ const RegistrationBio = () => {
       <NavBar />
       <div className="flex flex-wrap gap-3 mt-3">
         <div
-          className=" w-[290px] h-[500px] pl-5  rounded-xl  bg-green-500   float-left sm:w-full"
+          className=" w-[290px] h-[500px] pl-5  rounded-xl  bg-green-500   float-left sm:w-full md:w-full"
           style={{ backgroundColor: "#38C18C" }}
         >
           <div className="pl-1 mt-4">
             <Text
-              className="text-white mt-3 text-xl flex flex-col"
+              className="text-white  mt-3 text-xl flex flex-col justify-center md:items-center"
               style={{ color: "#fff" }}
             >
               <span>Register</span>
               Information
             </Text>
           </div>
-          <div>
+          <div className="md:ml-24 sm:ml-3">
             {/* <Text className="text-white mt-1 text-xl flex flex-col" 
             style={{color:'#fff', fontSize:'10px'}}>Name of Picker / Organization</Text> */}
             <label
@@ -57,7 +62,7 @@ const RegistrationBio = () => {
               <input
                 type="text"
                 id="email-address-icon"
-                class=" border border-gray-300 text-gray-900 text-xs rounded-lg  block w-64 pl-2 p-2.5   h-11"
+                class=" border border-gray-300 text-gray-900 text-xs rounded-lg  block w-64 pl-2 p-2.5 md:w-[80%]   h-11"
                 style={{ backgroundColor: "#D9D9D9" }}
                 placeholder=""
               />
@@ -72,7 +77,7 @@ const RegistrationBio = () => {
               <input
                 type="text"
                 id="email-address-icon"
-                class=" border border-gray-300 text-gray-900 text-xs rounded-lg  block w-64 pl-2 p-2.5   h-11"
+                class=" border border-gray-300 text-gray-900 text-xs rounded-lg  block w-64 pl-2 p-2.5 md:w-[80%]   h-11"
                 style={{ backgroundColor: "#D9D9D9" }}
                 placeholder=""
               />
@@ -87,7 +92,7 @@ const RegistrationBio = () => {
               <input
                 type="text"
                 id="email-address-icon"
-                class=" border border-gray-300 text-gray-900 text-xs rounded-lg  block w-44 pl-2 p-2.5   h-11"
+                class=" border border-gray-300 text-gray-900 text-xs rounded-lg  block w-44 pl-2 p-2.5 md:w-[80%]    h-11"
                 style={{ backgroundColor: "#D9D9D9" }}
                 placeholder=""
               />
@@ -104,7 +109,7 @@ const RegistrationBio = () => {
                   <input
                     type="text"
                     id="email-address-icon"
-                    class=" border border-gray-300 text-gray-900 text-xs rounded-lg  block w-28 pl-2 p-2.5   h-11"
+                    class=" border border-gray-300 text-gray-900 text-xs rounded-lg  block w-28 pl-2 p-2.5  md:w-[80%]   h-11"
                     style={{ backgroundColor: "#D9D9D9" }}
                     placeholder=""
                   />
@@ -122,7 +127,7 @@ const RegistrationBio = () => {
                   <input
                     type="text"
                     id="email-address-icon"
-                    class=" border border-gray-300 text-gray-900 text-xs rounded-lg  block w-28 pl-2 p-2.5   h-11"
+                    class=" border border-gray-300 text-gray-900 text-xs rounded-lg  block w-28 pl-2 p-2.5 md:w-[60%]    h-11"
                     style={{ backgroundColor: "#D9D9D9" }}
                     placeholder=""
                   />
@@ -130,7 +135,7 @@ const RegistrationBio = () => {
               </div>
             </div>
           </div>
-          <div className="">
+          <div className="md:ml-[30%] sm:ml-6">
             <button
               className=" rounded-lg text-xs px-2 mt-4 h-11 w-64 text-center"
               style={{ backgroundColor: "#252424" }}
@@ -155,11 +160,8 @@ const RegistrationBio = () => {
           </div>
         </div>
         <div
-          className="relative w-[490px] h-[500px]  sm:w-full rounded-xl overflow-x-visible bg-green-500   float-left"
+          className="relative w-[490px] h-[500px] md:w-full sm:w-full rounded-xl overflow-x-visible bg-green-500   float-left"
           style={{ backgroundColor: "#38C18C" }}
-          onClick={() => {
-            navigate("/sokoni_detail");
-          }}
         >
           <div className="mt-10 flex flex-wrap justify-between px-8 ">
             <div className="flex">
@@ -203,7 +205,7 @@ const RegistrationBio = () => {
                 </button>
               </div>
             </div>
-            <div className="sm:mt-[-20px]">
+            <div className="sm:mt-[-10px] sm:flex sm:gap-11 ">
               <div
                 className=" font-bold text-xs rounded-full px-4 pt-1 mt-3 h-6 w-16 justify-center align-middle"
                 style={{ backgroundColor: "#5271FF" }}
@@ -211,7 +213,7 @@ const RegistrationBio = () => {
                 <i class="fas fa-recycle   text-white"></i>
               </div>
               <div
-                className="rounded-xl shadow-sm  w-32 h-[77px] text-center mt-3  items-center sm:mt-4 md:mt-7"
+                className="rounded-xl shadow-sm  w-32 h-[77px] sm:h-12  text-center mt-3  items-center sm:mt-4 md:mt-7"
                 style={{ backgroundColor: "#fff" }}
               >
                 <div className="flex flex-col space-x-3 pt-2">
@@ -254,9 +256,7 @@ const RegistrationBio = () => {
           >
             <div className="flex flex-row space-x-6  justify-evenly w-full ">
               <Text className="text-sm font-bold">Dash Board</Text>
-              <select className="w-12 h-6 ">
-                <option value="1">2023</option>
-              </select>
+              <Select options={options}  defaultValue={options[0]}   />
             </div>
             <div
               className="rounded-xl shadow-sm  w-[400px] h-[130px] text-center sm:w-full items-center sm:mt-4 md:mt-7"
@@ -499,7 +499,7 @@ const RegistrationBio = () => {
           </div>
         </div>
         <div
-          className=" w-[290px] h-[500px]  sm:w-full rounded-xl pl-5  overflow-x-visible bg-green-500  "
+          className=" w-[290px] h-[500px] md:w-full sm:w-full rounded-xl pl-5 md:px-40 sm:px-10 overflow-x-visible bg-green-500  "
           style={{ backgroundColor: "#38C18C" }}
         >
           <div className="mt-4 text-center">
@@ -511,13 +511,13 @@ const RegistrationBio = () => {
             </Text>
           </div>
           <div
-            className="inline-block  text-center rounded-full px-3 pt-1 items-start mt-3 h-5 w-28 align-middle"
+            className="inline-block  text-center rounded-full px-3 pt-1 items-start mt-3 h-5 w-28  align-middle"
             style={{ backgroundColor: "#90E5A8", fontSize: "9px" }}
           >
             Amount raised
           </div>
           <div
-            className="rounded-xl shadow-sm  w-52 h-[83px] text-center mt-3  items-center sm:mt-4 md:mt-7"
+            className="rounded-xl shadow-sm  w-52 h-[83px] text-center mt-3  items-center md:w-full sm:mt-4 md:mt-7"
             style={{ backgroundColor: "#D9D9D9" }}
           >
             <Text
@@ -537,7 +537,7 @@ const RegistrationBio = () => {
             Total Credit sold
           </div>
           <div
-            className="rounded-xl shadow-sm  w-44 h-[48px] text-center mt-3  items-center sm:mt-4 md:mt-7"
+            className="rounded-xl shadow-sm  w-44 h-[48px] text-center mt-3  items-center md:w-full sm:mt-4 md:mt-7"
             style={{ backgroundColor: "#D9D9D9" }}
           >
             <Text
@@ -547,7 +547,7 @@ const RegistrationBio = () => {
               <span>0.530</span>
             </Text>
           </div>
-          <div className="rounded-xl shadow-sm bg-white mt-3  w-64  h-[169px] flex  justify-around ">
+          <div className="rounded-xl shadow-sm bg-white mt-3  w-64  h-[169px] flex  md:w-full justify-around ">
             <div className="flex flex-col space-y-3 pt-2 pl-2">
               <div className="flex flex-col space-y-1 pt-2">
                 <Text className="" style={{ fontSize: "8px" }}>
