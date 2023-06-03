@@ -116,7 +116,7 @@ function StudentRegForm() {
 
   return (
     <main
-      className=' bg-cover bg-repeat bg-white_A700 flex flex-col font-syne h-[100vh] items-center justify-start mx-auto p-[38px] sm:px-5 w-full'
+      className=' bg-cover bg-repeat bg-white_A700 flex flex-col font-syne h-auto items-center justify-start mx-auto p-[38px] sm:px-5 w-full'
       style={{ backgroundImage: "url('images/img_homepage.png')" }}
     >
       <section className="d-flex flex-column w-[50%] md:w-[75%] sm:w-full">

@@ -11,7 +11,7 @@ function SokoniDetail() {
   console.log(credit);
   return (
     <div
-      className="bg-cover bg-repeat bg-white_A700 flex flex-col h-fit font-syne sm:h-[100%] items-center justify-start mx-auto p-[38px] sm:px-5 w-full"
+      className="bg-cover bg-repeat bg-white_A700 flex flex-col h-[800px] font-syne sm:h-[100%] items-center justify-start mx-auto p-[38px] sm:px-5 w-full"
       style={{ backgroundImage: "url('images/img_homepage.png')" }}
     >
        
