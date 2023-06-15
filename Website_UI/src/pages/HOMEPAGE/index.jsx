@@ -114,7 +114,7 @@ import { useGlobalContext } from "context";
                       className='h-4 mt-0.5 w-4'
                       alt='plus_One'
                     />
-                    <div className='flex flex-col items-start justify-start mr-1 w-auto md:w-full'>
+                    <div className='flex flex-col items-start justify-start mr-1 w-auto md:w-full' onClick={() => navigate("/market_place")}>
                       <Text
                         className='font-bold  text-center ml-[10px]  text-white_A700'
                         variant='body2'
@@ -130,7 +130,7 @@ import { useGlobalContext } from "context";
                     </div>
                   </div>
 
-                  <div className='common-pointer bg-indigo_A200 flex sm:flex-1 flex-col gap-[45px] items-end justify-start mb-0.5 p-2 rounded-[23px] w-[120px] sm:w-[120px]'>
+                  <div onClick={() => navigate("/tupe_support")} className='common-pointer bg-indigo_A200 flex sm:flex-1 flex-col gap-[45px] items-end justify-start mb-0.5 p-2 rounded-[23px] w-[120px] sm:w-[120px]'>
                     <Img
                       src='images/img_plus.svg'
                       className='h-4 w-4'
