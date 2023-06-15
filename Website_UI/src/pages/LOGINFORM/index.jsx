@@ -91,7 +91,8 @@ const LoginForm = () => {
         color: 'success',
       },
     })
-    return <Navigate to={'/homepage'} />
+    console.log(data)
+    return  (data.user_data.role_id!=='Admin')? (<Navigate to={'/homepage'} />): (<Navigate to={'/AdminHome'} />)
   }
   if (isLoading) return <div>Loading....</div>
 
