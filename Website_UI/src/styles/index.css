@@ -172,3 +172,14 @@ ul li a{
 .common-column-list li{
   width: 100%;
 }
+.card_img{
+  max-width: 190px;
+  max-height: 93px;
+}
+.single_blog_img{
+  width: 2rem;
+  max-height: 10rem;
+}
+.carousel-control-button{
+  width: 20px;
+}

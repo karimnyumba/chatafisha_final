@@ -131,7 +131,7 @@ const NewsCarosel = ({ blogs, navigateToSinglePage, getDate, currentBlogSet }) =
           </div>
           {/* Left and right controls/icons */}
           <button
-            className='carousel-control-prev'
+            className='carousel-control-prev carousel-control-button'
             type='button'
             data-bs-target='#demo'
             data-bs-slide='prev'
@@ -139,7 +139,7 @@ const NewsCarosel = ({ blogs, navigateToSinglePage, getDate, currentBlogSet }) =
             <span className='carousel-control-prev-icon' />
           </button>
           <button
-            className='carousel-control-next'
+            className='carousel-control-next carousel-control-button'
             type='button'
             data-bs-target='#demo'
             data-bs-slide='next'

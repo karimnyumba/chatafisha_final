@@ -7,6 +7,14 @@ const NewsGrid = ({blogs, pages, setCurrentPage, currentPage, navigateToSinglePa
     setCurrentPage(page);
 
   }
+  const contentTitleRatio = (contentMulitple, contentLength, headerLength) => { // give the content length avoiding css breaking
+    if (headerLength>15) {
+      const titleExceed = headerLength - 15
+      return 299 - (contentMulitple * titleExceed)
+    }
+    return 299
+
+  }
   const wrapPages = (page) => {
     if (page > pages) {
       return pages
@@ -50,7 +58,7 @@ const NewsGrid = ({blogs, pages, setCurrentPage, currentPage, navigateToSinglePa
                  >
                    {card.content && (
                      <BlogDescription
-                       content={card.content.substring(0, 299)}
+                       content={card.content.substring(0, contentTitleRatio(5, card.content.length, card.title.length))}
                      />
                    )}
                    <span
