@@ -58,7 +58,7 @@ const LOGINPAGEPage = () => {
                 variant="FillBluegray100"
                 onClick={() => navigate("/loginform")}
               >
-                Already have account
+                Already have an account
               </Button>
             </div>
           </div>
@@ -115,7 +115,7 @@ const LOGINPAGEPage = () => {
                   className="h-4 mt-0.5 w-4"
                   alt="plus_One"
                 />
-                <div className="flex flex-col items-start justify-start mr-1 w-auto md:w-full">
+                <div onClick={() => navigate("/market_place")} className="flex flex-col items-start justify-start mr-1 w-auto md:w-full">
                   <Text
                     className="font-bold  text-center ml-[10px] text-white_A700"
                     variant="body2"
