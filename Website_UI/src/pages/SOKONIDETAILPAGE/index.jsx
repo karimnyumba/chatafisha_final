@@ -1,13 +1,23 @@
-import React from "react";
+import React, {useState} from "react";
 import { NavBar, Text, Img } from "components";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "context";
 import Button from "components/adminComponents/Button";
 import Avatar from "components/adminComponents/Avatar";
+import AddCollection from "./AddCollectionModal";
 
 function SokoniDetail() {
   const navigate = useNavigate();
   const { credit } = useGlobalContext();
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  function closeModal() {
+    setModalOpen(false);
+  }
+  function openModal() {
+    setModalOpen(true);
+  }
   console.log(credit);
   return (
     <div
@@ -166,13 +176,20 @@ function SokoniDetail() {
                 </svg>
                 {credit?.credit.loc}
                 <br />
+                Contact:
               </Text>
             </div>
           </div>
           <div className="sm:mt-[-20px]">
-            <Button className=" border-2 rounded-lg text-xs px-2 mt-4  text-white bg-transparent hover:bg-green-400">
+            <Button className=" border-2 rounded-lg text-xs px-2 mt-4  text-white bg-transparent hover:bg-green-400"
+            onClick={() => {
+              openModal()
+            }}
+            >
               {" "}
-              contact
+              
+              Add Collection
+              {/* <i className="fa fa-plus mt-1 ml-2"/> */}
             </Button>
           </div>
         </div>
@@ -457,6 +474,7 @@ function SokoniDetail() {
         </div>
         
       </div>
+      <AddCollection open={modalOpen} onClose={closeModal}/>
      
     </div>
   );
