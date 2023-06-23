@@ -57,7 +57,7 @@ const getDate = () => {
            <img
              src={'http://139.162.249.220:9292/' + article.img}
              alt={article.title}
-             className='img-fluid w-100'
+             className='img-fluid w-100 single_blog_img'
            />
          </div>
        </article>

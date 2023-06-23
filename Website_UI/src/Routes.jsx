@@ -47,7 +47,7 @@ const ProjectRoutes = () => {
           <Route path='/registerform' element={<REGISTERFORM />} />
           <Route path='/loginform' element={<LOGINFORM />} />
           <Route path='/student_reg_form' element={<StudentRegForm />} />
-          <Route
+1          <Route
             path='/AdminHome/*'
             element={
               <ProtectedRoute role='Admin'>

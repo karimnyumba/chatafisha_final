@@ -16,7 +16,6 @@ import axios from 'axios'
 import { Information } from "components";
 
 function BlogCards({ blog }) {
-  console.log(blog)
   const [modalOpen, setModalOpen] = useState(false);
   const [CurrentBlog, setCurrentBlog] = useState();
   const [showMore, setShowMore] = useState(false)

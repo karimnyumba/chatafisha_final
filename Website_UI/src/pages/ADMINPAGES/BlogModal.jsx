@@ -7,7 +7,7 @@ import ModalHeader from "../../components/adminComponents/ModalHeader";
 import useFetch from "hooks";
 import { useGlobalContext } from "context";
 import { Information } from "components";
-
+import axios from "axios";
 export default function ProductModal({
   onClose,
   open,
@@ -16,7 +16,7 @@ export default function ProductModal({
   const formRef = useRef();
   const {loading, error, data,obtainData } = useFetch()
   const {user_details, dispatch, user_redirect_message} = useGlobalContext();
-  const handleEdit = (event) => {
+  const handleEdit = async (event) => {
     event.preventDefault()
     //for image submission
   if(user_details?.token){
@@ -26,13 +26,24 @@ export default function ProductModal({
   const title = target.title.value;
   const description = target.description.value;
   let img;
-  if(target.img){
+  
+    
+  if(target.img.files[0]){
     formData.append('newImage',target.img.files[0])
     img = formData;
   }
 
+  else if(!target.img.files[0]){
+    const requestedImage = await axios.get('http://139.162.249.220:9292/'+blog.img, {responseType:'blob'});
+    const image = new File([requestedImage.data], 'image.jpg', {type:'image/jpeg'})
+    formData.append('newImage', image);
+    img = formData;
+
+  }
+
   if(title) editedData.title= title;
   if(description) editedData.description = description;
+  else if(!description) editedData.description = blog.content;
   if(img) editedData.img = img.get('newImage');
 
   let url, method,body, options;
