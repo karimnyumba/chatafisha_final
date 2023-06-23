@@ -1,9 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 import { NavBar, Text, Img, SokoniCarosel } from "components";
 import { useNavigate } from "react-router-dom";
+import AddPicker from "./AddPickerModal";
 
 function SokoniPage() {
   const navigate = useNavigate();
+  const [modalOpen, setModalOpen] = useState(false);
+
+  function closeModal() {
+    setModalOpen(false);
+  }
+  function openModal() {
+    setModalOpen(true);
+  }
+
 
   return (
     <div
@@ -11,7 +21,7 @@ function SokoniPage() {
       style={{ backgroundImage: "url('images/img_homepage.png')" }}
     >
       <NavBar />
-      <div className="flex flex-wrap justify-around w-[80%]  mt-[50px]">
+      <div className="flex flex-wrap justify-around w-[90%]  mt-[50px]">
         <div className="">
           <div className="flex justify-between ">
             <svg
@@ -69,6 +79,29 @@ function SokoniPage() {
               and recycling projects
             </strong>
           </Text>
+        </div>
+        <div className="mt-10 sm:mt-2">
+          <div className="flex flex-col justify-center ml-14 mb-3">
+            <div className="rounded-full cursor-pointer bg-green_403 ml-4  w-10 h-10  transform hover:scale-y-75 transition-transform"
+            onClick={() => openModal()}
+            >
+            {/* <Img
+            src="images/img_plus.svg"
+            className="h-10  w-5 ml-[8.5px] text-center"
+            alt="plus_One"
+          /> */}
+
+          <i className="h-10  w-5 ml-[8.5px] mt-[9.5px] text-center fa fa-user-tie text-white"/>
+            </div>
+            <Text className="font-semibold mt-1 text-base" >Add Picker</Text>
+          </div>
+        <div class="relative">
+            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pr-3 pointer-events-none">
+                <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 " fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </div>
+            <input type="search" id="default-search" class="block px-5 pl-10 w-full text-sm text-gray-900 bg-black_900_19 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Picker ID " required/>
+        </div>
+        <Text className="font-semibold mt-1 text-sm ">Search for a Picker</Text>
         </div>
         <div className="common-pointer bg-green_403 sm:flex-1 flex flex-col  items-end justify-between  mt-0.5 p-[9px]  md:w-[50%] md:h-[150px] rounded-[23px] w-[200px] sm:w-[120px] sm:h-[150px] ">
           <Img
@@ -148,6 +181,7 @@ function SokoniPage() {
           <SokoniCarosel />
         </div>
       </div>
+      <AddPicker onClose={closeModal} open={modalOpen}/>
     </div>
   );
 }

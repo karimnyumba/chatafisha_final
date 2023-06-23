@@ -12,7 +12,7 @@ import { useGlobalContext } from "context";
   return (
     <>
       <div
-        className="bg-cover bg-no-repeat bg-white_A700 flex flex-col font-syne h-[100vh] items-center justify-start mx-auto p-[38px] sm:px-5 w-full"
+        className="bg-cover bg-no-repeat bg-white_A700 flex flex-col font-syne h-auto items-center justify-start mx-auto p-[38px] sm:px-5 w-full"
         style={{ backgroundImage: "url('images/img_homepage.png')" }}
       >
         <div className='flex flex-col justify-start max-w-[1175px] mx-auto my-[11px] md:px-5 w-full'>

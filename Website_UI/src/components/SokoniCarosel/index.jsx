@@ -191,7 +191,7 @@ function SokoniCarosel() {
                       className="inline-block rounded-full pt-1 px-1 h-6 justify-center align-middle"
                       style={{ backgroundColor: "#D9D9D9", fontSize: "8px" }}
                     >
-                      <Text className="text-xs"> Avarage daily </Text>
+                      <Text className="text-center font-normal"> Plastic collected </Text>
                     </div>
                     <Text className="text-center text-xs font-normal">
                       {card.avarage_daily}
@@ -204,18 +204,18 @@ function SokoniCarosel() {
                     >
                       Total collected
                     </div>
-                    <Text className="text-center text-xs font-normal ">
+                    <Text className="text-center  font-normal ">
                       {card.total_collected}
                     </Text>
                   </div>
                   <div className="flex flex-col">
                     <div
                       className="inline-block font-bold text-xs rounded-full px-3 pt-1 h-6 justify-center align-middle"
-                      style={{ backgroundColor: "#6AB148", fontSize: "8px" }}
+                      style={{ backgroundColor: "#6AB148", fontSize: "6px" }}
                     >
-                      SOLD
+                       Carbon offset
                     </div>
-                    <Text className="text-center text-xs font-normal ">
+                    <Text className="text-center  font-normal ">
                       {card.sold}
                     </Text>
                   </div>

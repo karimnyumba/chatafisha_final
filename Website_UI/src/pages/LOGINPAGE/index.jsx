@@ -47,7 +47,8 @@ const LOGINPAGEPage = () => {
                 shape="RoundedBorder14"
                 size="sm"
                 variant="FillBluegray300"
-                onClick={() => openModal()}
+                onClick={() => navigate('/registerform')}
+                // onClick={() => openModal()}
               >
                 Open an account
               </Button>
