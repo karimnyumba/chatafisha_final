@@ -52,9 +52,9 @@ const ProjectRoutes = () => {
 1          <Route
             path='/AdminHome/*'
             element={
-              // <ProtectedRoute role='Admin'>
+              <ProtectedRoute role='Admin'>
                 <AdminLayout />
-              // </ProtectedRoute>
+            </ProtectedRoute>
             }
           >
             <Route index element={<AdminHomePage />} />
