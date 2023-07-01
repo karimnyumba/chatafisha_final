@@ -137,7 +137,21 @@ export default function Blogs() {
   if (isLoading)
   return <h1>Loading.....</h1>;
   if (!blogs || !blogs.length) {
-    return <Empty message="You don't have any Blogs yet." />
+    return (
+      <div  className="'flex justify-center items-center'">
+        <Empty message="You don't have any Blogs yet." />
+        <Button
+            color='primary'
+            onClick={() => {
+              navigate('/AdminHome/createBlog')
+            }}
+            className="ml-[45%]"
+          >
+            Create Blog
+          </Button>
+      
+      </div>
+    )
   }
   return (
     <Page>

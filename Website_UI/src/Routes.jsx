@@ -12,6 +12,8 @@ import SokoniPage from "pages/SOKONIPAGE";
 import SokoniDetail from "pages/SOKONIDETAILPAGE";
 import RegistrationBio from "pages/REGISTRATION&BIO";
 import ProjectOverview from "pages/PROJECTOVERVIEW";
+import Validations from "pages/ADMINPAGES/Validations";
+import Validators from "pages/ADMINPAGES/Validators";
 const HOMEPAGE = React.lazy(() => import("pages/HOMEPAGE"));
 const LOGINPAGE = React.lazy(() => import("pages/LOGINPAGE"));
 const REGISTERFORM = React.lazy(() => import("pages/REGISTERFORM"));
@@ -50,14 +52,16 @@ const ProjectRoutes = () => {
 1          <Route
             path='/AdminHome/*'
             element={
-              <ProtectedRoute role='Admin'>
+              // <ProtectedRoute role='Admin'>
                 <AdminLayout />
-              </ProtectedRoute>
+              // </ProtectedRoute>
             }
           >
             <Route index element={<AdminHomePage />} />
             <Route path='allBlogs' element={<Blogs />} />
             <Route path='createBlog' element={<CreateBlog />} />
+            <Route path='Validators' element={<Validations />} />
+            <Route path='Validations' element={<Validators />} />
           </Route>
         </Routes>
       </Router>
