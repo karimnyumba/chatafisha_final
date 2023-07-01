@@ -13,7 +13,7 @@ export default function MenuItem({
         <button
           className={`${
             active ? "bg-blue-100 text-blue-700" : "text-gray-900"
-          } group flex rounded-md items-center w-full px-3 py-3 text-sm`}
+          } group flex rounded-md items-center w-full px-3 py-3 text-xs`}
         >
           {children}
         </button>

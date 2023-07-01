@@ -6,7 +6,8 @@ import {
   HiMoon,
   HiPencilAlt,
   HiTruck,
-  HiUsers
+  HiUsers,
+  HiAdjustments
 } from "react-icons/hi";
 import IconButton from "./IconButton";
 import { Outlet } from "react-router-dom";
@@ -26,7 +27,9 @@ import Avatar from "./Avatar";
 const links = [
   { icon: HiHome, label: "Home", to: "/AdminHome" },
   { icon: HiUsers, label: "Members", to: "/admin/blo" },
-  { icon: HiPencilAlt, label: "Blogs", to: "allBlogs" }
+  { icon: HiPencilAlt, label: "Blogs", to: "allBlogs" },
+  { icon:HiUsers , label: "Validators", to: "Validators" },
+  // { icon:HiUsers , label: "Validators", to: "Validators" },
 ];
 
 export default function AdminLayout(props) {
