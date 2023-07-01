@@ -28,7 +28,7 @@ const links = [
   { icon: HiHome, label: "Home", to: "/AdminHome" },
   { icon: HiUsers, label: "Members", to: "/admin/blo" },
   { icon: HiPencilAlt, label: "Blogs", to: "allBlogs" },
-  { icon:HiAdjustments , label: "Validators", to: "Validators" },
+  { icon:HiUsers , label: "Validators", to: "Validators" },
   // { icon:HiUsers , label: "Validators", to: "Validators" },
 ];
 

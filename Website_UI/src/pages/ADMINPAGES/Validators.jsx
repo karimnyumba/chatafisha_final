@@ -35,7 +35,7 @@ const ValidationsTableData = [
 ];
 const Validators = () => {
   return (
-    <div className="flex justify-center items-center -ml-4">
+    <div className="flex justify-center items-center mr-5">
       <Card>
         <CardHeader
           color="teal-900"
@@ -53,7 +53,7 @@ const Validators = () => {
                 {["validation", "name", "status", "date", ""].map((el) => (
                   <th
                     key={el}
-                    className="border-b border-blue-gray-50 py-3 px-5 text-left"
+                    className="border-b border-blue-gray-50 py-1 px-5 text-left"
                   >
                     <Typography
                       variant="small"
@@ -68,7 +68,7 @@ const Validators = () => {
             <tbody>
               {ValidationsTableData.map(
                 ({ validation, name, progress, pending, date }, key) => {
-                  const className = `py-3 px-5 ${
+                  const className = `py-2 px-5 ${
                     key === ValidationsTableData.length - 1
                       ? ""
                       : "border-b border-blue-gray-50"

@@ -38,7 +38,7 @@ const Validations = () => {
     const navigate = useNavigate();
 
   return (
-    <div className=" flex  ">
+    <div className=" flex mr-4 ">
       <Card>
         <CardHeader
           variant="gradient"
@@ -61,7 +61,7 @@ const Validations = () => {
                   (el) => (
                     <th
                       key={el}
-                      className="border-b border-blue-gray-50 py-3 px-5 text-left"
+                      className="border-b border-blue-gray-50 py-1 px-5 text-left"
                     >
                       <Typography
                         variant="small"
@@ -80,7 +80,7 @@ const Validations = () => {
                   { id, name, avatar, validations, online, progress },
                   key
                 ) => {
-                  const className = `py-3 px-5 ${
+                  const className = `py-1 px-4 ${
                     key === authorsTableData.length - 1
                       ? ""
                       : "border-b border-blue-gray-50"
