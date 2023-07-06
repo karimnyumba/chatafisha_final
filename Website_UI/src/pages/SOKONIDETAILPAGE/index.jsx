@@ -5,12 +5,14 @@ import { useGlobalContext } from "context";
 import Button from "components/adminComponents/Button";
 import Avatar from "components/adminComponents/Avatar";
 import AddCollection from "./AddCollectionModal";
+import HistoryModal from "./HistoryModal";
 
 function SokoniDetail() {
   const navigate = useNavigate();
   const { credit } = useGlobalContext();
 
   const [modalOpen, setModalOpen] = useState(false);
+  const [HistorymodalOpen, setHistoryModalOpen] = useState(false);
 
   function closeModal() {
     setModalOpen(false);
@@ -18,10 +20,10 @@ function SokoniDetail() {
   function openModal() {
     setModalOpen(true);
   }
-  console.log(credit);
+ 
   return (
     <div
-      className="bg-cover bg-repeat bg-white_A700 flex flex-col h-[800px] font-syne sm:h-[100%] items-center justify-start mx-auto p-[38px] sm:px-5 w-full"
+      className="bg-cover bg-repeat bg-white_A700 flex flex-col font-syne h-[800px] md:h-[1200px] sm:h-[1200px] items-center justify-start mx-auto p-[38px] sm:px-5 w-full"
       style={{ backgroundImage: "url('images/img_homepage.png')" }}
     >
        
@@ -56,6 +58,7 @@ function SokoniDetail() {
               style={{
                 color: "white",
                 fontSize: "35px",
+                fontFamily:'syne',
                 WebkitTextStroke: "1px black",
               }}
             >
@@ -180,21 +183,31 @@ function SokoniDetail() {
               </Text>
             </div>
           </div>
-          <div className="sm:mt-[-20px]">
-            <Button className=" border-2 rounded-lg text-xs px-2 mt-4  text-white bg-transparent hover:bg-green-400"
+          <div className="sm:mt-[-20px] ">
+            <Button className=" border-2 rounded-lg  text-xs px-1 mt-4  text-white bg-transparent hover:bg-green-400 "
             onClick={() => {
               openModal()
             }}
             >
               {" "}
               
-              Add Collection
+              Collection
+              {/* <i className="fa fa-plus mt-1 ml-2"/> */}
+            </Button>
+            <Button className=" border-2 rounded-lg text-xs px-1 mt-4  text-white bg-transparent hover:bg-green-400"
+            onClick={() => {
+              setHistoryModalOpen(true)
+            }}
+            >
+              {" "}
+              
+              History
               {/* <i className="fa fa-plus mt-1 ml-2"/> */}
             </Button>
           </div>
         </div>
         <div
-          className="absolute top-[48%] p-[10px] w-full h-auto  rounded-3xl flex flex-wrap items-center justify-around"
+          className="absolute top-[58%] p-[10px] w-full h-auto  rounded-3xl flex flex-wrap items-center justify-around"
           style={{ backgroundColor: "#D8DFE0" }}
         >
           <div className="flex flex-col space-x-6 mb-4">
@@ -475,6 +488,7 @@ function SokoniDetail() {
         
       </div>
       <AddCollection open={modalOpen} onClose={closeModal}/>
+      <HistoryModal open={HistorymodalOpen} onClose={() => {setHistoryModalOpen(false)}}/>
      
     </div>
   );

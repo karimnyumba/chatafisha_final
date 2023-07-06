@@ -81,7 +81,7 @@ function SokoniPage() {
           </Text>
         </div>
         <div className="mt-10 sm:mt-2">
-          <div className="flex flex-col justify-center ml-14 mb-3">
+          <div className="flex flex-col justify-center ml-16 mb-3">
             <div className="rounded-full cursor-pointer bg-green_403 ml-4  w-10 h-10  transform hover:scale-y-75 transition-transform"
             onClick={() => openModal()}
             >
