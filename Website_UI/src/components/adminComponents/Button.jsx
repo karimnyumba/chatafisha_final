@@ -24,7 +24,7 @@ export default function Button(
   return (
     <button
       className={clsx(
-        "inline-flex justify-center px-4 py-2 text-sm font-medium border rounded-md",
+        "inline-flex justify-center px-2 py-1 ml-2 text-sm font-medium border rounded-md",
         disabled ? "bg-gray-300" : colors[color],
         loading && "animate-pulse",
         className

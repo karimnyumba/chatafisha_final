@@ -22,17 +22,18 @@ const schema = yup
   })
   .required();
 
+
 function AddCollection({ onClose, open }) {
   const options = [
-    { value: "water bottles", label: "Water Bottles" },
-    { value: "Shampoo bottles", label: "Shampoo bottles" },
-    { value: "Cleaning products", label: "Cleaning products" },
-    { value: "plastic", label: "plastic bags" },
-    { value: "Nylons and cds", label: "Nylon and cds" },
-    { value: "yorgut cups", label: "Yorgut cups, hangers" },
+    { value: "PET", label: "PET" },
+    { value: "HDPE", label: "HDPE" },
+    { value: "PVC", label: "PVC" },
+    { value: "LDPE", label: "LDPD" },
+    { value: "PP", label: "PP" },
+    { value: "PS", label: "PS" },
     {
-      value: "Take-away and hard packagings",
-      label: "Take-away and hard packagings",
+      value: "OTHER",
+      label: "OTHER",
     },
   ];
 
@@ -46,12 +47,16 @@ function AddCollection({ onClose, open }) {
   });
 
   const navigate = useNavigate();
+
+  const onSubmit = (e) => {
+    e.preventDefault()
+  }
   return (
     <Modal closeModal={onClose} open={open}>
       <ModalHeader>Add a Collection</ModalHeader>
       <ModalBody>
         <div className="flex flex-col gap-6 items-center mt-[29px] w-full ">
-          <form>
+          <form onSubmit={onSubmit}>
             <div className="form-row row">
               <div className="col-md-12 mb-3">
                 <input
@@ -103,14 +108,14 @@ function AddCollection({ onClose, open }) {
             </div>
             <div className="flex flex-row justify-between ">
               <Button
-                className="btn btn-danger  mt-3 sm:mt-0  sm:w-auto"
+                className="btn btn-danger mt-3 sm:mt-0  sm:w-auto"
                 color="primary"
                 onClick={onClose}
               >
                 Cancel
               </Button>
               <Button
-                className="btn btn-success   mt-3 sm:mt-0  sm:w-auto"
+                className="btn btn-success mt-3 sm:mt-0  sm:w-auto"
                 color="primary"
                 onClick={onClose}
               >
