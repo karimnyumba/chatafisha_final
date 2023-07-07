@@ -36,7 +36,9 @@ const NewsGrid = ({blogs, pages, setCurrentPage, currentPage, navigateToSinglePa
                style={{ width: '18rem', height: '30rem' }}
              >
                <img
-                 src={'http://139.162.249.220:9292/' + card.img}
+                 src={
+                   'https://service-chatafishabackend.onrender.com/' + card.img
+                 }
                  className='card_img'
                  alt={card.title}
                />
@@ -58,7 +60,14 @@ const NewsGrid = ({blogs, pages, setCurrentPage, currentPage, navigateToSinglePa
                  >
                    {card.content && (
                      <BlogDescription
-                       content={card.content.substring(0, contentTitleRatio(5, card.content.length, card.title.length))}
+                       content={card.content.substring(
+                         0,
+                         contentTitleRatio(
+                           5,
+                           card.content.length,
+                           card.title.length
+                         )
+                       )}
                      />
                    )}
                    <span
@@ -72,10 +81,14 @@ const NewsGrid = ({blogs, pages, setCurrentPage, currentPage, navigateToSinglePa
                <div className='card-footer'>
                  <div className='row'>
                    <div className='col-md-6 '>
-                    <div className='profile-photo'></div>
-                    <small className='text-primary profile-name'>By John Doe</small>
+                     <div className='profile-photo'></div>
+                     <small className='text-primary profile-name'>
+                       By John Doe
+                     </small>
                    </div>
-                   <small className='mb-3 text-muted col-md-6'>{getDate()}</small>
+                   <small className='mb-3 text-muted col-md-6'>
+                     {getDate()}
+                   </small>
                  </div>
                </div>
              </div>

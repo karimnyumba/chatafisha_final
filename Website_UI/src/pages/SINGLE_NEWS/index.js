@@ -55,7 +55,9 @@ const getDate = () => {
        <article>
          <div className='mt-5 border '>
            <img
-             src={'http://139.162.249.220:9292/' + article.img}
+             src={
+               'https://service-chatafishabackend.onrender.com/' + article.img
+             }
              alt={article.title}
              className='img-fluid w-100 single_blog_img'
            />
@@ -63,7 +65,7 @@ const getDate = () => {
        </article>
        <article>
          <div className='mt-5'>
-           <p dangerouslySetInnerHTML={{ __html: article.content}}></p>
+           <p dangerouslySetInnerHTML={{ __html: article.content }}></p>
          </div>
        </article>
        <br />
