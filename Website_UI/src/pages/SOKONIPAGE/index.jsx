@@ -1,11 +1,12 @@
 import React, {useState} from "react";
-import { NavBar, Text, Img, SokoniCarosel } from "components";
+import { NavBar, Text, Img, SokoniCarosel, Information } from "components";
 import { useNavigate } from "react-router-dom";
 import AddPicker from "./AddPickerModal";
 
 function SokoniPage() {
   const navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
+  const [message , setMessage] = useState(null);
 
   function closeModal() {
     setModalOpen(false);
@@ -21,6 +22,11 @@ function SokoniPage() {
       style={{ backgroundImage: "url('images/img_homepage.png')" }}
     >
       <NavBar />
+      { message &&
+      <div className="mt-4">
+      <Information msg={message.msg} color={message.color}/>
+      </div>
+      }
       <div className="flex flex-wrap justify-around w-[90%]  mt-[50px]">
         <div className="">
           <div className="flex justify-between ">
@@ -181,7 +187,7 @@ function SokoniPage() {
           <SokoniCarosel />
         </div>
       </div>
-      <AddPicker onClose={closeModal} open={modalOpen}/>
+      <AddPicker onClose={closeModal} open={modalOpen} setMessage={setMessage}/>
     </div>
   );
 }

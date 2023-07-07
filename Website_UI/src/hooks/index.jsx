@@ -10,6 +10,8 @@ const useFetch = () => {
 
     const fetchData = async () => {
       setIsLoading(true)
+      setError(null)
+      setData(null)
 
       try {
         const response = await api({

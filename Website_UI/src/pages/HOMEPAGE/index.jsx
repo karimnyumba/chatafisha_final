@@ -108,6 +108,7 @@ import { useGlobalContext } from "context";
                       </>
                     </Text>
                   </div>
+                  { user_details?.user_data?.role_id==='Validator' &&
                   <div className='common-pointer bg-green_403 flex sm:flex-1 flex-col gap-[45px] items-end justify-start mb-0.5 p-[9px] rounded-[23px] w-[120px] sm:w-[120px] '>
                     <Img
                       src='images/img_plus.svg'
@@ -129,7 +130,7 @@ import { useGlobalContext } from "context";
                       </Text>
                     </div>
                   </div>
-
+                  }
                   <div onClick={() => navigate("/tupe_support")} className='common-pointer bg-indigo_A200 flex sm:flex-1 flex-col gap-[45px] items-end justify-start mb-0.5 p-2 rounded-[23px] w-[120px] sm:w-[120px]'>
                     <Img
                       src='images/img_plus.svg'

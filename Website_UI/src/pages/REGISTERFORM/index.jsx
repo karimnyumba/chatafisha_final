@@ -265,9 +265,9 @@ if(isLoading){
                   value={role}
                 >
                   <option value=''>Select Role</option>
-                  <option value='Picker'>Picker</option>
-                  <option value='Organization'>Organization</option>
-                  <option value='Explorer'>Explorer</option>
+                  <option value={1}>Picker</option>
+                  <option value={2}>Organization</option>
+                  <option value={3}>Explorer</option>
                 </select>
                 {errors.role ? (
                   <div className='invalid-feedback'>{errors.role?.message}</div>

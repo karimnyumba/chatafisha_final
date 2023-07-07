@@ -4,17 +4,27 @@ import Modal from "components/adminComponents/Modal";
 import ModalBody from "components/adminComponents/ModalBody";
 import ModalFooter from "components/adminComponents/ModalFooter";
 import ModalHeader from "components/adminComponents/ModalHeader";
-import { Button } from "components";
+import { Button, Information } from "components";
 import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import useFetch from "hooks";
+import { useGlobalContext } from "context";
+
+
+// fields: [firstname, mname, lastname, phone_number, email, location, role]
 
 const schema = yup
   .object({
     //name
-    name: yup
+    firstname: yup
       .string()
-      .required("Please provide picker/organization name! ")
+      .required("Please provide first name! ")
+      .min(3, "Name must be at least 3 characters")
+      .max(50, "Name must be at most 50 characters"),
+lastname: yup
+      .string()
+      .required("Please provide last name! ")
       .min(3, "Name must be at least 3 characters")
       .max(50, "Name must be at most 50 characters"),
 
@@ -25,14 +35,9 @@ const schema = yup
       .min(5, "email must be at least 5 characters")
       .max(50, "email must be at most 50 characters"),
 
-    //registration
-    registration: yup
-      .number()
-      .positive("id number can't be negative")
-      .integer("id should !")
-      .required("Please provide picker id "),
+    
     //contact
-    contact: yup
+    phone_number: yup
       .string()
       .required("Please provide your contact number! ")
       .min(5, "contact must be at least 5 characters")
@@ -40,160 +45,219 @@ const schema = yup
 
     //location
     location: yup.string().required("Please add location! "),
-    //role
-    picture: yup.string().required("Please select picker profile!"),
   })
   .required();
 
-function AddPicker({ onClose, open }) {
+function AddPicker({ onClose, open, setMessage }) {
+  const {user_details} = useGlobalContext();
   const {
     watch,
     handleSubmit,
+    register,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
   });
 
-  const navigate = useNavigate();
+  const firstname = watch('firstname')
+  const lastname = watch('lastname')
+  const email = watch('email')
+  const phone_number = watch('phone_number')
+  const location = watch('location')
+const { data, isLoading, error, obtainData } = useFetch()
+//Handle Submit
+const onSubmit = (data) => {
+  const {
+    firstname,
+    lastname,
+    location,
+    email,
+    phone_number,
+  } = data
+  const role=1
+  obtainData('user/regist_customer', 'post', {
+    firstname,
+    lastname,
+    location,
+    email,
+    phone_number,
+    role,
+  },{headers:
+  {
+    token:user_details?.token
+  }})
+}
+React.useEffect(
+  ()=>{
+    if (error) {
+      console.log('There is an error')
+      setMessage({
+        msg: `There is an error adding picker ${firstname + ' ' + lastname}`,
+        color: 'danger',
+      })
+    }
+    if (isLoading) {
+      setMessage({
+        msg: `Adding picker ${firstname + ' ' + lastname}`,
+        color: 'warning',
+      })
+    }
+    if (data) {
+      setMessage({
+        msg: `Picker ${firstname + ' ' + lastname} added successfully`,
+        color: 'success',
+      })
+    }
 
-  const onSubmit = (e) => {
-    e.preventDefault()
-  }
+
+  }, [isLoading, error, data]
+)
+
   return (
-    <Modal closeModal={onClose} open={open}>
-      <ModalHeader>Add a Picker</ModalHeader>
-      <ModalBody>
-        <div className="flex flex-col gap-6 items-center mt-[29px] w-full ">
-          <form onSubmit={onSubmit}>
-            <div className="form-row row">
-              <div className="col-md-6 mb-3">
-                <input
-                  type="text"
-                  className={`form-control ${errors.name ? "is-invalid" : ""}`}
-                  placeholder="first Name"
-                  //   {...addPicker('name')}
-                  //   value={name}
-                />
-                {errors.name ? (
-                  <div className="invalid-feedback">{errors.name?.message}</div>
-                ) : (
-                  <div className="text-success"></div>
-                )}
-              </div>
-              <div className="col-md-6 mb-3">
-                <input
-                  type="text"
-                  className={`form-control ${errors.name ? "is-invalid" : ""}`}
-                  placeholder="Last Name"
-                  //   {...addPicker('name')}
-                  //   value={name}
-                />
-                {errors.name ? (
-                  <div className="invalid-feedback">{errors.name?.message}</div>
-                ) : (
-                  <div className="text-success"></div>
-                )}
-              </div>
-              <div className="col-md-12 mb-3">
-                <input
-                  type="text"
-                  className={`form-control ${
-                    errors.registration ? "is-invalid" : ""
-                  }`}
-                  placeholder="Id Number"
-                  //   {...register('registration')}
-                  //   value={registration}
-                />
-                {errors.registration ? (
-                  <div className="invalid-feedback">
-                    {errors.registration?.message}
-                  </div>
-                ) : (
-                  <div className="text-success"></div>
-                )}
-              </div>
-              <div className="col-md-6 mb-3">
-                <input
-                  type="text"
-                  className={`form-control ${
-                    errors.contact ? "is-invalid" : ""
-                  }`}
-                  placeholder="phone"
-                  //   {...register('contact')}
-                  //   value={contact}
-                />
-                {errors.contact ? (
-                  <div className="invalid-feedback">
-                    {errors.contact?.message}
-                  </div>
-                ) : (
-                  <div className="text-success"></div>
-                )}
-              </div>
-              <div className="col-md-6 mb-3">
-                <input
-                  type="text"
-                  className={`form-control ${
-                    errors.location ? "is-invalid" : ""
-                  }`}
-                  placeholder="location"
-                  //   {...register('contact')}
-                  //   value={contact}
-                />
-                {errors.location ? (
-                  <div className="invalid-feedback">
-                    {errors.location?.message}
-                  </div>
-                ) : (
-                  <div className="text-success"></div>
-                )}
-              </div>
-              <label htmlFor="" className="text-xs">
+
+      <Modal closeModal={onClose} open={open}>
+        <ModalHeader>Add a Picker</ModalHeader>
+        <ModalBody>
+          <div className='flex flex-col gap-6 items-center mt-[29px] w-full '>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className='form-row row'>
+                <div className='col-md-6 mb-3'>
+                  <input
+                    type='text'
+                    className={`form-control ${
+                      errors.firstname ? 'is-invalid' : ''
+                    }`}
+                    placeholder='first Name'
+                    {...register('firstname')}
+                    value={firstname}
+                  />
+                  {errors.firstname ? (
+                    <div className='invalid-feedback'>
+                      {errors.firstname?.message}
+                    </div>
+                  ) : (
+                    <div className='text-success'></div>
+                  )}
+                </div>
+                <div className='col-md-6 mb-3'>
+                  <input
+                    type='text'
+                    className={`form-control ${
+                      errors.lastname ? 'is-invalid' : ''
+                    }`}
+                    placeholder='Last Name'
+                    {...register('lastname')}
+                    value={lastname}
+                  />
+                  {errors.lastname ? (
+                    <div className='invalid-feedback'>
+                      {errors.lastname?.message}
+                    </div>
+                  ) : (
+                    <div className='text-success'></div>
+                  )}
+                </div>
+                <div className='col-md-12 mb-3'>
+                  <input
+                    type='text'
+                    className={`form-control ${
+                      errors.email ? 'is-invalid' : ''
+                    }`}
+                    placeholder='Email'
+                    {...register('email')}
+                    value={email}
+                  />
+                  {errors.email ? (
+                    <div className='invalid-feedback'>
+                      {errors.email?.message}
+                    </div>
+                  ) : (
+                    <div className='text-success'></div>
+                  )}
+                </div>
+                <div className='col-md-6 mb-3'>
+                  <input
+                    type='text'
+                    className={`form-control ${
+                      errors.phone_number ? 'is-invalid' : ''
+                    }`}
+                    placeholder='phone'
+                    {...register('phone_number')}
+                    value={phone_number}
+                  />
+                  {errors.phone_number ? (
+                    <div className='invalid-feedback'>
+                      {errors.phone_number?.message}
+                    </div>
+                  ) : (
+                    <div className='text-success'></div>
+                  )}
+                </div>
+                <div className='col-md-6 mb-3'>
+                  <input
+                    type='text'
+                    className={`form-control ${
+                      errors.location ? 'is-invalid' : ''
+                    }`}
+                    placeholder='location'
+                    {...register('location')}
+                    value={location}
+                  />
+                  {errors.location ? (
+                    <div className='invalid-feedback'>
+                      {errors.location?.message}
+                    </div>
+                  ) : (
+                    <div className='text-success'></div>
+                  )}
+                </div>
+                {/* <label htmlFor='' className='text-xs'>
                 Picker profile image
               </label>
-              <div className="col-md-12 mb-3">
+              <div className='col-md-12 mb-3'>
                 <input
-                  type="file"
+                  type='file'
                   className={`form-control ${
-                    errors.location ? "is-invalid" : ""
+                    errors.location ? 'is-invalid' : ''
                   }`}
-                  placeholder="location"
-                  //   {...register('contact')}
-                  //   value={contact}
+                  placeholder='location'
+                    {...register('location')}
+                    value={location}
                 />
                 {errors.location ? (
-                  <div className="invalid-feedback">
+                  <div className='invalid-feedback'>
                     {errors.location?.message}
                   </div>
                 ) : (
-                  <div className="text-success"></div>
+                  <div className='text-success'></div>
                 )}
+              </div> */}
               </div>
-            </div>
-            <div className="flex flex-row justify-between mb-3">
-            <Button
-              className="btn btn-danger  mt-3 sm:mt-0  sm:w-auto"
-              color="primary"
-              onClick={onClose}
-            >
-              Cancel
-            </Button>
-            <Button
-              className="btn btn-success   mt-3 sm:mt-0  sm:w-auto"
-              color="primary"
-              onClick={onClose}
-              type="submit"
-            >
-              Add Picker
-            </Button>
+              <div className='flex flex-row justify-between mb-3'>
+                <Button
+                  className='btn btn-danger  mt-3 sm:mt-0  sm:w-auto'
+                  color='primary'
+                  onClick={onClose}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  className='btn btn-success   mt-3 sm:mt-0  sm:w-auto'
+                  color='primary'
+                  // onClick={onClose}
+                  type='submit'
+                  onClick={onClose}
+                >
+                  Add Picker
+                </Button>
+              </div>
+            </form>
           </div>
-          </form>
-         
-        </div>
-      </ModalBody>
-    </Modal>
-  );
+        </ModalBody>
+      </Modal>
+    
+  )
 }
 
 export default AddPicker;

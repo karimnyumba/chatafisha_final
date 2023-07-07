@@ -29,6 +29,7 @@ const links = [
   { icon: HiUsers, label: "Members", to: "/admin/blo" },
   { icon: HiPencilAlt, label: "Blogs", to: "allBlogs" },
   { icon:HiUsers , label: "Validators", to: "Validators" },
+  {icon:HiUsers, label:"Register Validator", to:"register_validator"},
   // { icon:HiUsers , label: "Validators", to: "Validators" },
 ];
 

@@ -2,9 +2,12 @@ import React,{useState} from "react";
 import PageModal from "./pageModal";
 import { Text, Img, Button, NavBar } from "components";
 import { useNavigate } from "react-router-dom";
+import { useGlobalContext } from "context";
 const LOGINPAGEPage = () => {
   const navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
+ 
+  
   function closeModal() {
     setModalOpen(false);
   }
@@ -110,12 +113,14 @@ const LOGINPAGEPage = () => {
                   </>
                 </Text>
               </div>
+              
               <div className="common-pointer bg-green_403 flex sm:flex-1 flex-col gap-[45px] items-end justify-start mb-0.5 p-[9px] rounded-[23px] w-[120px] sm:w-[120px] ">
                 <Img
                   src="images/img_plus.svg"
                   className="h-4 mt-0.5 w-4"
                   alt="plus_One"
                 />
+                
                 <div onClick={() => navigate("/market_place")} className="flex flex-col items-start justify-start mr-1 w-auto md:w-full">
                   <Text
                     className="font-bold  text-center ml-[10px] text-white_A700"
@@ -131,7 +136,7 @@ const LOGINPAGEPage = () => {
                   </Text>
                 </div>
               </div>
-
+              
               <div className="common-pointer bg-indigo_A200 flex sm:flex-1 flex-col gap-[45px] items-end justify-start mb-0.5 p-2 rounded-[23px] w-[120px] sm:w-[120px]">
                 <Img
                   src="images/img_plus.svg"

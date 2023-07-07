@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "pages/Home";
 import NotFound from "pages/NotFound";
 import AdminLayout from "components/adminComponents/AdminLayout";
-import { AdminHomePage, Blogs, CreateBlog } from "pages/ADMINPAGES";
+import { AdminHomePage, Blogs, CreateBlog, RegisterValidator } from "pages/ADMINPAGES";
 import { Loading, ProtectedRoute } from "components";
 import NEWSDETAILSPAGE from "pages/NEWSDETAILPAGE";
 import TupeSupport from "pages/TUPESUPPORTPAGE";
@@ -24,7 +24,7 @@ const NEWSDETAILPAGE = React.lazy(() => import("pages/NEWSDETAILPAGE"))
 
 const ProjectRoutes = () => {
   return (
-    <React.Suspense fallback={<Loading/>}>
+    <React.Suspense fallback={<Loading />}>
       <Router>
         <Routes>
           <Route path='/' element={<Home />} />
@@ -40,21 +40,35 @@ const ProjectRoutes = () => {
           />
           <Route path='/news_and_updates' element={<NEWSUPDATESPAGE />} />
           <Route path='/news_detail' element={<NEWSDETAILSPAGE />} />
-          <Route path='/sokoni_detail' element={<SokoniDetail />} />
+          <Route
+            path='/sokoni_details/:id'
+            element={
+              <ProtectedRoute role='Validator'>
+                <SokoniDetail />
+              </ProtectedRoute>
+            }
+          />
           <Route path='/news_detail/blog/:blog_id' element={<SINGLE_NEWS />} />
           <Route path='/registration_and_bio' element={<RegistrationBio />} />
           <Route path='/Project_overview' element={<ProjectOverview />} />
           <Route path='/tupe_support' element={<TupeSupport />} />
-          <Route path='/market_place' element={<SokoniPage />} />
+          <Route
+            path='/market_place'
+            element={
+              <ProtectedRoute role='Validator'>
+                <SokoniPage />
+              </ProtectedRoute>
+            }
+          />
           <Route path='/registerform' element={<REGISTERFORM />} />
           <Route path='/loginform' element={<LOGINFORM />} />
-          <Route path='/student_reg_form' element={<StudentRegForm />} />
-1          <Route
+          <Route path='/student_reg_form' element={<StudentRegForm />} />1{' '}
+          <Route
             path='/AdminHome/*'
             element={
               <ProtectedRoute role='Admin'>
                 <AdminLayout />
-            </ProtectedRoute>
+              </ProtectedRoute>
             }
           >
             <Route index element={<AdminHomePage />} />
@@ -62,6 +76,7 @@ const ProjectRoutes = () => {
             <Route path='createBlog' element={<CreateBlog />} />
             <Route path='Validators' element={<Validations />} />
             <Route path='Validations' element={<Validators />} />
+            <Route path='register_validator' element={<RegisterValidator />} />
           </Route>
         </Routes>
       </Router>
