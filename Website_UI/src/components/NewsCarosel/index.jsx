@@ -131,7 +131,7 @@ function NewsCarousel() {
               [
                 'ERR_NETWORK',
                 {
-                  msg: 'Can\'t fetch blogs because of Network Error, Please check your internet connection!',
+                  msg: "Can't fetch blogs because of Network Error, Please check your internet connection!",
                   color: 'danger',
                 },
               ],
@@ -156,7 +156,9 @@ function NewsCarousel() {
           >
             <div className='relative w-[290PX] sm:ml-[0px] md:ml-[30px]'>
               <img
-                src={'http://139.162.249.220:9292/' + card.img}
+                src={
+                  'https://service-chatafishabackend.onrender.com/' + card.img
+                }
                 className='w-[100%] h-40 mb-[-14px] ml-auto  object-cover z-[1]'
                 alt={card.title}
               />
