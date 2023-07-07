@@ -6,7 +6,8 @@ const AppContext = React.createContext();
 const initialState = {
 user_details: {},
 user_redirect_message: null,
-article:null
+article:null,
+error_list:[]
 }
 const AppProvider = ({children})=>{
  const [state, dispatch] = useReducer(reducer, initialState)

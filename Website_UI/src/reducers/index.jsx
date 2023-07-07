@@ -1,4 +1,6 @@
 // import useFetch from "hooks"
+// I want to import uuidv4
+import {  uuidv4 } from 'uuid';
 const reducer =(state, action)=>{
  switch (action.type){
   case 'CREATE_TOKEN':
@@ -13,6 +15,8 @@ const reducer =(state, action)=>{
       return {...state, article:action.payload};
   case 'CURRENT_CREDIT_DETAIL':
       return {...state, credit:action.payload};
+  case 'CREATE_ERROR_MESSAGE':
+      return {...state, error_list:[...state.error_list, action.payload]};
  }
  return state
 }
