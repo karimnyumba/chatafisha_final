@@ -16,9 +16,7 @@ const SingleCarouselPage = ({ blogs, navigateToSinglePage, getDate }) => {
           <div className={`m-3 `} key={uuidv4()}>
             <div className='card' style={{ width: '18rem', height: '16rem' }}>
               <img
-                src={
-                  'https://service-chatafishabackend.onrender.com/' + card.img
-                }
+                src={'http://139.162.249.220:9292/' + card.img}
                 className='w-[100%] h-50 mb-[-14px] ml-auto  object-cover z-[1]'
                 alt={card.title}
               />
@@ -27,10 +25,12 @@ const SingleCarouselPage = ({ blogs, navigateToSinglePage, getDate }) => {
                 onClick={() => navigateToSinglePage(card)}
               >
                 <Text
-                  className='font-bold text-dark text-left text-xl w-full'
+                  className='font-bold text-dark text-left text-xl w-full p-2'
                   variant='h4'
                 >
-                  {card.title}
+                  {card.title &&
+                    card.title.substring(0, 10) +
+                      (card.title.length > 10 ? '...' : '')}
                 </Text>
               </div>
               <div className='card-body'>
@@ -39,7 +39,12 @@ const SingleCarouselPage = ({ blogs, navigateToSinglePage, getDate }) => {
                   variant='body2'
                 >
                   {card.content && (
-                    <BlogDescription content={card.content.substring(0, 60)} />
+                    <BlogDescription
+                      content={
+                        card.content.substring(0, 60) +
+                        (card.content.length > 60 ? '......' : '')
+                      }
+                    />
                   )}
                   <div className='d-flex justify-content-between'>
                     <small className='mb-3 text-muted'>{getDate()}</small>
@@ -133,7 +138,7 @@ const NewsCarosel = ({ blogs, navigateToSinglePage, getDate, currentBlogSet }) =
           </div>
           {/* Left and right controls/icons */}
           <button
-            className='carousel-control-prev carousel-control-button'
+            className='carousel-control-prev carousel-control-button bg-dark control-buttons'
             type='button'
             data-bs-target='#demo'
             data-bs-slide='prev'
@@ -141,7 +146,7 @@ const NewsCarosel = ({ blogs, navigateToSinglePage, getDate, currentBlogSet }) =
             <span className='carousel-control-prev-icon' />
           </button>
           <button
-            className='carousel-control-next carousel-control-button'
+            className='carousel-control-next carousel-control-button bg-dark control-buttons'
             type='button'
             data-bs-target='#demo'
             data-bs-slide='next'

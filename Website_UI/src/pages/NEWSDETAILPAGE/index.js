@@ -18,7 +18,7 @@ function NEWSDETAILSPAGE(props) {
   }, [])
   return (
     <section className='container'>
-      <article>
+      <article className="mt-5">
         <NavBar />
       </article>
       <article className="">

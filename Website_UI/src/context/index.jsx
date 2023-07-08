@@ -7,7 +7,8 @@ const initialState = {
 user_details: {},
 user_redirect_message: null,
 article:null,
-error_list:[]
+error_list:[],
+pickers_list:[],
 }
 const AppProvider = ({children})=>{
  const [state, dispatch] = useReducer(reducer, initialState)
@@ -18,9 +19,10 @@ const AppProvider = ({children})=>{
    localStorage.clear()
    // dispatch({type:'CREATE_REDIRECT_MESSAGE', payload: {message:'Logout Successful', color:'success'}})
  }
+ const [pickerList, setPickerList] = useState([])
  
  return (
-  <AppContext.Provider value={{...state, dispatch, handleLogout} }>
+  <AppContext.Provider value={{...state, dispatch, handleLogout, setPickerList, pickerList} }>
    {children}
   </AppContext.Provider>
  )

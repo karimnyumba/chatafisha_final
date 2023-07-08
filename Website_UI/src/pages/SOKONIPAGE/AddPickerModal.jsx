@@ -49,6 +49,7 @@ lastname: yup
   .required();
 
 function AddPicker({ onClose, open, setMessage }) {
+  const image_ref = React.useRef(null);
   const {user_details} = useGlobalContext();
   const {
     watch,
@@ -75,17 +76,25 @@ const onSubmit = (data) => {
     email,
     phone_number,
   } = data
+  const formData = new FormData();  
+  formData.append('file', image_ref.current.files[0]);
+  const img = formData.get('file')
+  if(!img) return alert('Please add an image');
   const role=1
+  const middlename = ''
   obtainData('user/regist_customer', 'post', {
     firstname,
+    middlename,
     lastname,
     location,
     email,
     phone_number,
     role,
+    img
   },{headers:
   {
-    token:user_details?.token
+    token:user_details?.token,
+    'Content-Type': 'multipart/form-data'
   }})
 }
 React.useEffect(
@@ -212,27 +221,21 @@ React.useEffect(
                     <div className='text-success'></div>
                   )}
                 </div>
-                {/* <label htmlFor='' className='text-xs'>
+                <label htmlFor='' className='text-xs'>
                 Picker profile image
               </label>
               <div className='col-md-12 mb-3'>
                 <input
+                  ref={image_ref}
                   type='file'
                   className={`form-control ${
                     errors.location ? 'is-invalid' : ''
                   }`}
-                  placeholder='location'
-                    {...register('location')}
-                    value={location}
+                  placeholder='picker profile image'
+                  
                 />
-                {errors.location ? (
-                  <div className='invalid-feedback'>
-                    {errors.location?.message}
-                  </div>
-                ) : (
-                  <div className='text-success'></div>
-                )}
-              </div> */}
+               
+              </div>
               </div>
               <div className='flex flex-row justify-between mb-3'>
                 <Button

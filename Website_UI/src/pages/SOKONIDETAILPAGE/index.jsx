@@ -50,7 +50,7 @@ function SokoniDetail() {
             viewBox='0 0 74 54'
             fill='none'
             xmlns='http://www.w3.org/2000/svg'
-            onClick={() => navigate('/homepage')}
+            onClick={() => navigate('/market_place')}
           >
             <path
               d='M26.7313 1.61938L1.53076 26.8199L26.7313 52.0205M72.1089 26.8199H2.23654'
@@ -150,7 +150,6 @@ function SokoniDetail() {
       <div
         className='relative w-[80%] h-[300px]  sm:w-full rounded-xl overflow-x-visible bg-green-500   float-left'
         style={{ backgroundColor: '#38C18C' }}
-       
       >
         <div className='mt-4 ml-2 flex flex-wrap justify-between px-8 '>
           <div className='flex'>
@@ -168,7 +167,7 @@ function SokoniDetail() {
               >
                 {data && data.data[0].firstname + ' ' + data.data[0].lastname}
                 <br />
-                ID: {data && data.data[0].id}  
+                ID: {data && data.data[0].id}
                 <br />
               </Text>
 
@@ -241,7 +240,7 @@ function SokoniDetail() {
                 Total collected
               </div>
               <Text className='text-center text-2xl font-normal '>
-                {data && data.data[0].amount_col_kg}
+                {data && data.data[0].amount_col_kg} Kg
               </Text>
             </div>
             <div className='flex flex-col'>
@@ -252,7 +251,7 @@ function SokoniDetail() {
                 SOLD
               </div>
               <Text className='text-center text-2xl font-normal '>
-                {credit?.credit.sold}
+                {data && data.data[0].sold}
               </Text>
             </div>
           </div>
@@ -496,11 +495,15 @@ function SokoniDetail() {
           </div>
         </div>
       </div>
-    
-      <AddCollection open={modalOpen} onClose={closeModal} pid={data && data.data[0].id} />
-    
+
+      <AddCollection
+        open={modalOpen}
+        onClose={closeModal}
+        pid={data && data.data[0].id}
+      />
 
       <HistoryModal
+        pid={data && data.data[0].id}
         open={HistorymodalOpen}
         onClose={() => {
           setHistoryModalOpen(false)

@@ -11,7 +11,8 @@ import ProgressBar from "components/adminComponents/ProgressBar";
 import Badge from "components/adminComponents/Badge";
 import { Img } from "components";
 import Button from "components/adminComponents/Button";
-
+import useFetch from "hooks";
+import { useGlobalContext } from "context";
 
 const authorsTableData = [
     {
@@ -43,10 +44,17 @@ const authorsTableData = [
         date: "11/01/19",
       },
   ];
-  
+ 
+function HistoryModal({ onClose, open, pid }) {
+  const{user_details} = useGlobalContext();
+   const { obtainData, data, loading, error } = useFetch()
+   React.useEffect(() => {
+     user_details && pid && obtainData('user/specific_picker/history/'+pid, 'get',{}, {'headers':{
+      token: user_details?.token,
+      
+     }} )
+   }, [pid, user_details])
 
-function HistoryModal({ onClose, open }) {
-  
   return (
     <Modal closeModal={onClose} open={open}>
       <ModalBody>
@@ -90,9 +98,9 @@ function HistoryModal({ onClose, open }) {
               </tr>
             </thead>
             <tbody>
-              {authorsTableData?.map(
+              {data && data.data.map(
                 (
-                  { id, date, content },
+                  { id, date, amount },
                   key
                 ) => {
                   const className = `py-1 px-2 ${
@@ -120,7 +128,7 @@ function HistoryModal({ onClose, open }) {
                           variant="small"
                           className="mb-1 block text-xs font-medium text-blue-gray-600"
                         >
-                          {content}
+                          {amount}
                         </Typography>
                  
                       </td>

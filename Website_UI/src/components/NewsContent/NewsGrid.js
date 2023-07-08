@@ -26,12 +26,60 @@ const NewsGrid = ({blogs, pages, setCurrentPage, currentPage, navigateToSinglePa
   
   }
  return (
-   <section className=''>
+   <section className='container-fluid'>
      <div className='row d-flex justify-content-center '>
        {blogs.map((card, ind) => {
          return (
-           <div className={`m-3  col-md-3 col-sm-12`} key={uuidv4()}>
-             <div
+           <div className={`m-3  col-md-4 col-sm-12 single-blog p-3 shadow`} key={uuidv4()}>
+             <div className=''>
+               <img
+                 src={
+                   'https://service-chatafishabackend.onrender.com/' + card.img
+                 }
+                 className='card_img rounded'
+                 alt={card.title}
+               />
+               <div className='my-3'>
+                 <Text
+                   className='font-bold text-dark text-left text-xl w-full'
+                   variant='h4'
+                 >
+                   {card.title && card.title.substring(0, 15)+ (card.title.length>15 ? '...':'')}
+                 </Text>
+                 <div className='blog-content w-100 text-justify'>
+                   
+                     {card.content && (
+                       <BlogDescription
+                         content={card.content.substring(
+                           0,
+                           200
+                         ) + (card.content.length > 200 ? '...' : '')}
+                       />
+                     )}
+                     <span
+                       className='text-primary page_links '
+                       onClick={() => navigateToSinglePage(card)}
+                     >
+                       Read More...
+                     </span>
+                   
+                 </div>
+                 <hr />
+                 <div className='d-flex flex-row justify-content-between w-100'>
+                     <div className=''>
+                       <div className='profile-photo mb-2'></div>
+                       <small className='text-primary '>
+                         By John Doe
+                       </small>
+                     </div>
+                     <small className=' mb-3 text-muted d-block text-end col-sm-6'>
+                       {getDate()}
+                     </small>
+                   
+                 </div>
+               </div>
+             </div>
+             {/* <div
                className='card p-5'
                style={{ width: '18rem', height: '30rem' }}
              >
@@ -91,7 +139,7 @@ const NewsGrid = ({blogs, pages, setCurrentPage, currentPage, navigateToSinglePa
                    </small>
                  </div>
                </div>
-             </div>
+             </div> */}
            </div>
          )
        })}

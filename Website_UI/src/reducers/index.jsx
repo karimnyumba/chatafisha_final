@@ -17,6 +17,7 @@ const reducer =(state, action)=>{
       return {...state, credit:action.payload};
   case 'CREATE_ERROR_MESSAGE':
       return {...state, error_list:[...state.error_list, action.payload]};
+
  }
  return state
 }

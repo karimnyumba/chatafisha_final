@@ -10,8 +10,7 @@ import Card from "components/adminComponents/Card";
 import useFetch from "hooks";
 function SokoniCarosel() {
   const navigate = useNavigate()
-  const { dispatch } = useGlobalContext()
-  const { user_details } = useGlobalContext()
+  const { dispatch, setPickerList, user_details } = useGlobalContext()
   const { data, isLoading, error, obtainData } = useFetch()
   React.useEffect(
     ()=>{
@@ -29,7 +28,7 @@ function SokoniCarosel() {
     }, [user_details]
   )
   if (data){
-    console.log(data)
+   setPickerList(data.data)
   }
 
   const cards = [
@@ -145,7 +144,7 @@ function SokoniCarosel() {
       },
     },
   };
-  console.log(data)
+
   return (
     <div className="w-full">
       <Splide options={options}>
@@ -178,8 +177,10 @@ function SokoniCarosel() {
                   >
                     {card.firstname + " " +card.middlename +" "+ card.last_name}
                     <br />
-                    ID: {card.id}
+                    ID: {card.id} 
                     <br />
+                    Contact: {card.phone_no}
+                  <br />
                   </Text>
 
                   <Text
@@ -190,7 +191,7 @@ function SokoniCarosel() {
                     <br />
                     <Button className=' border-2 rounded-lg text-xs px-2 text-white hover:bg-green-400'>
                       {' '}
-                      contact
+                      contact:
                     </Button>
                   </Text>
                 </div>

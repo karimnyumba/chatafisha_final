@@ -34,7 +34,7 @@ const getDate = () => {
  
  return (
    <>
-     <div>
+     <div className='mt-5'>
        <NavBar />
      </div>
      <section className='container mt-5'>
@@ -64,7 +64,7 @@ const getDate = () => {
          </div>
        </article>
        <article>
-         <div className='mt-5'>
+         <div className='mt-5 text-justify'>
            <p dangerouslySetInnerHTML={{ __html: article.content }}></p>
          </div>
        </article>

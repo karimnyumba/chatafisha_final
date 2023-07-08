@@ -173,8 +173,8 @@ ul li a{
   width: 100%;
 }
 .card_img{
-  max-width: 190px;
-  max-height: 93px;
+  width: 400px;
+  height: 300px;
 }
 .single_blog_img{
   width: 2rem;
@@ -182,4 +182,20 @@ ul li a{
 }
 .carousel-control-button{
   width: 20px;
+}
+.blog-content{
+  flex:1;
+  
+  margin-top: 20px;
+  width: 30%;
+
+}
+.single_blog{
+  display: flex;
+  align-items: flex-start;
+}
+.control-buttons{
+  width:20px !important;
+
+
 }
