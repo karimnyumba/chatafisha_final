@@ -10,7 +10,8 @@ import Badge from "components/adminComponents/Badge";
 import { Img } from "components";
 import Button from "components/adminComponents/Button";
 import { useNavigate } from "react-router-dom";
-
+import { useGlobalContext } from "context";
+import useFetch from "hooks";
 const authorsTableData = [
   {
     id: 12354,
@@ -36,6 +37,24 @@ const authorsTableData = [
 
 const Validations = () => {
     const navigate = useNavigate();
+    const { obtainData, data, isLoading, error } = useFetch()
+    const { user_details } = useGlobalContext()
+    React.useEffect(() => {
+      {
+        user_details.token &&
+          obtainData(
+            `user/validators`,
+            'get',
+            {},
+            {
+              headers: {
+                token: user_details?.token,
+              },
+            }
+          )
+      }
+    }, [user_details])
+
 
   return (
     <div className=" flex mr-4 ">
@@ -75,13 +94,13 @@ const Validations = () => {
               </tr>
             </thead>
             <tbody>
-              {authorsTableData?.map(
+              { data && data.data?.map(
                 (
-                  { id, name, avatar, validations, online, progress },
+                  { ID_NUMBER:id, fullname:name, location, phone_number},
                   key
                 ) => {
                   const className = `py-1 px-4 ${
-                    key === authorsTableData.length - 1
+                    key === data.data.length - 1
                       ? ""
                       : "border-b border-blue-gray-50"
                   }`;
@@ -91,10 +110,10 @@ const Validations = () => {
                       <td className={className}>
                         <div className="flex items-center gap-4">
                           <div class="flex relative  justify-center items-center m-1 mr-2 text-xl rounded-full text-white">
-                            <Img
+                            {/* <Img
                               src={avatar}
                               className=" w-20 h-20 rounded-full"
-                            />
+                            /> */}
                           </div>
                           <div>
                             <Typography
@@ -112,13 +131,13 @@ const Validations = () => {
                       </td>
                       <td className={className}>
                         <Typography className="text-xs font-semibold text-blue-gray-600">
-                          {validations[0]}
+                          {location}
                         </Typography>
                         <Typography className="text-xs font-normal text-blue-gray-500">
-                          {validations[1]}
+                          {phone_number}
                         </Typography>
                       </td>
-                      <td className={className}>
+                      {/* <td className={className}>
                         <Badge
                           variant="gradient"
                           color={online ? "success" : "primary"}
@@ -126,8 +145,8 @@ const Validations = () => {
                         >
                          {online ? "online" : "offline"}
                         </Badge>
-                      </td>
-                      <td className={className}>
+                      </td> */}
+                      {/* <td className={className}>
                         <Typography
                           variant="small"
                           className="mb-1 block text-xs font-medium text-blue-gray-600"
@@ -138,7 +157,7 @@ const Validations = () => {
                           value={progress}
                          
                         />
-                      </td>
+                      </td> */}
                       <td className={className}>
                         <Menu
                           placement="left-start"

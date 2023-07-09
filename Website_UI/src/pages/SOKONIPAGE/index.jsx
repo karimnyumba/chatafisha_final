@@ -8,14 +8,14 @@ function SokoniPage() {
   const navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
   const [message , setMessage] = useState(null);
-  const {pickerList}= useGlobalContext();
+  const {pickerList, api}= useGlobalContext();
   const [searchList, setSearchList] = useState([]);
 
   const searchRef = React.useRef();
   const searchFilterFunction = () => {  
     const text = searchRef.current.value;
-    const newData = pickerList.filter(item => text.trim().length>0 && ((item.firstname +' ' + item.lastname).toLowerCase().includes(text.toLowerCase())) || (item.phone_no.toLowerCase().includes(text.toLowerCase())));
-    setSearchList(newData.slice(0, 10));
+    const newData = pickerList.filter(item => text.trim().length>0 && ((item.firstnam?.trim() +' ' + item.lastname?.trim()).toLowerCase().includes(text.toLowerCase())) || (item.phone_no.toLowerCase().includes(text.toLowerCase())));
+    text ? setSearchList(newData.slice(0, 10)): setSearchList([]);
   };
 
   function closeModal() {
@@ -142,15 +142,20 @@ function SokoniPage() {
           {searchList.length > 0 ? (
             <div>
               {searchList.map((picker) => (
-                <div className='flex flex-col justify-center ml-16 mb-3'>
+                <div className='flex flex-col justify-center ml-16 '>
                   <div
-                    className='cursor-pointer bg-success ml-4 p-3 rounded transform hover:scale-y-75 transition-transform m-2'
+                    className='cursor-pointer bg-success ml-4 p-3 rounded transform hover:scale-y-75 transition-transform m-2 d-flex flex-row justify-content-center align-items-center'
                     onClick={() => navigate(`/sokoni_details/${picker.id}`)}
                   >
-                    <div>
-                      {picker.firstname + ' ' + picker.last_name}
+                    <img
+                      src={api + picker.profile_img}
+                      alt='profile picture'
+                      className='w-10 h-10 rounded-full me-2'
+                    />
+                    <div className="">
+                      <small className="me-2 ">{picker.firstnam + ' ' + picker.last_name}</small>
+                      <small className="text-warning">{picker.phone_no}</small>
                     </div>
-                    <span>{picker.phone_no}</span>
                   </div>
                 </div>
               ))}

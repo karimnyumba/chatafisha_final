@@ -10,7 +10,7 @@ import Card from "components/adminComponents/Card";
 import useFetch from "hooks";
 function SokoniCarosel() {
   const navigate = useNavigate()
-  const { dispatch, setPickerList, user_details } = useGlobalContext()
+  const { dispatch, setPickerList, user_details, api } = useGlobalContext()
   const { data, isLoading, error, obtainData } = useFetch()
   React.useEffect(
     ()=>{
@@ -166,7 +166,7 @@ function SokoniCarosel() {
             <div className='mt-4 ml-2 flex justify-around '>
               <div className='flex'>
                 <div class='flex relative  justify-center items-center m-1 mr-2 text-xl rounded-full text-white'>
-                  <Img src={card.profile_img} className='w-16 h-16 rounded-full' />
+                  <Img src={api + card.profile_img} className='w-16 h-16 rounded-full' />
                 </div>
 
                 <div className='pl-2 '>
@@ -175,7 +175,7 @@ function SokoniCarosel() {
                     style={{ color: '#F8F8F8' }}
                     variant='body1'
                   >
-                    {card.firstname + " " +card.middlename +" "+ card.last_name}
+                    {card.firstnam + " " +card.middlename +" "+ card.last_name}
                     <br />
                     ID: {card.id} 
                     <br />

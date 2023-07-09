@@ -10,6 +10,8 @@ import Badge from "components/adminComponents/Badge";
 import { Img } from "components";
 import Button from "components/adminComponents/Button";
 import { useNavigate } from "react-router-dom";
+import { useGlobalContext } from "context";
+import useFetch from "hooks";
 
 const ValidationsTableData = [
   {
@@ -34,6 +36,25 @@ const ValidationsTableData = [
   },
 ];
 const Validators = () => {
+  const { obtainData, data, isLoading, error } = useFetch()
+  const { user_details } = useGlobalContext()
+  React.useEffect(() => {
+    {
+      user_details.token &&
+        obtainData(
+          `user/validators`,
+          'get',
+          {},
+          {
+            headers: {
+              token: user_details?.token,
+            },
+          }
+        )
+    }
+
+  }, [user_details])
+  if(data) console.log(data);
   return (
     <div className="flex justify-center items-center mr-5">
       <Card>

@@ -12,6 +12,7 @@ pickers_list:[],
 }
 const AppProvider = ({children})=>{
  const [state, dispatch] = useReducer(reducer, initialState)
+ const api = 'https://service-chatafishabackend.onrender.com/'
  //Handles logout
  const handleLogout = () => {
    window.location.pathname = '/'
@@ -22,7 +23,7 @@ const AppProvider = ({children})=>{
  const [pickerList, setPickerList] = useState([])
  
  return (
-  <AppContext.Provider value={{...state, dispatch, handleLogout, setPickerList, pickerList} }>
+  <AppContext.Provider value={{...state, dispatch, handleLogout, setPickerList, pickerList, api} }>
    {children}
   </AppContext.Provider>
  )
