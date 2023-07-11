@@ -119,7 +119,7 @@ const Validations = () => {
                             <Typography
                               variant="small"
                               color="blue-gray"
-                              className="font-semibold"
+                              className="font-semibold text-capitalize"
                             >
                               {name}
                             </Typography>
@@ -130,7 +130,7 @@ const Validations = () => {
                         </div>
                       </td>
                       <td className={className}>
-                        <Typography className="text-xs font-semibold text-blue-gray-600">
+                        <Typography className="text-xs font-semibold text-blue-gray-600 text-capitalize">
                           {location}
                         </Typography>
                         <Typography className="text-xs font-normal text-blue-gray-500">

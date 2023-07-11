@@ -177,8 +177,8 @@ ul li a{
   height: 300px;
 }
 .single_blog_img{
-  width: 2rem;
-  max-height: 10rem;
+  width: 70vw;
+  max-height: 40vh;
 }
 .carousel-control-button{
   width: 20px;

@@ -15,7 +15,7 @@ function Loading({className}) {
       }}
       >
         <Img
-          src="images/img_cut_white_a700.svg"
+          src="/images/img_cut_white_a700.svg"
           className="animate-pulse text-gray-300"
           alt="logo loading"
         />

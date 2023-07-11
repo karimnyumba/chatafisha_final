@@ -17,7 +17,7 @@ function NewsContentDisplay({type}) {
     dispatch({ type: 'CURRENT_BLOG_ARTICLE', payload: card })
     navigate(`/news_detail/blog/${card.id}`)
   }
-  const { dispatch } = useGlobalContext()
+  const { dispatch, blogs } = useGlobalContext()
   const getDate = () => {
     const currentDate = new Date()
 
@@ -26,46 +26,21 @@ function NewsContentDisplay({type}) {
     const formattedDate = currentDate.toLocaleDateString('en-US', options)
     return formattedDate
   }
-  
-  const cards = [
-    {
-      id:1,
-      img: "images/voice.png",
-      title: "Join our open house event",
-      content: "Chatafisha will be hosting it’s second open house event this year to share our"
-    },
-    {
-      id:2,
-      img: "images/chatafisha final.00_00_21_23 1.png",
-      title: "Rangi Chanya Festival",
-      content: "Exciting news! CHATAFISHA is hosting 'RANGI CHANYA'  to drive community impact through a circular economy. "
-    },
-    {
-      id:3,
-      img: "images/wasteInitiative.png",
-      title: "Waste Collection Initiative",
-      content: "Chatafisha and Nipe Fagio are partnering in a waste collection initiative..."
-    },
-    {
-      id:4,
-      img: "images/near.jpeg",
-      title: "Building on NEAR Protocol",
-      content: "As a Decentralized Autonomous Organization (DAO), we are building our platform on..."
-    },
-  
-  ];
-  const [blogs, setBlogs] = React.useState(cards);
   const { data, isLoading, error, obtainData } = useFetch()
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1)
+  }
   React.useEffect(() => {
     let url, method;
-    if(!data){
+    if(!data && blogs.length === 0){
     obtainData(
       (url = 'blog/article_data'),
       (method = 'get')
     )
   }
   else{
-    setBlogs(data.data)
+    data &&
+    dispatch({ type: 'FILL_BLOGS', payload: data.data })
   }
 
   }, [data])
@@ -99,6 +74,7 @@ function NewsContentDisplay({type}) {
               blogs={blogs}
               navigateToSinglePage={navigateToSinglePage}
               getDate={getDate}
+              capitalizeFirstLetter={capitalizeFirstLetter}
             />
           )}
           {type === 'grid' && (
@@ -109,6 +85,7 @@ function NewsContentDisplay({type}) {
               setCurrentPage={setCurrentPage}
               navigateToSinglePage={navigateToSinglePage}
               getDate={getDate}
+              capitalizeFirstLetter={capitalizeFirstLetter}
             />
           )}{' '}
           {/**pages={blogs.pages} blogs={blogs.posts}**/}

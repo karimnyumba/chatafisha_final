@@ -16,6 +16,9 @@ const getDate = () => {
   const formattedDate = currentDate.toLocaleDateString('en-US', options)
   return formattedDate
 }
+ const capitalizeFirstLetter = (string) => {
+   return string.charAt(0).toUpperCase() + string.slice(1)
+ }
  const {article} = useGlobalContext();
  React.useEffect(
   ()=>{
@@ -40,7 +43,7 @@ const getDate = () => {
      <section className='container mt-5'>
        <article>
          <div>
-           <h1 className='text-uppercase'>{article.title}</h1>
+           <h1 className='text-uppercase'>{capitalizeFirstLetter(article.title)}</h1>
            <div className='d-flex align-items-center mt-3'>
              <div className='profile-photo me-3'></div>
              <div className='d-flex flex-column'>
@@ -53,19 +56,19 @@ const getDate = () => {
          <hr />
        </article>
        <article>
-         <div className='mt-5 border '>
+         <div className=' '>
            <img
              src={
                'https://service-chatafishabackend.onrender.com/' + article.img
              }
              alt={article.title}
-             className='img-fluid w-100 single_blog_img'
+             className=' rounded border border-dark single_blog_img mx-auto'
            />
          </div>
        </article>
        <article>
          <div className='mt-5 text-justify'>
-           <p dangerouslySetInnerHTML={{ __html: article.content }}></p>
+           <p dangerouslySetInnerHTML={{ __html: capitalizeFirstLetter(article.content) }}></p>
          </div>
        </article>
        <br />

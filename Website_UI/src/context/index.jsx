@@ -9,6 +9,8 @@ user_redirect_message: null,
 article:null,
 error_list:[],
 pickers_list:[],
+blogs:[],
+openRegisterPickerModal: false,
 }
 const AppProvider = ({children})=>{
  const [state, dispatch] = useReducer(reducer, initialState)

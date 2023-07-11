@@ -1,6 +1,6 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
-import { Text, Img } from 'components';
+import { Text, Img, Loading } from 'components';
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import useFetch from 'hooks'
@@ -98,7 +98,7 @@ const Register = () => {
   return <Navigate to={'/loginform'}/>
  }
 if(isLoading){
- return <div><h1>Loading.....</h1></div>
+ return <Loading/>;
 }
   return (
     <main
@@ -265,7 +265,7 @@ if(isLoading){
                   value={role}
                 >
                   <option value=''>Select Role</option>
-                  <option value={1}>Picker</option>
+                  <option value={4}>Picker</option>
                   <option value={2}>Organization</option>
                   <option value={3}>Explorer</option>
                 </select>

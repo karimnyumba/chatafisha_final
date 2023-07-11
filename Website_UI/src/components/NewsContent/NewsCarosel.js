@@ -7,41 +7,44 @@ import { useNavigate } from 'react-router-dom'
 import {  Text } from 'components'
 import { v4 as uuidv4 } from 'uuid'
 
-const SingleCarouselPage = ({ blogs, navigateToSinglePage, getDate }) => {
+const SingleCarouselPage = ({ blogs, navigateToSinglePage, getDate, capitalizeFirstLetter }) => {
   const navigate = useNavigate()
   return (
     <article className='d-flex justify-content-around no-wrap'>
       {blogs.map((card, ind) => {
         return (
-          <div className={`m-3 `} key={uuidv4()}>
+          <div
+            className={`m-3 `}
+            key={uuidv4()}
+            onClick={() => navigateToSinglePage(card)}
+          >
             <div className='card' style={{ width: '18rem', height: '16rem' }}>
               <img
-                src={'http://139.162.249.220:9292/' + card.img}
+                src={
+                  'https://service-chatafishabackend.onrender.com/' + card.img
+                }
                 className='w-[100%] h-50 mb-[-14px] ml-auto  object-cover z-[1]'
                 alt={card.title}
               />
-              <div
-                className='card-title mt-4 page_links'
-                onClick={() => navigateToSinglePage(card)}
-              >
+              <div className='card-title mt-4 page_links'>
                 <Text
-                  className='font-bold text-dark text-left text-xl w-full p-2'
+                  className='font-bold text-dark text-left text-xl w-full p-2 text-capitalize'
                   variant='h4'
                 >
                   {card.title &&
-                    card.title.substring(0, 10) +
-                      (card.title.length > 10 ? '...' : '')}
+                    capitalizeFirstLetter(card.title.substring(0, 25)) +
+                      (card.title.length > 15? '...' : '')}
                 </Text>
               </div>
               <div className='card-body'>
                 <Text
-                  className='text-white pt-1 text-left text-xs '
+                  className='text-white pt-1 text-left text-xs  '
                   variant='body2'
                 >
                   {card.content && (
                     <BlogDescription
                       content={
-                        card.content.substring(0, 60) +
+                        capitalizeFirstLetter(card.content.substring(0, 60)) +
                         (card.content.length > 60 ? '......' : '')
                       }
                     />
@@ -50,7 +53,7 @@ const SingleCarouselPage = ({ blogs, navigateToSinglePage, getDate }) => {
                     <small className='mb-3 text-muted'>{getDate()}</small>
                     <span
                       className='text-primary page_links'
-                      onClick={() => navigateToSinglePage(card)}
+                      
                     >
                       Read More...
                     </span>
@@ -64,7 +67,7 @@ const SingleCarouselPage = ({ blogs, navigateToSinglePage, getDate }) => {
     </article>
   )
 }
-const NewsCarosel = ({ blogs, navigateToSinglePage, getDate, currentBlogSet }) => {
+const NewsCarosel = ({ blogs, navigateToSinglePage, getDate, currentBlogSet, capitalizeFirstLetter }) => {
   const [subPosts, setSubPosts] = useState(null);
   const { dispatch } = useGlobalContext()
   const [noPosts, setNoPosts] = useState(3);
@@ -131,7 +134,7 @@ const NewsCarosel = ({ blogs, navigateToSinglePage, getDate, currentBlogSet }) =
             {subPosts &&
               subPosts.map((pst, ind) => {
                 return (<div className={`carousel-item ${ind===0 && 'active'}`} key={uuidv4()}>
-                  <SingleCarouselPage blogs={pst} key={ind} navigateToSinglePage={navigateToSinglePage} currentBlogSet  getDate = {getDate}/>
+                  <SingleCarouselPage blogs={pst} key={ind} navigateToSinglePage={navigateToSinglePage} currentBlogSet  getDate = {getDate} capitalizeFirstLetter = {capitalizeFirstLetter}/>
                 </div>)
               })}
          

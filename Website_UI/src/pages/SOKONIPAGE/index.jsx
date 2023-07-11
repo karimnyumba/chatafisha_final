@@ -8,7 +8,7 @@ function SokoniPage() {
   const navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
   const [message , setMessage] = useState(null);
-  const {pickerList, api}= useGlobalContext();
+  const {pickerList, api, dispatch, openRegisterPickerModal}= useGlobalContext();
   const [searchList, setSearchList] = useState([]);
 
   const searchRef = React.useRef();
@@ -19,10 +19,10 @@ function SokoniPage() {
   };
 
   function closeModal() {
-    setModalOpen(false);
+    dispatch({type:'OPEN_REGISTER_PICKER_MODAL', payload:false})
   }
   function openModal() {
-    setModalOpen(true);
+    dispatch({ type: 'OPEN_REGISTER_PICKER_MODAL', payload: true })
   }
 
 
@@ -31,7 +31,7 @@ function SokoniPage() {
       className='bg-cover bg-repeat bg-white_A700 flex flex-col font-syne h-auto sm:h-[100%] items-center justify-start mx-auto p-[38px] sm:px-5 w-full'
       style={{ backgroundImage: "url('images/img_homepage.png')" }}
     >
-      <NavBar />
+      <NavBar sokoniPlaceOpen={true}/>
       {message && (
         <div className='mt-4'>
           <Information msg={message.msg} color={message.color} />
@@ -97,21 +97,7 @@ function SokoniPage() {
           </Text>
         </div>
         <div className='mt-10 sm:mt-2'>
-          <div className='flex flex-col justify-center ml-16 mb-3'>
-            <div
-              className='rounded-full cursor-pointer bg-green_403 ml-4  w-10 h-10  transform hover:scale-y-75 transition-transform'
-              onClick={() => openModal()}
-            >
-              {/* <Img
-            src="images/img_plus.svg"
-            className="h-10  w-5 ml-[8.5px] text-center"
-            alt="plus_One"
-          /> */}
-
-              <i className='h-10  w-5 ml-[8.5px] mt-[9.5px] text-center fa fa-user-tie text-white' />
-            </div>
-            <Text className='font-semibold mt-1 text-base'>Add Picker</Text>
-          </div>
+         
           <div class='relative'>
             <div class='flex absolute inset-y-0 left-0 items-center pl-3 pr-3 pointer-events-none'>
               <svg
@@ -249,7 +235,7 @@ function SokoniPage() {
       </div>
       <AddPicker
         onClose={closeModal}
-        open={modalOpen}
+        open={openRegisterPickerModal}
         setMessage={setMessage}
       />
     </div>

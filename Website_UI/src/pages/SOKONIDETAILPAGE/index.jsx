@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { NavBar, Text, Img } from "components";
+import { NavBar, Text, Img, Loading } from "components";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "context";
 import Button from "components/adminComponents/Button";
@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 import useFetch from "hooks";
 function SokoniDetail() {
   const navigate = useNavigate();
-  const {credit } = useGlobalContext();
+  const {credit, user_details} = useGlobalContext();
 
   const [modalOpen, setModalOpen] = useState(false);
   const [HistorymodalOpen, setHistoryModalOpen] = useState(false);
@@ -23,7 +23,7 @@ function SokoniDetail() {
   }
   const { id } = useParams();
   const {obtainData, data, isLoading, error} = useFetch()
-  const {user_details} = useGlobalContext()
+
   React.useEffect(() => {
     {user_details.token &&
     obtainData(`user/specific_picker/${id}`,'get' ,{}, {
@@ -33,10 +33,23 @@ function SokoniDetail() {
     })
   }
   }, [id, user_details]);
-  
-
+  const api = 'https://service-chatafishabackend.onrender.com/';
+    const carbonOffsetted = (total_collection) => {
+      return (total_collection / 1000).toFixed(2)
+    }
+  if(error){
+    return (
+      <div className='d-flex justify-content-center my-auto text-danger'>
+        <h4>Oops there is an error!</h4>
+      </div>
+    )
+  }
+  if(isLoading){
+    return <Loading/>
+  }
   return (
-    <div
+   <>
+   {data &&  <div
       className='bg-cover bg-repeat bg-white_A700 flex flex-col font-syne h-[800px] md:h-[1200px] sm:h-[1200px] items-center justify-start mx-auto p-[38px] sm:px-5 w-full'
       style={{ backgroundImage: "url('images/img_homepage.png')" }}
     >
@@ -155,13 +168,13 @@ function SokoniDetail() {
           <div className='flex'>
             <div class='flex relative  justify-center items-center m-1 mr-2 text-xl rounded-full text-white'>
               <Img
-                src={credit?.credit.avatar}
+                src={data && api + data.data[0].profile_img}
                 className=' w-20 h-20 rounded-full'
               />
             </div>
             <div className='pl-2 mt-2'>
               <Text
-                className='  text-sm'
+                className='  text-sm text-capitalize'
                 style={{ color: '#F8F8F8', fontSize: '20px' }}
                 variant='body1'
               >
@@ -172,29 +185,19 @@ function SokoniDetail() {
               </Text>
 
               <Text
-                className='text-sm flex'
-                style={{ color: '#D9D9D9', fontSize: '14px' }}
+                className='text-sm'
+                style={{ color: '#D9D9D9', fontSize: '15px' }}
               >
-                <svg
-                  width='12'
-                  height='17'
-                  viewBox='0 0 12 17'
-                  fill='none'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path
-                    d='M5.71963 0.90654C2.56161 0.90654 0 3.37209 0 6.41168C0 10.5405 5.71963 16.6355 5.71963 16.6355C5.71963 16.6355 11.4393 10.5405 11.4393 6.41168C11.4393 3.37209 8.87764 0.90654 5.71963 0.90654ZM5.71963 8.3778C4.59202 8.3778 3.6769 7.497 3.6769 6.41168C3.6769 5.32636 4.59202 4.44556 5.71963 4.44556C6.84723 4.44556 7.76235 5.32636 7.76235 6.41168C7.76235 7.497 6.84723 8.3778 5.71963 8.3778Z'
-                    fill='#E6F1F3'
-                  />
-                </svg>
+                <i class='fas fa-map-marker-alt'></i>{' '}
                 {data && data.data[0].location}
                 <br />
-                Contact: {data && data.data[0].phone_number}
+                <i class='fas fa-phone-alt me-1'></i>
+                {data && data.data[0].phone_number}
               </Text>
             </div>
           </div>
           <div className='sm:mt-[-20px] '>
-            <Button
+            {user_details && user_details?.user_data && user_details.user_data.role_id==='Validator' &&<Button
               className=' border-2 rounded-lg  text-xs px-1 mt-4  text-white bg-transparent hover:bg-green-400 '
               onClick={() => {
                 openModal()
@@ -203,7 +206,7 @@ function SokoniDetail() {
               {' '}
               Collection
               {/* <i className="fa fa-plus mt-1 ml-2"/> */}
-            </Button>
+            </Button>}
             <Button
               className=' border-2 rounded-lg text-xs px-1 mt-4  text-white bg-transparent hover:bg-green-400'
               onClick={() => {
@@ -239,7 +242,7 @@ function SokoniDetail() {
               >
                 Total collected
               </div>
-              <Text className='text-center text-2xl font-normal '>
+              <Text className='text-center text-2xl my-2 font-normal '>
                 {data && data.data[0].amount_col_kg} Kg
               </Text>
             </div>
@@ -250,8 +253,17 @@ function SokoniDetail() {
               >
                 SOLD
               </div>
+              <Text className='text-center text-2xl font-normal '>20 Kg</Text>
+            </div>
+            <div className='flex flex-col my-3'>
+              <div
+                className='  inline-block  text-center rounded-full pt-1  h-7 w-32 justify-center align-middle   '
+                style={{ backgroundColor: '#6AB148', fontSize: '13px' }}
+              >
+                Carbon Offset
+              </div>
               <Text className='text-center text-2xl font-normal '>
-                {data && data.data[0].sold}
+                {data && carbonOffsetted(data.data[0].amount_col_kg)}
               </Text>
             </div>
           </div>
@@ -499,17 +511,19 @@ function SokoniDetail() {
       <AddCollection
         open={modalOpen}
         onClose={closeModal}
-        pid={data && data.data[0].id}
+        pid={data.data[0].id}
       />
 
       <HistoryModal
-        pid={data && data.data[0].id}
+        pid={data.data[0].id}
         open={HistorymodalOpen}
         onClose={() => {
           setHistoryModalOpen(false)
         }}
       />
     </div>
+   }
+    </>
   )
 }
 export default SokoniDetail;

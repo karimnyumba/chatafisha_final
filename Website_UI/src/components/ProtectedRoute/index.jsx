@@ -15,16 +15,7 @@ const ProtectedRoute = ({role, children}) => {
   
 
  if(stored_user_details || (user_details?.token)){
-   if(role==='Validator'){
-    console.log(stored_user_details, user_details)
-    if(stored_user_details?.user_data?.role_id==='Validator' || user_details?.user_data?.role_id==='Validator'){
-      return children
-    }
-    dispatch({type:'CREATE_REDIRECT_MESSAGE', payload:{message:'You are not authorized to access this page!', color:'danger'}})
-    return (
-      <Navigate to={'/homepage'} />
-    )
-   }
+  
    if(role==='Admin'){
     console.log(stored_user_details, user_details)
     if(stored_user_details?.user_data?.role_id==='Admin' || user_details?.user_data?.role_id==='Admin'){

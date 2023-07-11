@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Text, Img, Button, ApiErrorDisplay } from 'components'
+import { Text, Img, Button, ApiErrorDisplay, Loading } from 'components'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -91,11 +91,10 @@ const LoginForm = () => {
         color: 'success',
       },
     })
-    console.log(data)
+    
     return  (data.user_data.role_id!=='Admin')? (<Navigate to={'/homepage'} />): (<Navigate to={'/AdminHome'} />)
   }
-  if (isLoading) return <div>Loading....</div>
-
+  if (isLoading) return <div><Loading/></div>;
   return (
     <main
       className='bg-cover bg-no-repeat bg-white_A700 flex flex-col font-syne  h-[100vh] sm:h-[100%] md:h-[100%] items-center justify-start mx-auto p-[38px] sm:px-5 w-full'

@@ -2,7 +2,7 @@ import React from 'react'
 import { Text } from 'components'
 import { v4 as uuidv4 } from 'uuid'
 import BlogDescription from 'components/BlogDescription'
-const NewsGrid = ({blogs, pages, setCurrentPage, currentPage, navigateToSinglePage, getDate, currentBlogSet}) => {
+const NewsGrid = ({blogs, pages, setCurrentPage, currentPage, navigateToSinglePage, getDate, currentBlogSet, capitalizeFirstLetter}) => {
   const handlePageChange = (page) => {
     setCurrentPage(page);
 
@@ -41,19 +41,19 @@ const NewsGrid = ({blogs, pages, setCurrentPage, currentPage, navigateToSinglePa
                />
                <div className='my-3'>
                  <Text
-                   className='font-bold text-dark text-left text-xl w-full'
+                   className='font-bold text-dark text-left text-xl w-full text-capitalize'
                    variant='h4'
                  >
-                   {card.title && card.title.substring(0, 15)+ (card.title.length>15 ? '...':'')}
+                   {card.title && capitalizeFirstLetter(card.title.substring(0, 60))+ (card.title.length>15 ? '...':'')}
                  </Text>
                  <div className='blog-content w-100 text-justify'>
                    
                      {card.content && (
                        <BlogDescription
-                         content={card.content.substring(
+                         content={capitalizeFirstLetter(card.content.substring(
                            0,
                            200
-                         ) + (card.content.length > 200 ? '...' : '')}
+                         ) )+ (card.content.length > 200 ? '...' : '')}
                        />
                      )}
                      <span
