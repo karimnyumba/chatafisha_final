@@ -48,6 +48,7 @@ function SokoniDetail() {
   if(isLoading){
     return <Loading/>
   }
+  
 
   return (
    <>
@@ -56,8 +57,8 @@ function SokoniDetail() {
       style={{ backgroundImage: "url('images/img_homepage.png')" }}
     >
       <NavBar />
-      <div className="mt-4">
-        {message && <Information message={message.data} color={message.color}/>}
+      <div className="mt-4 bg-dark p-2 rounded">
+        {message && <small className={`text-${message.color}`}>{message.data}</small>}
       </div>
       <div className='flex flex-col ml-[-40%] mt- sm:ml-0'>
         <div className='flex justify-between '>

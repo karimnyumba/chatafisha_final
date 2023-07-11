@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import Modal from "components/adminComponents/Modal";
 import ModalBody from "components/adminComponents/ModalBody";
@@ -71,6 +71,7 @@ const onSubmit = (data) => {
   }
   )
 }
+useEffect(() => {
 if(data){
   setMessage({data:'Collection Added Successfully', color:'success'});
 
@@ -81,6 +82,7 @@ if(error){
 if(isLoading){
   setMessage({data:'Adding Collection....Please Wait....', color:'info'});
 }
+}, [data, error, isLoading])
 const amount = watch("amount");
 const type = watch("type");
 const picture = watch("picture");
