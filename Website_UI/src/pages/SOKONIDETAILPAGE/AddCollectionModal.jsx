@@ -25,7 +25,7 @@ const schema = yup
   .required();
 
 
-function AddCollection({ onClose, open, pid }) {
+function AddCollection({ onClose, open, pid, setMessage }) {
  
   const img_element = React.useRef();
   const {user_details}=useGlobalContext();
@@ -56,25 +56,30 @@ const { data, isLoading, error, obtainData } = useFetch()
 //Handle Submit
 const onSubmit = (data) => {
   const formData = new FormData();
-  formData.append('file', img_element.current.files[0]);
-  
-  const {
-   type: plastic_type,
-    amount: quantity,
-    picture: img,
-  } = data
-  obtainData('plastic/plastic_data', 'post', {
-   plastic_type,
-    quantity,
-    img: formData.get('file'),
-    pid
-  },
+  formData.append('img', img_element.current.files[0]);
+  if(img_element.current.files[0] === undefined){
+    alert('Please upload image')}
+  const { type: plastic_type, amount: quantity } = data
+  formData.append('plastic_type', plastic_type);
+  formData.append('quantity', quantity.toString());
+  formData.append('pid', pid.toString()); 
+  obtainData('plastic/plastic_data', 'post', formData,
   {
     headers:{
       token: user_details.token
     }
   }
   )
+}
+if(data){
+  setMessage({data:'Collection Added Successfully', color:'success'});
+
+}
+if(error){
+  setMessage({data:'Error Adding Collection', color:'danger'});
+}
+if(isLoading){
+  setMessage({data:'Adding Collection....Please Wait....', color:'info'});
 }
 const amount = watch("amount");
 const type = watch("type");

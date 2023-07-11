@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { NavBar, Text, Img, Loading } from "components";
+import { NavBar, Text, Img, Loading, Information } from "components";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "context";
 import Button from "components/adminComponents/Button";
@@ -14,6 +14,7 @@ function SokoniDetail() {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [HistorymodalOpen, setHistoryModalOpen] = useState(false);
+  const [message,setMessage]= useState(null);
 
   function closeModal() {
     setModalOpen(false);
@@ -47,6 +48,7 @@ function SokoniDetail() {
   if(isLoading){
     return <Loading/>
   }
+
   return (
    <>
    {data &&  <div
@@ -54,6 +56,9 @@ function SokoniDetail() {
       style={{ backgroundImage: "url('images/img_homepage.png')" }}
     >
       <NavBar />
+      <div className="mt-4">
+        {message && <Information message={message.data} color={message.color}/>}
+      </div>
       <div className='flex flex-col ml-[-40%] mt- sm:ml-0'>
         <div className='flex justify-between '>
           <svg
@@ -512,6 +517,7 @@ function SokoniDetail() {
         open={modalOpen}
         onClose={closeModal}
         pid={data.data[0].id}
+        setMessage={setMessage}
       />
 
       <HistoryModal
