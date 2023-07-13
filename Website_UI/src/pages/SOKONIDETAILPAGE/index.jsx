@@ -230,7 +230,7 @@ function SokoniDetail() {
           style={{ backgroundColor: '#D8DFE0' }}
         >
           <div className='flex flex-col space-x-6 mb-4'>
-            <div className='flex flex-col ml-5'>
+            <div className='flex flex-col ml-5 mb-2'>
               <div
                 className=' inline-block  text-center rounded-full pt-1  h-7 w-32 justify-center align-middle   '
                 style={{ backgroundColor: '#D9D9D9', fontSize: '13px' }}
@@ -238,7 +238,7 @@ function SokoniDetail() {
                 Avarage daily
               </div>
               <Text className='text-center text-2xl  font-normal'>
-                {credit?.credit.avarage_daily}
+                {data && data.data[0].latest_collection} Kg
               </Text>
             </div>
             <div className='flex flex-col'>

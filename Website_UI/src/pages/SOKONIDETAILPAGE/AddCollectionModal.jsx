@@ -28,7 +28,7 @@ const schema = yup
 function AddCollection({ onClose, open, pid, setMessage }) {
  
   const img_element = React.useRef();
-  const {user_details}=useGlobalContext();
+  const {user_details, dispatch}=useGlobalContext();
   const options = [
     { value: "PET", label: "PET" },
     { value: "HDPE", label: "HDPE" },
@@ -73,6 +73,7 @@ const onSubmit = (data) => {
 }
 useEffect(() => {
 if(data){
+  dispatch({type:'COLLECTION_ADDED'});
   setMessage({data:'Collection Added Successfully', color:'success'});
 
 }

@@ -1,8 +1,9 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useGlobalContext } from 'context';
-import { NavBar, NewsContentDisplay } from 'components';
+import { Information, Loading, NavBar, NewsContentDisplay } from 'components';
 import { useNavigate } from 'react-router-dom';
+import useFetch from 'hooks';
 
 const SingleNews = () => {
  const {blog_id} = useParams();
@@ -19,7 +20,8 @@ const getDate = () => {
  const capitalizeFirstLetter = (string) => {
    return string.charAt(0).toUpperCase() + string.slice(1)
  }
- const {article} = useGlobalContext();
+ const {article, user_details, dispatch} = useGlobalContext();
+ const { isLoading, error, data, obtainData } = useFetch();
  React.useEffect(
   ()=>{
     function scrollToTop() {
@@ -29,10 +31,25 @@ const getDate = () => {
       })
     }
     scrollToTop()
+    if(!article){
+      
+      obtainData('blog/article_data/'+blog_id, 'get', {}, {
+        headers:{
+          token: user_details?.token
+        }
+      })
+
+    }
+   
   }, [article]
  )
- if(!article){
-  return <h2 className='section-title'>Fierylion implement the single blog functionality to fetch this missing blog!!!!!!</h2>
+ React.useEffect(
+  ()=>{
+     if (data) dispatch({ type: 'CURRENT_BLOG_ARTICLE', payload: data.data })
+  }, [data]
+ )
+ if(isLoading){
+  return <Loading/>
  }
  
  return (
@@ -40,10 +57,13 @@ const getDate = () => {
      <div className='mt-5'>
        <NavBar />
      </div>
+     <div className='text-center'>
+      {error && <Information msg={'Please check your internet connection and try again'} color={'danger'}/>}
+     </div>
      <section className='container mt-5'>
        <article>
          <div>
-           <h1 className='text-uppercase'>{capitalizeFirstLetter(article.title)}</h1>
+           <h1 className='text-uppercase'>{article && capitalizeFirstLetter(article.title)}</h1>
            <div className='d-flex align-items-center mt-3'>
              <div className='profile-photo me-3'></div>
              <div className='d-flex flex-column'>
@@ -57,6 +77,7 @@ const getDate = () => {
        </article>
        <article>
          <div className=' '>
+         { article &&
            <img
              src={
                'https://service-chatafishabackend.onrender.com/' + article.img
@@ -64,11 +85,14 @@ const getDate = () => {
              alt={article.title}
              className=' rounded border border-dark single_blog_img mx-auto'
            />
+         }
          </div>
        </article>
        <article>
          <div className='mt-5 text-justify'>
+         {article &&
            <p dangerouslySetInnerHTML={{ __html: capitalizeFirstLetter(article.content) }}></p>
+         }
          </div>
        </article>
        <br />

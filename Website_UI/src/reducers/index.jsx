@@ -21,6 +21,8 @@ const reducer =(state, action)=>{
       return {...state, blogs:action.payload};
   case 'OPEN_REGISTER_PICKER_MODAL':
       return {...state, openRegisterPickerModal:action.payload};
+  case 'COLLECTION_ADDED':
+    return {...state, isCollectionAdded:!state.isCollectionAdded};
 
  }
  return state

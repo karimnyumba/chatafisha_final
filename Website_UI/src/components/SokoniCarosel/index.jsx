@@ -145,7 +145,11 @@ function SokoniCarosel() {
     },
   };
   const carbonOffsetted = (total_collection)=>{
+    if(!total_collection) return 0;
     return (total_collection/1000).toFixed(2);
+  }
+  const amountWrapper = (amount)=>{
+    return (amount) ? amount: 0;
   }
   return (
     <div className='w-full'>
@@ -339,7 +343,7 @@ function SokoniCarosel() {
                         style={{ color: '#F8F8F8' }}
                         variant='body1'
                       >
-                        {card.firstnam + ' ' + card.last_name}
+                        {card.firstname + ' ' + card.last_name}
                         <br />
                         ID: {card.id}
                         <br />
@@ -379,7 +383,7 @@ function SokoniCarosel() {
                         </Text>
                       </div>
                       <Text className='text-center text-xs font-normal'>
-                        {card.avarage_daily}
+                        {card.latest}
                       </Text>
                     </div>
                     <div className='flex flex-col'>
@@ -416,7 +420,7 @@ function SokoniCarosel() {
                       </Text>
 
                       <Text style={{ fontSize: '29px' }}>
-                        {card.total_collection} Kg
+                        {amountWrapper(card.total_collection)} Kg
                       </Text>
                     </div>
                     <div className='flex flex-col pt-2  space-y-1'>

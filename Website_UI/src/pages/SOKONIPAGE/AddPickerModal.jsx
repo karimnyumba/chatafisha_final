@@ -113,10 +113,12 @@ React.useEffect(
       })
     }
     if (data) {
+      
       setMessage({
         msg: `Picker ${firstname + ' ' + lastname} added successfully`,
         color: 'success',
       })
+     
     }
 
 
