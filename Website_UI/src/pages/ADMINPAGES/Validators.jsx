@@ -185,7 +185,7 @@ const SingleCollection = ({
           variant='small'
           className='text-xs font-medium text-blue-gray-600'
         >
-          <ImageModal imageUrl={imgs_url} imageAlt={firstname}/>
+          <ImageModal imageUrl={imgs_url} imageAlt={firstname} weight={amount}/>
         </Typography>
       </td>
       <td className={className}>
@@ -256,7 +256,7 @@ const SingleCollection = ({
     </tr>
   )
 }
-const ImageModal = ({ imageUrl, imageAlt }) => {
+const ImageModal = ({ imageUrl, imageAlt, weight }) => {
  
 
   return (
@@ -279,7 +279,7 @@ const ImageModal = ({ imageUrl, imageAlt }) => {
               {/* w-100 class so that header
           div covers 100% width of parent div */}
               <h5 className='modal-title w-100 text-capitalize' id='exampleModalLabel'>
-                {imageAlt}
+                {imageAlt} - {weight} Kg
               </h5>
               <button
                 type='button'
