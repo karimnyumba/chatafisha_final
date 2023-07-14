@@ -59,7 +59,7 @@ function BlogCards({ blog }) {
         key={blog.id}
       >
         <img
-          src={'https://service-chatafishabackend.onrender.com/' + blog.img}
+          src={ blog.img}
           alt='art cover'
           loading='lazy'
           width='100'

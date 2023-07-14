@@ -21,7 +21,7 @@ const SingleCarouselPage = ({ blogs, navigateToSinglePage, getDate, capitalizeFi
             <div className='card' style={{ width: '18rem', height: '16rem' }}>
               <img
                 src={
-                  'https://service-chatafishabackend.onrender.com/' + card.img
+                  card.img
                 }
                 className='w-[100%] h-50 mb-[-14px] ml-auto  object-cover z-[1]'
                 alt={card.title}

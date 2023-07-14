@@ -294,7 +294,7 @@ const ImageModal = ({ imageUrl, imageAlt, weight }) => {
             <div className='modal-body'>
               <img
                 src={
-                  'https://service-chatafishabackend.onrender.com/' + imageUrl
+                  imageUrl
                 }
                 alt={imageAlt}
               />

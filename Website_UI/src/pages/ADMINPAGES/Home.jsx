@@ -91,7 +91,6 @@ export default function AdminHomePage() {
     //delete
   if(user_details?.token){
     
-    console.log(user_details, 'dafdafuodfafa')
     let url, method, options, body
     obtainData(
       (url = `user/optimization`),

@@ -33,20 +33,8 @@ export default function ProductModal({
     img = formData;
   }
 
-  else if(!target.img.files[0]){
-    const requestedImage = await axios.get(
-      'https://service-chatafishabackend.onrender.com/' + blog.img,
-      { responseType: 'blob' }
-    )
-    const image = new File([requestedImage.data], 'image.jpg', {type:'image/jpeg'})
-    formData.append('newImage', image);
-    img = formData;
-
-  }
-
   if(title) editedData.title= title;
   if(description) editedData.description = description;
-  else if(!description) editedData.description = blog.content;
   if(img) editedData.img = img.get('newImage');
 
   let url, method,body, options;

@@ -174,7 +174,7 @@ function SokoniDetail() {
           <div className='flex'>
             <div class='flex relative  justify-center items-center m-1 mr-2 text-xl rounded-full text-white'>
               <Img
-                src={data && api + data.data[0].profile_img}
+                src={data && data.data[0].profile_img}
                 className=' w-20 h-20 rounded-full'
               />
             </div>

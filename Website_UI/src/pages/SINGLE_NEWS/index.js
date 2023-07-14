@@ -80,7 +80,7 @@ const getDate = () => {
          { article &&
            <img
              src={
-               'https://service-chatafishabackend.onrender.com/' + article.img
+               article.img
              }
              alt={article.title}
              className=' rounded border border-dark single_blog_img mx-auto'

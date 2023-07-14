@@ -34,7 +34,7 @@ const NewsGrid = ({blogs, pages, setCurrentPage, currentPage, navigateToSinglePa
              <div className=''>
                <img
                  src={
-                   'https://service-chatafishabackend.onrender.com/' + card.img
+                  card.img
                  }
                  className='card_img rounded'
                  alt={card.title}
