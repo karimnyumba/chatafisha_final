@@ -20,8 +20,9 @@ function SokoniPage() {
   const searchRef = React.useRef();
   const searchFilterFunction = () => {  
     const text = searchRef.current.value;
-    const newData = pickerList.filter(item => text.trim().length>0 && ((item.firstnam?.trim() +' ' + item.lastname?.trim()).toLowerCase().includes(text.toLowerCase())) || (item.phone_no.toLowerCase().includes(text.toLowerCase())));
+    const newData = pickerList.filter(item => text.trim().length>0 && ((item.firstname?.trim() +' ' + item.last_name?.trim()).toLowerCase().includes(text.toLowerCase())) || (item.phone_no.toLowerCase().includes(text.toLowerCase())));
     text ? setSearchList(newData.slice(0, 10)): setSearchList([]);
+  
   };
 
   function closeModal() {
@@ -30,7 +31,7 @@ function SokoniPage() {
   function openModal() {
     dispatch({ type: 'OPEN_REGISTER_PICKER_MODAL', payload: true })
   }
-
+ 
 
   return (
     <div
@@ -140,7 +141,7 @@ function SokoniPage() {
                     onClick={() => navigate(`/sokoni_details/${picker.id}`)}
                   >
                     <img
-                      src={api + picker.profile_img}
+                      src={ picker.profile_img}
                       alt='profile picture'
                       className='w-10 h-10 rounded-full me-2'
                     />

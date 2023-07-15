@@ -185,7 +185,7 @@ const SingleCollection = ({
           variant='small'
           className='text-xs font-medium text-blue-gray-600'
         >
-          <ImageModal imageUrl={imgs_url} imageAlt={firstname} weight={amount}/>
+          <ImageModal imageUrl={imgs_url} imageAlt={firstname} weight={amount} ind={no}/>
         </Typography>
       </td>
       <td className={className}>
@@ -256,21 +256,21 @@ const SingleCollection = ({
     </tr>
   )
 }
-const ImageModal = ({ imageUrl, imageAlt, weight }) => {
+const ImageModal = ({ imageUrl, imageAlt, weight, ind }) => {
  
 
   return (
     <>
-      <a data-bs-toggle='modal' data-bs-target='#exampleModal'>
+      <a data-bs-toggle='modal' data-bs-target={`#exampleModal${ind}`} className="text-link" style={{cursor:'pointer'}}>
         {' '}
         View Image
       </a>
       <div
         className='modal fade'
-        id='exampleModal'
+        id={`exampleModal${ind}`}
         tabIndex={-1}
         role='dialog'
-        aria-labelledby='exampleModalLabel'
+        aria-labelledby={`exampleModalLabel${ind}`}
         aria-hidden='true'
       >
         <div className='modal-dialog' role='document'>
@@ -278,7 +278,10 @@ const ImageModal = ({ imageUrl, imageAlt, weight }) => {
             <div className='modal-header'>
               {/* w-100 class so that header
           div covers 100% width of parent div */}
-              <h5 className='modal-title w-100 text-capitalize' id='exampleModalLabel'>
+              <h5
+                className='modal-title w-100 text-capitalize'
+                id={`exampleModalLabel${ind}`}
+              >
                 {imageAlt} - {weight} Kg
               </h5>
               <button
@@ -292,12 +295,7 @@ const ImageModal = ({ imageUrl, imageAlt, weight }) => {
             </div>
             {/*Modal body with image*/}
             <div className='modal-body'>
-              <img
-                src={
-                  imageUrl
-                }
-                alt={imageAlt}
-              />
+              <img src={imageUrl} alt={imageAlt} className='w-100' />
             </div>
             <div className='modal-footer'>
               <button

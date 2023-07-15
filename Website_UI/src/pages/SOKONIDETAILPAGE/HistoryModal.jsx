@@ -54,6 +54,10 @@ function HistoryModal({ onClose, open, pid }) {
       
      }} )
    }, [pid, user_details, isCollectionAdded])
+   if(data){
+    data.data.sort((a, b)=> new Date(b.collected_date) -  new Date(a.collected_date))
+  
+  };
 
   return (
     <Modal closeModal={onClose} open={open}>

@@ -35,9 +35,9 @@ function SokoniDetail() {
   }
   }, [id, user_details]);
   const api = 'https://service-chatafishabackend.onrender.com/';
-    const carbonOffsetted = (total_collection) => {
+  const carbonOffsetted = (total_collection) => {
       return (total_collection / 1000).toFixed(2)
-    }
+  }
   if(error){
     return (
       <div className='d-flex justify-content-center my-auto text-danger'>
@@ -48,7 +48,9 @@ function SokoniDetail() {
   if(isLoading){
     return <Loading/>
   }
-  
+   function nullWrapper(amount) {
+     return amount ? amount : 0
+   }
 
   return (
    <>
@@ -238,7 +240,7 @@ function SokoniDetail() {
                 Avarage daily
               </div>
               <Text className='text-center text-2xl  font-normal'>
-                {data && data.data[0].latest_collection} Kg
+                {data && nullWrapper(data.data[0].latest_collection)} Kg
               </Text>
             </div>
             <div className='flex flex-col'>
@@ -249,7 +251,7 @@ function SokoniDetail() {
                 Total collected
               </div>
               <Text className='text-center text-2xl my-2 font-normal '>
-                {data && data.data[0].amount_col_kg} Kg
+                {data && nullWrapper(data.data[0].amount_col_kg)} Kg
               </Text>
             </div>
             <div className='flex flex-col'>
@@ -259,7 +261,7 @@ function SokoniDetail() {
               >
                 SOLD
               </div>
-              <Text className='text-center text-2xl font-normal '>20 Kg</Text>
+              <Text className='text-center text-2xl font-normal '>0 Kg</Text>
             </div>
             <div className='flex flex-col my-3'>
               <div
@@ -269,7 +271,7 @@ function SokoniDetail() {
                 Carbon Offset
               </div>
               <Text className='text-center text-2xl font-normal '>
-                {data && carbonOffsetted(data.data[0].amount_col_kg)}
+                {data && nullWrapper(carbonOffsetted(data.data[0].amount_col_kg))}
               </Text>
             </div>
           </div>

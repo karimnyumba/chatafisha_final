@@ -148,7 +148,7 @@ function SokoniCarosel() {
     if(!total_collection) return 0;
     return (total_collection/1000).toFixed(2);
   }
-  const amountWrapper = (amount)=>{
+  const nullWrapper = (amount)=>{
     return (amount) ? amount: 0;
   }
   return (
@@ -383,7 +383,7 @@ function SokoniCarosel() {
                         </Text>
                       </div>
                       <Text className='text-center text-xs font-normal'>
-                        {card.latest}
+                        {nullWrapper(card.latest)}
                       </Text>
                     </div>
                     <div className='flex flex-col'>
@@ -394,7 +394,7 @@ function SokoniCarosel() {
                         Total collected
                       </div>
                       <Text className='text-center  font-normal '>
-                        {card.total_collection}
+                        {nullWrapper(card.total_collection)}
                       </Text>
                     </div>
                     <div className='flex flex-col'>
@@ -405,7 +405,7 @@ function SokoniCarosel() {
                         Carbon offset
                       </div>
                       <Text className='text-center  font-normal '>
-                        {carbonOffsetted(card.total_collection)}
+                        {nullWrapper(carbonOffsetted(card.total_collection))}
                       </Text>
                     </div>
                   </div>
@@ -420,7 +420,7 @@ function SokoniCarosel() {
                       </Text>
 
                       <Text style={{ fontSize: '29px' }}>
-                        {amountWrapper(card.total_collection)} Kg
+                        {nullWrapper(card.total_collection)} Kg
                       </Text>
                     </div>
                     <div className='flex flex-col pt-2  space-y-1'>
