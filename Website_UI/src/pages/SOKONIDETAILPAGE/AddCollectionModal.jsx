@@ -71,9 +71,13 @@ const onSubmit = (data) => {
   }
   )
 }
+
+const amount = watch("amount");
+const type = watch("type");
+const picture = watch("picture");
 useEffect(() => {
 if(data){
-  dispatch({type:'COLLECTION_ADDED'});
+  dispatch({type:'COLLECTION_ADDED',payload:{amount: Number(amount)}});
   setMessage({data:'Collection Added Successfully', color:'success'});
 
 }
@@ -84,9 +88,6 @@ if(isLoading){
   setMessage({data:'Adding Collection....Please Wait....', color:'info'});
 }
 }, [data, error, isLoading])
-const amount = watch("amount");
-const type = watch("type");
-const picture = watch("picture");
 
   return (
     <Modal closeModal={onClose} open={open}>

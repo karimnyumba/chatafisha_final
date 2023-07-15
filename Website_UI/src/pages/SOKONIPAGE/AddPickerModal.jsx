@@ -50,7 +50,7 @@ lastname: yup
 
 function AddPicker({ onClose, open, setMessage }) {
   const image_ref = React.useRef(null);
-  const {user_details} = useGlobalContext();
+  const {user_details, dispatch} = useGlobalContext();
   const {
     watch,
     handleSubmit,
@@ -99,6 +99,7 @@ const onSubmit = (data) => {
 }
 React.useEffect(
   ()=>{
+   
     if (error) {
       console.log('There is an error')
       setMessage({
@@ -113,6 +114,7 @@ React.useEffect(
       })
     }
     if (data) {
+      dispatch({type: 'UPDATE_PICKER'})
       
       setMessage({
         msg: `Picker ${firstname + ' ' + lastname} added successfully`,
