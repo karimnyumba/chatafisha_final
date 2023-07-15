@@ -5,11 +5,15 @@ const TimeUpdate = ({time}) => {
   const [currentTime, setCurrentTime] = useState(formatDate(time))
 
   useEffect(() => {
+   if(time === 'now'){
+    time = new Date().toString();
+    setCurrentTime(formatDate(time))
+   }
   
     const interval = setInterval(() => {
       const updatedTime = formatDate(time)
       setCurrentTime(updatedTime)
-    }, 60000) // Update every 2 minutes
+    }, 60000) // Update every 1 minutes
 
     return () => {
       clearInterval(interval)
