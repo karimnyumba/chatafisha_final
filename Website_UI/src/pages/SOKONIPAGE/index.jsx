@@ -146,7 +146,7 @@ function SokoniPage() {
                       className='w-10 h-10 rounded-full me-2'
                     />
                     <div className="">
-                      <small className="me-2 ">{picker.firstname + ' ' + picker.last_name}</small>
+                      <small className="me-2 text-capitalize ">{picker.firstname + ' ' + picker.last_name}</small>
                       <small className="text-warning">{picker.phone_no}</small>
                     </div>
                   </div>
