@@ -212,7 +212,7 @@ function SokoniDetail() {
                         time={
                           isCollectionAdded.amount ===0
                             ? data && data.data[0].latest_collection_date
-                            : "now"
+                            : new Date().toString()
                         }
                       />
                     </div>

@@ -102,8 +102,9 @@ React.useEffect(
    
     if (error) {
       console.log('There is an error')
+      const errMsg = error.response.data?.message
       setMessage({
-        msg: `There is an error adding picker ${firstname + ' ' + lastname}`,
+        msg: (errMsg)?errMsg:`There is an error adding picker ${firstname + ' ' + lastname}`,
         color: 'danger',
       })
     }

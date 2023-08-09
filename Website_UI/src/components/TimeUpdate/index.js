@@ -5,8 +5,6 @@ const TimeUpdate = ({time}) => {
   const [currentTime, setCurrentTime] = useState(formatDate(time))
 
   useEffect(() => {
-  
-  
     const interval = setInterval(() => {
       const updatedTime = formatDate(time)
       setCurrentTime(updatedTime)
