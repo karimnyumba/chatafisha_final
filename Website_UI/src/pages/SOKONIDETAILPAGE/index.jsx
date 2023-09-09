@@ -27,17 +27,20 @@ function SokoniDetail() {
   const {obtainData, data, isLoading, error} = useFetch()
 
   React.useEffect(() => {
-    {user_details.token &&
+    
     obtainData(`user/specific_picker/${id}`,'get' ,{}, {
       headers:{
-        token: user_details?.token
+      
       }
     })
-  }
+  
   }, [id, user_details]);
   const api = 'https://service-chatafishabackend.onrender.com/';
   const carbonOffsetted = (total_collection) => {
       return (total_collection / 1000).toFixed(2)
+  }
+  const amountEarned = (carbonOffset)=>{
+    return (carbonOffset * 1000).toFixed(1)
   }
   if(error){
     return (
@@ -61,12 +64,8 @@ function SokoniDetail() {
           style={{ backgroundImage: "url('images/img_homepage.png')" }}
         >
           <NavBar />
-          <div className='mt-4 bg-dark p-2 rounded'>
-            {message && (
-              <small className={`text-${message.color}`}>{message.data}</small>
-            )}
-          </div>
-          <div className='flex flex-col ml-[-40%] mt- sm:ml-0'>
+        
+          <div className='flex flex-col ml-[-40%]  sm:ml-0'>
             <div className='flex justify-between '>
               <svg
                 width='70'
@@ -164,13 +163,7 @@ function SokoniDetail() {
                 />
               </svg>
             </div>
-            <div className='inline-flex  space-x-4 my-1 w-[16%] sm:w-[35%]'>
-              <Img
-                src='images/img_arrowright.svg'
-                className='common-pointer h-auto w-auto mt-[-5px]'
-                alt='arrowright'
-              />
-            </div>
+           
           </div>
           <div
             className='relative w-[80%] h-[300px]  sm:w-full rounded-xl overflow-x-visible bg-green-500   float-left'
@@ -206,11 +199,11 @@ function SokoniDetail() {
                     <br />
                     <i class='fas fa-phone-alt me-1'></i>
                     {data && data.data[0].phone_number}
-                    <div className="d-block">
+                    <div className='d-block'>
                       <i className='fas fa-eye me-1 text-primary'></i>
                       <TimeUpdate
                         time={
-                          isCollectionAdded.amount ===0
+                          isCollectionAdded.amount === 0
                             ? data && data.data[0].latest_collection_date
                             : new Date().toString()
                         }
@@ -311,11 +304,14 @@ function SokoniDetail() {
               <div className='rounded-xl shadow-sm bg-white  w-96  h-[200px] flex  justify-around '>
                 <div className='flex flex-col space-y-3 pt-2 pl-2'>
                   <div className='flex flex-col space-y-1 pt-2'>
-                    <Text className='' style={{ fontSize: '8px' }}>
+                    <Text
+                      className=''
+                      style={{ fontSize: '11px', fontWeight: '500' }}
+                    >
                       Amount Selling
                     </Text>
 
-                    <Text style={{ color: '#4CAF50', fontSize: '8px' }}>
+                    <Text style={{ color: '#4CAF50', fontSize: '10px' }}>
                       +5% of target
                     </Text>
 
@@ -332,10 +328,15 @@ function SokoniDetail() {
                       className='flex flex-col'
                     >
                       WCC
-                      <span style={{ fontSize: '5px' }}>
+                      <span
+                        style={{ fontSize: '9px', fontWeight: '500' }}
+                        className=''
+                      >
                         waste collected credit
                       </span>
-                      <span style={{ fontSize: '22px' }}>71kg</span>
+                      <span style={{ fontSize: '22px', marginTop: '6px' }}>
+                        71kg
+                      </span>
                     </Text>
                     <div className='h-9 border-r-2'></div>
                     <Text
@@ -343,14 +344,16 @@ function SokoniDetail() {
                       className='flex flex-col'
                     >
                       WRC
-                      <span style={{ fontSize: '5px' }}>
+                      <span style={{ fontSize: '9px', fontWeight: '500' }}>
                         waste collected credit
                       </span>
-                      <span style={{ fontSize: '22px' }}>71kg</span>
+                      <span style={{ fontSize: '22px', marginTop: '6px' }}>
+                        71kg
+                      </span>
                     </Text>
                   </div>
                 </div>
-                <div className='flex flex-col pt-2  space-y-1'>
+                <div className='flex flex-col pt-2 ps-2 space-y-1'>
                   <div className='flex  mt-2'>
                     <div
                       className=' font-bold text-xs rounded-full px-4 pt-1 mt-3 h-6 justify-center align-middle'
@@ -415,15 +418,15 @@ function SokoniDetail() {
               </div>
 
               <div
-                className='rounded-xl shadow-sm  w-72 h-[260px] text-center items-center sm:mt-4 md:mt-7'
+                className='rounded-xl shadow-sm  w-72 h-[295px] text-center items-center  sm:mt-4 md:mt-7'
                 style={{ backgroundColor: '#E7EEE4' }}
               >
-                <div className='flex justify-around '>
+                <div className='flex justify-around  '>
                   <div className='flex flex-row space-x-16 pt-6'>
                     <div className='flex flex-col space-y-2'>
                       <Text
-                        className='flex flex-col  text-sm'
-                        style={{ color: '', fontSize: '6px' }}
+                        className='flex flex-col  text-md mx-auto text-start'
+                        style={{ color: '', fontSize: '9px' }}
                         variant='body1'
                       >
                         <span>Account wallet:</span>
@@ -433,22 +436,38 @@ function SokoniDetail() {
                         <span>Reg: 12356wallet</span>
                       </Text>
                       <div
-                        className='inline-block  text-center rounded-full px-3 pt-1 h-3 w-16 justify-center align-middle'
-                        style={{ backgroundColor: '#86F3E0', fontSize: '4px' }}
+                        className='inline-block  text-left rounded-full px-3 pt-1 h-4 w-27 justify-center align-middle '
+                        style={{ backgroundColor: '#86F3E0', fontSize: '6px' }}
                       >
-                        Funds commited
+                        <Text
+                          className='flex flex-col my-auto text-md fw-bolder '
+                          style={{ color: '', fontSize: '8px' }}
+                          variant='body1'
+                        >
+                          <span>Funds Commited</span>
+                        </Text>
                       </div>
                       <Text
                         className='font-bold'
                         style={{ fontSize: '21px' }}
                         variant='body1'
                       >
-                        $130
+                        ${' '}
+                        {data &&
+                          isCollectionAdded &&
+                          nullWrapper(
+                            amountEarned(
+                              carbonOffsetted(
+                                data.data[0].amount_col_kg +
+                                  isCollectionAdded.amount
+                              )
+                            )
+                          )}
                       </Text>
                     </div>
                     <div className='flex flex-col space-y-2'>
                       <div
-                        className='inline-block  text-center rounded-full px-3 pt-1 h-5 w-28 justify-center align-middle'
+                        className='inline-block  text-center rounded-full px-3 pt-1 h-5 w-28 fw-bold justify-center align-middle'
                         style={{ backgroundColor: '#90E5A8', fontSize: '9px' }}
                       >
                         carborn credits
@@ -466,7 +485,7 @@ function SokoniDetail() {
 
                 <Text
                   className='font-normal'
-                  style={{ fontSize: '7px' }}
+                  style={{ fontSize: '10px' }}
                   variant='body1'
                 >
                   Select your payment method
@@ -488,64 +507,64 @@ function SokoniDetail() {
                     />
                   </svg>
                 </Text>
-                <div className='w-[70%] flex justify-center items-center ml-[17%]'>
+                <div className='w-[70%] flex justify-center items-center ml-[17%] fw-bold'>
                   <form>
                     <label
                       for='email-address-icon'
-                      class='block text-xs font-medium text-gray-900 text-left '
-                      style={{ fontSize: '7px' }}
+                      class='block text-xs font-medium text-gray-900 text-left fw-bold mt-2 '
+                      style={{ fontSize: '8px' }}
                     >
-                      Bank
+                      Name
                     </label>
                     <div class='relative'>
                       <div class='absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none'>
-                        <Img
-                          src='images/a.png'
+                        {/* <Img
+                          src='/images/a.png'
                           className='h-2 mt-0.5 w-9'
                           alt='plus'
-                        />
+                        /> */}
                       </div>
                       <input
                         type='text'
                         id='email-address-icon'
-                        class='bg-gray-50 border border-gray-300 text-gray-900  rounded-lg text-xs block w-full pl-2 p-2.5 h-7'
+                        class='bg-gray-50 border border-gray-300 text-gray-900  rounded-lg text-xs block w-full pl-2 p-2.5 h-7 mb-2'
                         placeholder=''
                       />
                     </div>
                     <label
                       for='email-address-icon'
-                      class='block text-xs font-medium text-gray-900 text-left '
-                      style={{ fontSize: '7px' }}
+                      class='block text-xs font-medium text-gray-900 text-left fw-bold  '
+                      style={{ fontSize: '8px' }}
                     >
-                      Mobile Payment
+                      Email
                     </label>
                     <div class='relative'>
                       <div class='absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none'>
-                        <Img
-                          src='images/pngwing 1.png'
+                        {/* <Img
+                          src='/images/pngwing 1.png'
                           className='h-4 mt-0.5 w-4'
                           alt='plus'
-                        />
+                        /> */}
                       </div>
                       <input
                         type='text'
                         id='email-address-icon'
-                        class='bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg  block w-full pl-2 p-2.5   h-7'
+                        class='bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg  block w-full pl-2 p-2.5   h-7 mb-2'
                         placeholder=''
                       />
                     </div>
                     <label
                       for='email-address-icon'
-                      class='block text-xs font-medium text-gray-900 text-left '
-                      style={{ fontSize: '7px' }}
+                      class='block text-xs font-medium text-gray-900 text-left fw-bold '
+                      style={{ fontSize: '8px' }}
                     >
-                      Mobile Payment
+                      Phone Number
                     </label>
                     <div class='relative'>
                       <input
                         type='text'
                         id='email-address-icon'
-                        class='bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg  block w-full pl-2 p-2.5   h-7'
+                        class='bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg  block w-full pl-2 p-2.5   h-7 mb-2'
                         placeholder=''
                       />
                     </div>

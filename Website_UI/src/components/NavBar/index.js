@@ -1,15 +1,16 @@
 import React from 'react';
 import useBreakpoint from "@restart/hooks/useBreakpoint";
-import { Text, Img, Button, NewsCarousel } from "components";
+import { Text, Img, Button, NewsCarousel, Information } from "components";
 import { useNavigate } from 'react-router-dom';
 import { useGlobalContext } from 'context';
 import validateLocalStorage from 'LocalStorage';
+import connectWallet from 'connect';
 
 function NavBar({sokoniPlaceOpen=false}) {
   const [isOpen, setIsOpen] = React.useState(false);
   const isSmall = useBreakpoint("sm", "down");
   //global context
-  const { user_details, dispatch, handleLogout, openRegisterPickerModal } = useGlobalContext()
+  const { user_details, dispatch, handleLogout, openRegisterPickerModal, setWeb3, setAccounts, setContractInstance, web3Instance, connectError, setConnectError } = useGlobalContext()
   //authentication: check from local storage
   const isAuthenticated = (user_details?.token || validateLocalStorage()) ? true : false  
   const loginLogout = ()=>{
@@ -31,6 +32,7 @@ function NavBar({sokoniPlaceOpen=false}) {
   
   
   return (
+    <>
     <nav className=' w-full max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 -mt-3 '>
       <div className='relative flex items-center justify-between  ml-[5%]'>
         <div className='flex-1 flex items-center justify-start ml-auto sm:items-stretch sm:justify-start'>
@@ -122,12 +124,16 @@ function NavBar({sokoniPlaceOpen=false}) {
               </Text>
             </li>
 
-            <li className='flex items-center'>
+            <li className='flex items-center' onClick={()=> {
+              if(!web3Instance)
+              connectWallet(setWeb3, setAccounts, setContractInstance);
+              
+              else console.log(web3Instance);}}>
               <Text
-                className='bg-bluegray_100 font-medium h-[22px] ml-[37px] sm:my-1 sm:mx-auto px-[9px] py-[3px] rounded-[11px] text-black_900 text-left text-shadow-ts1 w-[104px]  transform hover:scale-x-90 transition-transform'
+                className='bg-bluegray_100 font-medium h-[22px] ml-[37px] sm:my-1 sm:mx-auto px-[9px] py-[3px] rounded-[11px] text-black_900 text-left text-shadow-ts1 w-[104px]  transform hover:scale-x-90 transition-transform text-center'
                 variant='body2'
               >
-                connect wallet
+                {(!web3Instance)?'Connect':'Connected!'}
               </Text>
             </li>
 
@@ -154,6 +160,11 @@ function NavBar({sokoniPlaceOpen=false}) {
         </div>
       </div>
     </nav>
+   <div className='m-auto'>
+   {connectError &&
+    <Information msg={connectError} temp={true} clear={setConnectError}/>}
+   </div> 
+    </>
   )
 }
 

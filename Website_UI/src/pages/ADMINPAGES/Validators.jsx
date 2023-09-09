@@ -13,6 +13,13 @@ import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "context";
 import useFetch from "hooks";
 import { Button as Btn, Modal,  img } from 'bootstrap'
+import SwiperCore from "swiper";
+import  { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+// Import Swiper styles
+import 'swiper/css';
+
+
 
 const ValidationsTableData = [
   {
@@ -124,13 +131,14 @@ const SingleCollection = ({
   firstname,
   lastname,
   collectionID,
-  imgs_url,
+  images,
   collected_date: date,
   admin_name,
   no,
   user_details,
   generateFormattedDateTime
 }) => {
+
   const [changes, setChanges] = useState(admin_name);
   const {obtainData,  error, isLoading, data} = useFetch();
   const handleValidation = (collectionID) => {
@@ -185,7 +193,7 @@ const SingleCollection = ({
           variant='small'
           className='text-xs font-medium text-blue-gray-600'
         >
-          <ImageModal imageUrl={imgs_url} imageAlt={firstname} weight={amount} ind={no}/>
+         <ImageModal images={images} imageAlt={firstname} weight={amount} ind={no}/>
         </Typography>
       </td>
       <td className={className}>
@@ -256,61 +264,70 @@ const SingleCollection = ({
     </tr>
   )
 }
-const ImageModal = ({ imageUrl, imageAlt, weight, ind }) => {
- 
+
+
+
+const ImageModal = ({ images, imageAlt }) => {
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
   return (
     <>
-      <a data-bs-toggle='modal' data-bs-target={`#exampleModal${ind}`} className="text-link" style={{cursor:'pointer'}}>
-        {' '}
-        View Image
-      </a>
-      <div
-        className='modal fade'
-        id={`exampleModal${ind}`}
-        tabIndex={-1}
-        role='dialog'
-        aria-labelledby={`exampleModalLabel${ind}`}
-        aria-hidden='true'
-      >
-        <div className='modal-dialog' role='document'>
-          <div className='modal-content'>
-            <div className='modal-header'>
-              {/* w-100 class so that header
-          div covers 100% width of parent div */}
-              <h5
-                className='modal-title w-100 text-capitalize'
-                id={`exampleModalLabel${ind}`}
-              >
-                {imageAlt} - {weight} Kg
-              </h5>
-              <button
-                type='button'
-                className='close'
-                data-bs-dismiss='modal'
-                aria-label='Close'
-              >
-                <span aria-hidden='true'>×</span>
-              </button>
-            </div>
-            {/*Modal body with image*/}
-            <div className='modal-body'>
-              <img src={imageUrl} alt={imageAlt} className='w-100' />
-            </div>
-            <div className='modal-footer'>
-              <button
-                type='button'
-                className='btn btn-danger'
-                data-bs-dismiss='modal'
-              >
-                Close
-              </button>
-            </div>
+      <div>
+        <a href='#' onClick={openModal} className='text-blue-500'>
+          View Images
+        </a>
+      </div>
+
+      {modalOpen && (
+        <div className='fixed inset-0 flex justify-center items-center z-50 bg-opacity-50'>
+          <div className='bg-white rounded-lg shadow-lg p-4 w-full sm:w-5/6 md:w-4/6 lg:w-3/6 xl:w-2/6 relative'>
+            <button
+              className='absolute top-2 right-2 text-white btn-close hover:text-gray-80 bg-danger p-2  '
+              onClick={closeModal}
+            >
+              
+            </button>
+            <Swiper
+              // install Swiper modules
+              modules={[Navigation, Pagination, Scrollbar, A11y]}
+              spaceBetween={50}
+              slidesPerView={1}
+              navigation
+              pagination={{ clickable: true }}
+              scrollbar={{ draggable: true }}
+              onSwiper={(swiper) => console.log(swiper)}
+              onSlideChange={() => console.log('slide change')}
+            >
+              {images.map(({ image_url, imageID, active }, index) => (
+                <SwiperSlide key={imageID} className='swiper-slide'>
+                  <img
+                    src={image_url}
+                    alt={`${imageAlt} ${index}`}
+                    className=' slide_image mx-auto'
+                    style={{
+                      width: '400px',
+                      height: '400px',
+                    }}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
         </div>
-      </div>
+      )}
     </>
   )
-}
+};
+
+
 
 export default Validators;

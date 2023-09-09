@@ -38,7 +38,7 @@ function SokoniPage() {
       className='bg-cover bg-repeat bg-white_A700 flex flex-col font-syne h-auto sm:h-[100%] items-center justify-start mx-auto p-[38px] sm:px-5 w-full'
       style={{ backgroundImage: "url('images/img_homepage.png')" }}
     >
-      <NavBar sokoniPlaceOpen={true}/>
+      <NavBar sokoniPlaceOpen={true} />
       {message && (
         <div className='mt-4'>
           <Information msg={message.msg} color={message.color} />
@@ -104,7 +104,6 @@ function SokoniPage() {
           </Text>
         </div>
         <div className='mt-10 sm:mt-2'>
-         
           <div class='relative'>
             <div class='flex absolute inset-y-0 left-0 items-center pl-3 pr-3 pointer-events-none'>
               <svg
@@ -133,21 +132,23 @@ function SokoniPage() {
             />
           </div>
           {searchList.length > 0 ? (
-            <div>
+            <div className='overflow-auto max-h-[300px]  mt-4 rounded-lg text-gray-800 text-lg  transition-colors duration-300 mb-4'>
               {searchList.map((picker) => (
                 <div className='flex flex-col justify-center ml-16 '>
                   <div
-                    className='cursor-pointer bg-success ml-4 p-3 rounded transform hover:scale-y-75 transition-transform m-2 d-flex flex-row justify-content-center align-items-center'
+                    className='cursor-pointer ml-4 p-3 rounded transform hover:scale-y-75 transition-transform m-2 d-flex flex-row align-items-center'
                     onClick={() => navigate(`/sokoni_details/${picker.id}`)}
                   >
                     <img
-                      src={ picker.profile_img}
+                      src={picker.profile_img}
                       alt='profile picture'
                       className='w-10 h-10 rounded-full me-2'
                     />
-                    <div className="">
-                      <small className="me-2 text-capitalize ">{picker.firstname + ' ' + picker.last_name}</small>
-                      <small className="text-warning">{picker.phone_no}</small>
+                    <div className='ms-2'>
+                      <small className='text-capitalize '>
+                        {picker.firstname + ' ' + picker.last_name}
+                      </small>
+                      <small className='text-muted d-block'>{picker.phone_no}</small>
                     </div>
                   </div>
                 </div>

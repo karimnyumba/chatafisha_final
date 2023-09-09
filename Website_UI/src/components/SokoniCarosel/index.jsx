@@ -15,17 +15,17 @@ function SokoniCarosel() {
   const { data, isLoading, error, obtainData } = useFetch()
   React.useEffect(
     ()=>{
-      (user_details.token &&
+     
   obtainData(
     'user/picker_list',
     'get',
     {},
     {
       headers: {
-        token: user_details.token,
+       
       },
     }
-  ))
+  )
     }, [user_details, isPickerUpdated]
   )
   if (data){
@@ -321,7 +321,7 @@ function SokoniCarosel() {
             return (
               <SplideSlide key={index}>
                 <div
-                  className='relative w-[330px] h-[300px] rounded-xl overflow-x-visible bg-green-500  float-left'
+                  className={`relative w-[330px] h-[300px] rounded-xl overflow-x-visible bg-green-500  float-left mx-4`}
                   style={{ backgroundColor: '#38C18C' }}
                   onClick={() => {
                     dispatch({
@@ -379,16 +379,13 @@ function SokoniCarosel() {
                     <div className='flex space-x-6 mb-4'>
                       <div className='flex flex-col'>
                         <div
-                          className='inline-block rounded-full pt-1 px-1 h-6 justify-center align-middle'
+                          className='inline-block fw-bold text-xs text-nowrap rounded-full pt-1 px-1 h-6 justify-center align-middle'
                           style={{
                             backgroundColor: '#D9D9D9',
                             fontSize: '8px',
                           }}
                         >
-                          <Text className='text-center font-normal'>
-                            {' '}
-                            Plastic collected{' '}
-                          </Text>
+                          Plastic collected{' '}
                         </div>
                         <Text className='text-center text-xs font-normal'>
                           {nullWrapper(card.latest)}
@@ -396,7 +393,7 @@ function SokoniCarosel() {
                       </div>
                       <div className='flex flex-col'>
                         <div
-                          className='inline-block font-bold text-xs rounded-full px-3 pt-1 h-6 justify-center align-middle'
+                          className='inline-block fw-bold text-xs text-nowrap rounded-full px-3 pt-1 h-6 justify-center align-middle'
                           style={{
                             backgroundColor: '#5271FF',
                             fontSize: '8px',
@@ -410,10 +407,10 @@ function SokoniCarosel() {
                       </div>
                       <div className='flex flex-col'>
                         <div
-                          className='inline-block font-bold text-xs rounded-full px-3 pt-1 h-6 justify-center align-middle'
+                          className='inline-block fw-bold text-nowrap text-xs rounded-full px-3 pt-1 h-6 justify-center align-middle'
                           style={{
                             backgroundColor: '#6AB148',
-                            fontSize: '6px',
+                            fontSize: '8px',
                           }}
                         >
                           Carbon offset
@@ -425,19 +422,20 @@ function SokoniCarosel() {
                     </div>
                     <div className='rounded-xl shadow-sm bg-white  w-72 h-24 flex justify-around '>
                       <div className='flex flex-col space-y-1 pt-2'>
-                        <Text className='' style={{ fontSize: '8px' }}>
+                        <Text className='' style={{ fontSize: '11px', fontWeight:'500' }}>
                           Amount Selling
                         </Text>
 
-                        <Text style={{ color: '#4CAF50', fontSize: '8px' }}>
+                        <Text style={{ color: '#4CAF50', fontSize: '10px' }}>
                           +5% of target
                         </Text>
 
                         <Text style={{ fontSize: '29px' }}>
                           {nullWrapper(card.total_collection)} Kg
                         </Text>
-                        <Text style={{ color: '#4CAF50', fontSize: '8px' }}>
-                          Seen: <TimeUpdate time={card.latest_collection_date}/>
+                        <Text style={{ color: '#4CAF50', fontSize: '9px' }}>
+                          Seen:{' '}
+                          <TimeUpdate time={card.latest_collection_date} />
                         </Text>
                       </div>
 

@@ -43,9 +43,9 @@ const ProjectRoutes = () => {
           <Route
             path='/sokoni_details/:id'
             element={
-              <ProtectedRoute role='Validator'>
+             
                 <SokoniDetail />
-              </ProtectedRoute>
+             
             }
           />
           <Route path='/news_detail/blog/:blog_id' element={<SINGLE_NEWS />} />
@@ -55,9 +55,9 @@ const ProjectRoutes = () => {
           <Route
             path='/market_place'
             element={
-              <ProtectedRoute role='Validator'>
+              
                 <SokoniPage />
-              </ProtectedRoute>
+              
             }
           />
           <Route path='/registerform' element={<REGISTERFORM />} />
