@@ -55,16 +55,17 @@ function SokoniDetail() {
    function nullWrapper(amount) {
      return amount ? amount : 0
    }
-
+// bg-cover bg-repeat bg-white_A700 flex flex-col font-syne h-[800px] md:h-[1200px] sm:h-[1200px] items-center justify-start mx-auto p-[38px] sm:px-5 w-full
   return (
     <>
       {data && (
+        
         <div
-          className='bg-cover bg-repeat bg-white_A700 flex flex-col font-syne h-[800px] md:h-[1200px] sm:h-[1200px] items-center justify-start mx-auto p-[38px] sm:px-5 w-full'
-          style={{ backgroundImage: "url('images/img_homepage.png')" }}
+          className='bg-cover bg-repeat bg-white_A700 flex flex-col font-syne  items-center justify-start mx-auto p-[38px] py-4 sm:px-5 w-full '
+          style={{ backgroundImage: "url('/images/img_homepage.png')" }}
         >
           <NavBar />
-        
+
           <div className='flex flex-col ml-[-40%]  sm:ml-0'>
             <div className='flex justify-between '>
               <svg
@@ -163,7 +164,6 @@ function SokoniDetail() {
                 />
               </svg>
             </div>
-           
           </div>
           <div
             className='relative w-[80%] h-[300px]  sm:w-full rounded-xl overflow-x-visible bg-green-500   float-left'
@@ -243,180 +243,205 @@ function SokoniDetail() {
               className='absolute top-[58%] p-[10px] w-full h-auto  rounded-3xl flex flex-wrap items-center justify-around'
               style={{ backgroundColor: '#D8DFE0' }}
             >
-              <div className='flex flex-col space-x-6 mb-4'>
-                <div className='flex flex-col ml-5 mb-2'>
-                  <div
-                    className=' inline-block  text-center rounded-full pt-1  h-7 w-32 justify-center align-middle   '
-                    style={{ backgroundColor: '#D9D9D9', fontSize: '13px' }}
-                  >
-                    Avarage daily
-                  </div>
-                  <Text className='text-center text-2xl  font-normal'>
-                    {(data && isCollectionAdded && isCollectionAdded.amount) ||
-                      nullWrapper(data.data[0].latest_collection)}{' '}
-                    Kg
-                  </Text>
-                </div>
-                <div className='flex flex-col'>
-                  <div
-                    className=' inline-block  text-center rounded-full pt-1  h-7 w-32 justify-center align-middle  '
-                    style={{ backgroundColor: '#5271FF', fontSize: '13px' }}
-                  >
-                    Total collected
-                  </div>
-                  <Text className='text-center text-2xl my-2 font-normal '>
-                    {data &&
-                      isCollectionAdded &&
-                      nullWrapper(data.data[0].amount_col_kg) +
-                        isCollectionAdded.amount}{' '}
-                    Kg
-                  </Text>
-                </div>
-                <div className='flex flex-col'>
-                  <div
-                    className='  inline-block  text-center rounded-full pt-1  h-7 w-32 justify-center align-middle   '
-                    style={{ backgroundColor: '#6AB148', fontSize: '13px' }}
-                  >
-                    SOLD
-                  </div>
-                  <Text className='text-center text-2xl font-normal '>
-                    0 Kg
-                  </Text>
-                </div>
-                <div className='flex flex-col my-3'>
-                  <div
-                    className='  inline-block  text-center rounded-full pt-1  h-7 w-32 justify-center align-middle   '
-                    style={{ backgroundColor: '#6AB148', fontSize: '13px' }}
-                  >
-                    Carbon Offset
-                  </div>
-                  <Text className='text-center text-2xl font-normal '>
-                    {data &&
-                      isCollectionAdded &&
-                      nullWrapper(
-                        carbonOffsetted(
-                          data.data[0].amount_col_kg + isCollectionAdded.amount
-                        )
-                      )}
-                  </Text>
-                </div>
-              </div>
-              <div className='rounded-xl shadow-sm bg-white  w-96  h-[200px] flex  justify-around '>
-                <div className='flex flex-col space-y-3 pt-2 pl-2'>
-                  <div className='flex flex-col space-y-1 pt-2'>
-                    <Text
-                      className=''
-                      style={{ fontSize: '11px', fontWeight: '500' }}
-                    >
-                      Amount Selling
-                    </Text>
-
-                    <Text style={{ color: '#4CAF50', fontSize: '10px' }}>
-                      +5% of target
-                    </Text>
-
-                    <Text style={{ fontSize: '29px' }}>
-                      {credit?.credit.amount_selling}
-                    </Text>
-                  </div>
-                  <Text style={{ fontSize: '11px', color: '#5271FF' }}>
-                    Type of plastic collected
-                  </Text>
-                  <div className='flex space-x-1'>
-                    <Text
-                      style={{ fontSize: '11px' }}
-                      className='flex flex-col'
-                    >
-                      WCC
-                      <span
-                        style={{ fontSize: '9px', fontWeight: '500' }}
-                        className=''
-                      >
-                        waste collected credit
-                      </span>
-                      <span style={{ fontSize: '22px', marginTop: '6px' }}>
-                        71kg
-                      </span>
-                    </Text>
-                    <div className='h-9 border-r-2'></div>
-                    <Text
-                      style={{ fontSize: '11px' }}
-                      className='flex flex-col'
-                    >
-                      WRC
-                      <span style={{ fontSize: '9px', fontWeight: '500' }}>
-                        waste collected credit
-                      </span>
-                      <span style={{ fontSize: '22px', marginTop: '6px' }}>
-                        71kg
-                      </span>
-                    </Text>
-                  </div>
-                </div>
-                <div className='flex flex-col pt-2 ps-2 space-y-1'>
-                  <div className='flex  mt-2'>
-                    <div
-                      className=' font-bold text-xs rounded-full px-4 pt-1 mt-3 h-6 justify-center align-middle'
-                      style={{ backgroundColor: '#5271FF' }}
-                    >
-                      <i class='fas fa-recycle   text-white'></i>
+              {user_details?.user_data &&
+                user_details.user_data.role_id === 'Validator' && (
+                  <>
+                    <div className='flex flex-col space-x-6 mb-4'>
+                      <div className='flex flex-col ml-5 mb-2'>
+                        <div
+                          className=' inline-block  text-center rounded-full pt-1  h-7 w-32 justify-center align-middle   '
+                          style={{
+                            backgroundColor: '#D9D9D9',
+                            fontSize: '13px',
+                          }}
+                        >
+                          Avarage daily
+                        </div>
+                        <Text className='text-center text-2xl  font-normal'>
+                          {(data &&
+                            isCollectionAdded &&
+                            isCollectionAdded.amount) ||
+                            nullWrapper(data.data[0].latest_collection)}{' '}
+                          Kg
+                        </Text>
+                      </div>
+                      <div className='flex flex-col'>
+                        <div
+                          className=' inline-block  text-center rounded-full pt-1  h-7 w-32 justify-center align-middle  '
+                          style={{
+                            backgroundColor: '#5271FF',
+                            fontSize: '13px',
+                          }}
+                        >
+                          Total collected
+                        </div>
+                        <Text className='text-center text-2xl my-2 font-normal '>
+                          {data &&
+                            isCollectionAdded &&
+                            nullWrapper(data.data[0].amount_col_kg) +
+                              isCollectionAdded.amount}{' '}
+                          Kg
+                        </Text>
+                      </div>
+                      <div className='flex flex-col'>
+                        <div
+                          className='  inline-block  text-center rounded-full pt-1  h-7 w-32 justify-center align-middle   '
+                          style={{
+                            backgroundColor: '#6AB148',
+                            fontSize: '13px',
+                          }}
+                        >
+                          SOLD
+                        </div>
+                        <Text className='text-center text-2xl font-normal '>
+                          0 Kg
+                        </Text>
+                      </div>
+                      <div className='flex flex-col my-3'>
+                        <div
+                          className='  inline-block  text-center rounded-full pt-1  h-7 w-32 justify-center align-middle   '
+                          style={{
+                            backgroundColor: '#6AB148',
+                            fontSize: '13px',
+                          }}
+                        >
+                          Carbon Offset
+                        </div>
+                        <Text className='text-center text-2xl font-normal '>
+                          {data &&
+                            isCollectionAdded &&
+                            nullWrapper(
+                              carbonOffsetted(
+                                data.data[0].amount_col_kg +
+                                  isCollectionAdded.amount
+                              )
+                            )}
+                        </Text>
+                      </div>
                     </div>
-                    <div className='flex flex-col space-x-3'>
-                      <svg
-                        className='ml-6'
-                        width='58'
-                        height='11'
-                        viewBox='0 0 58 11'
-                        fill='none'
-                        xmlns='http://www.w3.org/2000/svg'
-                      >
-                        <path
-                          d='M1 9.03972L3.36897 7.91614C4.87013 7.20415 6.65317 7.47421 7.87616 8.59881V8.59881C9.42482 10.0229 11.8027 10.0348 13.3656 8.62641L15.0479 7.11039C15.3222 6.86321 15.6267 6.65176 15.9541 6.48106L18.0609 5.38257C19.2943 4.73951 20.76 4.72125 22.009 5.33339L22.9498 5.7945C24.1644 6.38977 25.586 6.38977 26.8006 5.7945L29.1241 4.65576C29.5243 4.45963 29.8922 4.20349 30.215 3.89622L32.3373 1.87618C33.6335 0.642465 35.5503 0.322471 37.1769 1.06825L38.6171 1.72852C39.0926 1.94657 39.5253 2.24815 39.8944 2.61894L43.4698 6.21077C43.8173 6.55984 44.2212 6.84773 44.6646 7.06229L48.2443 8.79478C48.5803 8.95741 48.9358 9.07636 49.302 9.14873L52.3456 9.75021C53.044 9.88822 53.7655 9.85374 54.4475 9.64974L57 8.88628'
-                          stroke='#4CAF50'
-                          stroke-width='0.875'
-                          stroke-linecap='round'
-                          stroke-linejoin='round'
-                        />
-                      </svg>
+                    <div className='rounded-xl shadow-sm bg-white  w-96  h-[200px] flex  justify-around '>
+                      <div className='flex flex-col space-y-3 pt-2 pl-2'>
+                        <div className='flex flex-col space-y-1 pt-2'>
+                          <Text
+                            className=''
+                            style={{ fontSize: '11px', fontWeight: '500' }}
+                          >
+                            Amount Selling
+                          </Text>
 
-                      <Text
-                        style={{ color: '#4CAF50', fontSize: '15px' }}
-                        className='font-bold'
-                      >
-                        Selling 1kg
-                      </Text>
-                      <Text
-                        style={{ color: '#4CAF50', fontSize: '15px' }}
-                        className='font-bold'
-                      >
-                        USD $1
-                      </Text>
+                          <Text style={{ color: '#4CAF50', fontSize: '10px' }}>
+                            +5% of target
+                          </Text>
+
+                          <Text style={{ fontSize: '29px' }}>
+                            {credit?.credit.amount_selling}
+                          </Text>
+                        </div>
+                        <Text style={{ fontSize: '11px', color: '#5271FF' }}>
+                          Type of plastic collected
+                        </Text>
+                        <div className='flex space-x-1'>
+                          <Text
+                            style={{ fontSize: '11px' }}
+                            className='flex flex-col'
+                          >
+                            WCC
+                            <span
+                              style={{ fontSize: '9px', fontWeight: '500' }}
+                              className=''
+                            >
+                              waste collected credit
+                            </span>
+                            <span
+                              style={{ fontSize: '22px', marginTop: '6px' }}
+                            >
+                              71kg
+                            </span>
+                          </Text>
+                          <div className='h-9 border-r-2'></div>
+                          <Text
+                            style={{ fontSize: '11px' }}
+                            className='flex flex-col'
+                          >
+                            WRC
+                            <span
+                              style={{ fontSize: '9px', fontWeight: '500' }}
+                            >
+                              waste collected credit
+                            </span>
+                            <span
+                              style={{ fontSize: '22px', marginTop: '6px' }}
+                            >
+                              71kg
+                            </span>
+                          </Text>
+                        </div>
+                      </div>
+                      <div className='flex flex-col pt-2 ps-2 space-y-1'>
+                        <div className='flex  mt-2'>
+                          <div
+                            className=' font-bold text-xs rounded-full px-4 pt-1 mt-3 h-6 justify-center align-middle'
+                            style={{ backgroundColor: '#5271FF' }}
+                          >
+                            <i class='fas fa-recycle   text-white'></i>
+                          </div>
+                          <div className='flex flex-col space-x-3'>
+                            <svg
+                              className='ml-6'
+                              width='58'
+                              height='11'
+                              viewBox='0 0 58 11'
+                              fill='none'
+                              xmlns='http://www.w3.org/2000/svg'
+                            >
+                              <path
+                                d='M1 9.03972L3.36897 7.91614C4.87013 7.20415 6.65317 7.47421 7.87616 8.59881V8.59881C9.42482 10.0229 11.8027 10.0348 13.3656 8.62641L15.0479 7.11039C15.3222 6.86321 15.6267 6.65176 15.9541 6.48106L18.0609 5.38257C19.2943 4.73951 20.76 4.72125 22.009 5.33339L22.9498 5.7945C24.1644 6.38977 25.586 6.38977 26.8006 5.7945L29.1241 4.65576C29.5243 4.45963 29.8922 4.20349 30.215 3.89622L32.3373 1.87618C33.6335 0.642465 35.5503 0.322471 37.1769 1.06825L38.6171 1.72852C39.0926 1.94657 39.5253 2.24815 39.8944 2.61894L43.4698 6.21077C43.8173 6.55984 44.2212 6.84773 44.6646 7.06229L48.2443 8.79478C48.5803 8.95741 48.9358 9.07636 49.302 9.14873L52.3456 9.75021C53.044 9.88822 53.7655 9.85374 54.4475 9.64974L57 8.88628'
+                                stroke='#4CAF50'
+                                stroke-width='0.875'
+                                stroke-linecap='round'
+                                stroke-linejoin='round'
+                              />
+                            </svg>
+
+                            <Text
+                              style={{ color: '#4CAF50', fontSize: '15px' }}
+                              className='font-bold'
+                            >
+                              Selling 1kg
+                            </Text>
+                            <Text
+                              style={{ color: '#4CAF50', fontSize: '15px' }}
+                              className='font-bold'
+                            >
+                              USD $1
+                            </Text>
+                          </div>
+                        </div>
+                        <div>
+                          <button
+                            className='ml-1  mr-1 rounded-lg text-xs w-20 h-12 mt-4 text-white  hover:bg-black-400'
+                            style={{ backgroundColor: '#9A9292' }}
+                          >
+                            {' '}
+                            Weight
+                          </button>
+                          <button
+                            className=' rounded-lg text-xs  w-20 h-12  mt-4 text-white  hover:bg-green-400'
+                            style={{ backgroundColor: '#90E5A8' }}
+                          >
+                            {' '}
+                            Amount
+                          </button>
+                        </div>
+
+                        <button className=' border-2 rounded-lg text-xs w-36 bg-transparent   hover:bg-gray-400  h-9 m-3'>
+                          {' '}
+                          BUY
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                  <div>
-                    <button
-                      className='ml-1  mr-1 rounded-lg text-xs w-20 h-12 mt-4 text-white  hover:bg-black-400'
-                      style={{ backgroundColor: '#9A9292' }}
-                    >
-                      {' '}
-                      Weight
-                    </button>
-                    <button
-                      className=' rounded-lg text-xs  w-20 h-12  mt-4 text-white  hover:bg-green-400'
-                      style={{ backgroundColor: '#90E5A8' }}
-                    >
-                      {' '}
-                      Amount
-                    </button>
-                  </div>
-
-                  <button className=' border-2 rounded-lg text-xs w-36 bg-transparent   hover:bg-gray-400  h-9 m-3'>
-                    {' '}
-                    BUY
-                  </button>
-                </div>
-              </div>
-
+                  </>
+                )}
               <div
                 className='rounded-xl shadow-sm  w-72 h-[295px] text-center items-center  sm:mt-4 md:mt-7'
                 style={{ backgroundColor: '#E7EEE4' }}
@@ -589,7 +614,9 @@ function SokoniDetail() {
             }}
           />
         </div>
-      )}
+      )
+      }
+      
     </>
   )
 }

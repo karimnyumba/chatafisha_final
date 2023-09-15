@@ -2,8 +2,17 @@
   box-sizing: border-box;
   line-height: normal;
 }
+html{
+
+width: 100%;
+height: 100%;
+}
 body {
   font-family: "Roboto", sans-serif !important;
+  width: 100%;
+  min-height: 100vh;
+  overflow: auto;
+  background-color: #000;
   margin: 0;
   padding: 0;
   

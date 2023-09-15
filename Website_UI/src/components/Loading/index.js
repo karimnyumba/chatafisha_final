@@ -4,14 +4,14 @@ import clsx from "clsx";
 
 function Loading({className}) {
   return (
-    <div>
+    <div className="mt-50">
       <div className={clsx("", className)}
       style={{
         display:'flex',
         flexDirection:'column',
         justifyContent:'center',
         alignItems:'center',
-        marginTop:'50%'
+        
       }}
       >
         <Img
