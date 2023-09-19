@@ -481,7 +481,7 @@ function SokoniDetail() {
                 )}
               <div
                 className='rounded-xl shadow-sm  w-80 h-[480px] text-center items-center mx-auto  sm:mt-4 md:mt-7'
-                style={{ backgroundColor: 'rgb(231, 238, 228)' }}
+                style={{ backgroundColor: 'rgb(240, 238, 228)' }}
               >
                 <div className='flex justify-between mx-2'>
                   <div class='flex relative  justify-center items-center m-1 mr-2 text-xl rounded-full '>
@@ -493,7 +493,7 @@ function SokoniDetail() {
                   <div className='pl-2 mt-2 ms-4 text-left'>
                     <Text
                       className='  text-sm text-capitalize'
-                      style={{ fontSize: '20px' }}
+                      style={{ fontSize: '15px' }}
                       variant='body1'
                     >
                       {data &&
@@ -510,8 +510,10 @@ function SokoniDetail() {
                       <i class='fas fa-map-marker-alt'></i>{' '}
                       {data && data.data[0].location}
                       <br />
-                      <i class='fas fa-phone-alt me-1'></i>
+                      <i class='fas fa-phone-alt me-1 font-bold'></i>
+                      <div className=" d-inline-block">
                       {data && data.data[0].phone_number}
+                      </div>
                       <div className='d-block'>
                         <i className='fas fa-eye me-1 text-primary'></i>
                         <TimeUpdate
@@ -528,17 +530,7 @@ function SokoniDetail() {
                 <div className='flex justify-around  '>
                   <div className='flex flex-row space-x-16 pt-6'>
                     <div className='flex flex-col space-y-2'>
-                      <Text
-                        className='flex flex-col  text-md mx-auto text-start'
-                        style={{ color: '', fontSize: '9px' }}
-                        variant='body1'
-                      >
-                        <span>Account wallet:</span>
-
-                        <span> NIPE FAGIO</span>
-
-                        <span>Reg: 12356wallet</span>
-                      </Text>
+                     
                       <div
                         className='inline-block  text-left rounded-full px-3 pt-1 h-4 w-27 justify-center align-middle '
                         style={{ backgroundColor: '#86F3E0', fontSize: '6px' }}
@@ -595,14 +587,14 @@ function SokoniDetail() {
                 </div>
 
                 <Text
-                  className='font-normal'
-                  style={{ fontSize: '10px' }}
+                  className='font-normal mt-8'
+                  style={{ fontSize: '15px' }}
                   variant='body1'
                 >
                   Select your payment method
                   <svg
-                    className='ml-[28%]'
-                    width='126'
+                    className='mx-auto'
+                    width='300'
                     height='2'
                     viewBox='0 0 126 2'
                     fill='none'
@@ -623,7 +615,7 @@ function SokoniDetail() {
                     <label
                       for='email-address-icon'
                       class='block text-xs font-medium text-gray-900 text-left fw-bold mt-2 '
-                      style={{ fontSize: '8px' }}
+                      style={{ fontSize: '10px' }}
                     >
                       Name
                     </label>
