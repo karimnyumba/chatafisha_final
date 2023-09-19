@@ -11,6 +11,7 @@ function Loading({className}) {
         flexDirection:'column',
         justifyContent:'center',
         alignItems:'center',
+        marginTop:'300px'
         
       }}
       >

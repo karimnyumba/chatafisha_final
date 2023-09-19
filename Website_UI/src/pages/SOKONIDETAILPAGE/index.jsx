@@ -12,10 +12,27 @@ import TimeUpdate from "components/TimeUpdate";
 function SokoniDetail() {
   const navigate = useNavigate();
   const {credit, user_details, isCollectionAdded} = useGlobalContext();
+  
 
   const [modalOpen, setModalOpen] = useState(false);
   const [HistorymodalOpen, setHistoryModalOpen] = useState(false);
   const [message,setMessage]= useState(null);
+   function formatNumberWithCommas(number) {
+     // Convert the number to a string and split it into parts
+     const parts = number.toString().split('.')
+
+     // Format the integer part with commas
+     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+
+     // Join the integer and decimal parts (if any)
+     return parts.join('.')
+   }
+
+  const calculatePrice = (total_collection) => {
+    return formatNumberWithCommas(
+      nullWrapper(carbonOffsetted(total_collection)) * 600000
+    )
+  }
 
   function closeModal() {
     setModalOpen(false);
@@ -59,7 +76,6 @@ function SokoniDetail() {
   return (
     <>
       {data && (
-        
         <div
           className='bg-cover bg-repeat bg-white_A700 flex flex-col font-syne  items-center justify-start mx-auto p-[38px] py-4 sm:px-5 w-full '
           style={{ backgroundImage: "url('/images/img_homepage.png')" }}
@@ -166,82 +182,103 @@ function SokoniDetail() {
             </div>
           </div>
           <div
-            className='relative w-[80%] h-[300px]  sm:w-full rounded-xl overflow-x-visible bg-green-500   float-left'
-            style={{ backgroundColor: '#38C18C' }}
+            className='relative w-[80%]   sm:w-full rounded-xl overflow-x-visibl   float-left'
+            style={{ backgroundColor: '' }}
           >
-            <div className='mt-4 ml-2 flex flex-wrap justify-between px-8 '>
-              <div className='flex'>
-                <div class='flex relative  justify-center items-center m-1 mr-2 text-xl rounded-full text-white'>
-                  <Img
-                    src={data && data.data[0].profile_img}
-                    className=' w-20 h-20 rounded-full'
-                  />
-                </div>
-                <div className='pl-2 mt-2'>
-                  <Text
-                    className='  text-sm text-capitalize'
-                    style={{ color: '#F8F8F8', fontSize: '20px' }}
-                    variant='body1'
-                  >
-                    {data &&
-                      data.data[0].firstname + ' ' + data.data[0].lastname}
-                    <br />
-                    ID: {data && data.data[0].id}
-                    <br />
-                  </Text>
+            {user_details &&
+              user_details?.user_data &&
+              user_details.user_data.role_id === 'Validator' && (
+                <div className='mt-4 ml-2 flex flex-wrap justify-between px-8 '>
+                  {user_details?.user_data &&
+                    user_details.user_data.role_id === 'Validator' && (
+                      <div className='flex'>
+                        <div class='flex relative  justify-center items-center m-1 mr-2 text-xl rounded-full text-white'>
+                          <Img
+                            src={data && data.data[0].profile_img}
+                            className=' w-20 h-20 rounded-full'
+                          />
+                        </div>
+                        <div className='pl-2 mt-2'>
+                          <Text
+                            className='  text-sm text-capitalize'
+                            style={{ color: '#F8F8F8', fontSize: '20px' }}
+                            variant='body1'
+                          >
+                            {data &&
+                              data.data[0].firstname +
+                                ' ' +
+                                data.data[0].lastname}
+                            <br />
+                            ID: {data && data.data[0].id}
+                            <br />
+                          </Text>
 
-                  <Text
-                    className='text-sm'
-                    style={{ color: '#D9D9D9', fontSize: '15px' }}
-                  >
-                    <i class='fas fa-map-marker-alt'></i>{' '}
-                    {data && data.data[0].location}
-                    <br />
-                    <i class='fas fa-phone-alt me-1'></i>
-                    {data && data.data[0].phone_number}
-                    <div className='d-block'>
-                      <i className='fas fa-eye me-1 text-primary'></i>
-                      <TimeUpdate
-                        time={
-                          isCollectionAdded.amount === 0
-                            ? data && data.data[0].latest_collection_date
-                            : new Date().toString()
-                        }
-                      />
-                    </div>
-                  </Text>
-                </div>
-              </div>
-              <div className='sm:mt-[-20px] '>
-                {user_details &&
-                  user_details?.user_data &&
-                  user_details.user_data.role_id === 'Validator' && (
+                          <Text
+                            className='text-sm'
+                            style={{ color: '#D9D9D9', fontSize: '15px' }}
+                          >
+                            <i class='fas fa-map-marker-alt'></i>{' '}
+                            {data && data.data[0].location}
+                            <br />
+                            <i class='fas fa-phone-alt me-1'></i>
+                            {data && data.data[0].phone_number}
+                            <div className='d-block'>
+                              <i className='fas fa-eye me-1 text-primary'></i>
+                              <TimeUpdate
+                                time={
+                                  isCollectionAdded.amount === 0
+                                    ? data &&
+                                      data.data[0].latest_collection_date
+                                    : new Date().toString()
+                                }
+                              />
+                            </div>
+                          </Text>
+                        </div>
+                      </div>
+                    )}
+                  <div className='sm:mt-[-20px] '>
+                    {user_details &&
+                      user_details?.user_data &&
+                      user_details.user_data.role_id === 'Validator' && (
+                        <Button
+                          className=' border-2 rounded-lg  text-xs px-1 mt-4  text-white bg-transparent hover:bg-green-400 '
+                          onClick={() => {
+                            openModal()
+                          }}
+                        >
+                          {' '}
+                          Collection
+                          {/* <i className="fa fa-plus mt-1 ml-2"/> */}
+                        </Button>
+                      )}
                     <Button
-                      className=' border-2 rounded-lg  text-xs px-1 mt-4  text-white bg-transparent hover:bg-green-400 '
+                      className=' border-2 rounded-lg text-xs px-1 mt-4  text-white bg-transparent hover:bg-green-400'
                       onClick={() => {
-                        openModal()
+                        setHistoryModalOpen(true)
                       }}
                     >
                       {' '}
-                      Collection
+                      History
                       {/* <i className="fa fa-plus mt-1 ml-2"/> */}
                     </Button>
-                  )}
-                <Button
-                  className=' border-2 rounded-lg text-xs px-1 mt-4  text-white bg-transparent hover:bg-green-400'
-                  onClick={() => {
-                    setHistoryModalOpen(true)
-                  }}
-                >
-                  {' '}
-                  History
-                  {/* <i className="fa fa-plus mt-1 ml-2"/> */}
-                </Button>
-              </div>
-            </div>
+                  </div>
+                </div>
+              )}
             <div
-              className='absolute top-[58%] p-[10px] w-full h-auto  rounded-3xl flex flex-wrap items-center justify-around'
-              style={{ backgroundColor: '#D8DFE0' }}
+              className={
+                user_details?.user_data &&
+                user_details.user_data.role_id === 'Validator'
+                  ? 'absolute top-[58%] p-[10px] w-full h-auto  rounded-3xl flex flex-wrap items-center justify-around'
+                  : ''
+              }
+              style={{
+                backgroundColor:
+                  user_details?.user_data &&
+                  user_details.user_data.role_id === 'Validator'
+                    ? ''
+                    : '',
+              }}
             >
               {user_details?.user_data &&
                 user_details.user_data.role_id === 'Validator' && (
@@ -443,9 +480,51 @@ function SokoniDetail() {
                   </>
                 )}
               <div
-                className='rounded-xl shadow-sm  w-72 h-[295px] text-center items-center  sm:mt-4 md:mt-7'
-                style={{ backgroundColor: '#E7EEE4' }}
+                className='rounded-xl shadow-sm  w-80 h-[480px] text-center items-center mx-auto  sm:mt-4 md:mt-7'
+                style={{ backgroundColor: 'rgb(231, 238, 228)' }}
               >
+                <div className='flex justify-between mx-2'>
+                  <div class='flex relative  justify-center items-center m-1 mr-2 text-xl rounded-full '>
+                    <Img
+                      src={data && data.data[0].profile_img}
+                      className=' w-20 h-20 rounded-full'
+                    />
+                  </div>
+                  <div className='pl-2 mt-2 ms-4 text-left'>
+                    <Text
+                      className='  text-sm text-capitalize'
+                      style={{ fontSize: '20px' }}
+                      variant='body1'
+                    >
+                      {data &&
+                        data.data[0].firstname + ' ' + data.data[0].lastname}
+                      <br />
+                      ID: {data && data.data[0].id}
+                      <br />
+                    </Text>
+
+                    <Text
+                      className='text-sm'
+                      style={{ fontSize: '15px' }}
+                    >
+                      <i class='fas fa-map-marker-alt'></i>{' '}
+                      {data && data.data[0].location}
+                      <br />
+                      <i class='fas fa-phone-alt me-1'></i>
+                      {data && data.data[0].phone_number}
+                      <div className='d-block'>
+                        <i className='fas fa-eye me-1 text-primary'></i>
+                        <TimeUpdate
+                          time={
+                            isCollectionAdded.amount === 0
+                              ? data && data.data[0].latest_collection_date
+                              : new Date().toString()
+                          }
+                        />
+                      </div>
+                    </Text>
+                  </div>
+                </div>
                 <div className='flex justify-around  '>
                   <div className='flex flex-row space-x-16 pt-6'>
                     <div className='flex flex-col space-y-2'>
@@ -477,15 +556,15 @@ function SokoniDetail() {
                         style={{ fontSize: '21px' }}
                         variant='body1'
                       >
-                        ${' '}
+                        TZS{' '}
                         {data &&
                           isCollectionAdded &&
                           nullWrapper(
-                            amountEarned(
-                              carbonOffsetted(
+                            calculatePrice(
+                              
                                 data.data[0].amount_col_kg +
                                   isCollectionAdded.amount
-                              )
+                              
                             )
                           )}
                       </Text>
@@ -502,7 +581,14 @@ function SokoniDetail() {
                         style={{ fontSize: '30px', color: '#716C6C' }}
                         variant='body1'
                       >
-                        o.25
+                        {data &&
+                          isCollectionAdded &&
+                          nullWrapper(
+                            carbonOffsetted(
+                              data.data[0].amount_col_kg +
+                                isCollectionAdded.amount
+                            )
+                          )}
                       </Text>
                     </div>
                   </div>
@@ -533,7 +619,7 @@ function SokoniDetail() {
                   </svg>
                 </Text>
                 <div className='w-[70%] flex justify-center items-center ml-[17%] fw-bold'>
-                  <form>
+                  <form className='pb-5'>
                     <label
                       for='email-address-icon'
                       class='block text-xs font-medium text-gray-900 text-left fw-bold mt-2 '
@@ -592,6 +678,14 @@ function SokoniDetail() {
                         class='bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg  block w-full pl-2 p-2.5   h-7 mb-2'
                         placeholder=''
                       />
+                      <button
+                        className='p-2 bg-slate-300 border rounded-lg text-xs w-20  mt-2   hover:bg-green-300'
+                        onClick={(e) => {
+                          e.preventDefault()
+                        }}
+                      >
+                        Submit
+                      </button>
                     </div>
                   </form>
                 </div>
@@ -614,9 +708,7 @@ function SokoniDetail() {
             }}
           />
         </div>
-      )
-      }
-      
+      )}
     </>
   )
 }

@@ -137,14 +137,14 @@ function SokoniCarosel() {
     return (amount) ? amount: 0;
   }
   const calculatePrice = (total_collection) => {
-    return formatNumberWithCommas((nullWrapper(carbonOffsetted(total_collection)) * 600000).toFixed(2))
+    return formatNumberWithCommas((nullWrapper(carbonOffsetted(total_collection)) * 600000))
   }
   return (
     <div className='w-full'>
       <Swiper
         // install Swiper modules
         modules={[Navigation, Pagination, Scrollbar, A11y]}
-        spaceBetween={25}
+        
         breakpoints={breakpoints}
         
         navigation
