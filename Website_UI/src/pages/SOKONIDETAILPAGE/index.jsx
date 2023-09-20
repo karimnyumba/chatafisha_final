@@ -510,8 +510,8 @@ function SokoniDetail() {
                       <i class='fas fa-map-marker-alt'></i>{' '}
                       {data && data.data[0].location}
                       <br />
-                      <i class='fas fa-phone-alt me-1 font-bold'></i>
-                      <div className=" d-inline-block">
+                      <i class='fas fa-phone-alt me-1 '></i>
+                      <div className=" d-inline-block font-medium">
                       {data && data.data[0].phone_number}
                       </div>
                       <div className='d-block'>
