@@ -186,7 +186,7 @@ function SokoniDetail() {
             </div>
           </div>
           <div
-            className={`relative w-[80%] ${isValidator ? 'h-[260px]': ''}   sm:w-full rounded-xl overflow-x-visible ${
+            className={`relative w-[80%] ${isValidator ? 'h-[300px]': ''}   sm:w-full rounded-xl overflow-x-visible ${
               isValidator ? 'bg-green-500' : ''
             }    float-left `}
             style={{ backgroundColor: isValidator ? 'bg-green-500' : '' }}
