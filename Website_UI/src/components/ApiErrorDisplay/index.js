@@ -6,7 +6,7 @@ const ApiErrorDisplay
   const error = errObject.get(errCode);
   return (
     <div className='m-3'>
-      <Information msg={error.msg} color={error.color}/>
+      <Information msg={error?.msg} color={error?.color}/>
     </div>
   )
 }
