@@ -11,7 +11,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import useFetch from 'hooks'
 import { useGlobalContext } from 'context'
-
+import { Information } from 'components'
 // fields: [firstname, mname, lastname, phone_number, email, location, role]
 const schema = yup
   .object({
@@ -81,13 +81,14 @@ function AddCollection({ onClose, open, pid, setMessage }) {
     watch,
     handleSubmit,
     register,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
     mode: 'onChange',
   })
 
-  const { data, isLoading, error, obtainData } = useFetch()
+  const { data, isLoading, error, obtainData, setData, setError, setIsLoading } = useFetch()
 
 const onSubmit = (data) => {
   // Check if there are any selected images
@@ -120,27 +121,49 @@ const onSubmit = (data) => {
   const type = watch('type')
 
   useEffect(() => {
-    if (data) {
+    console.log(amount)
+    if (data && amount) {
       dispatch({
         type: 'COLLECTION_ADDED',
-        payload: { amount: Number(amount) },
+        payload: { amount: parseFloat(amount), id:pid },
       })
-      setMessage({ data: 'Collection Added Successfully', color: 'success' })
+
+      reset()
     }
     if (error) {
-      setMessage({ data: 'Error Adding Collection', color: 'danger' })
+ 
     }
     if (isLoading) {
-      setMessage({
-        data: 'Adding Collection....Please Wait....',
-        color: 'info',
-      })
+      
     }
   }, [data, error, isLoading])
 
   return (
     <Modal closeModal={onClose} open={open}>
       <ModalHeader>Add a Collection</ModalHeader>
+
+      {data && (
+        <Information
+          msg={`Added Successfully`}
+          temp={true}
+          color={'success'}
+          clear={setData}
+        />
+      )}
+      {error && (
+        <Information
+          msg={`Error ${error.response?.data?.aset}`}
+          color={'danger'}
+          clear={setError}
+        />
+      )}
+      {isLoading && (
+        <Information
+          msg={'Adding...Please Wait....'}
+          color={'warning'}
+          clear={setIsLoading}
+        />
+      )}
       <ModalBody>
         <div className='flex flex-col gap-6 items-center mt-[29px] w-full '>
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -215,7 +238,11 @@ const onSubmit = (data) => {
               <div className='col-md-12 mb-3'>
                 <div className='row'>
                   {imagePreviews.map((preview, index) => (
-                    <div key={index} className='mb-2 col-4 ' style={{'position':'relative'}}>
+                    <div
+                      key={index}
+                      className='mb-2 col-4 '
+                      style={{ position: 'relative' }}
+                    >
                       <img
                         src={preview}
                         alt={`Preview ${index}`}

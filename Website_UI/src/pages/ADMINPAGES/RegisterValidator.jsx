@@ -26,18 +26,17 @@ const schema = yup
       .min(5, 'email must be at least 5 characters')
       .max(50, 'email must be at most 50 characters'),
 
-    //registration
-    registration: yup
-      .number()
-      .positive("Registration number can't be negative")
-      .integer('Registration should be an integer!')
-      .required('Please provide your registration number'),
-    //contact
-    contact: yup
-      .string()
-      .required('Please provide your contact number! ')
-      .min(5, 'contact must be at least 5 characters')
-      .max(50, 'contact must be at most 50 characters'),
+    // //registration
+    // registration: yup
+    //   .number()
+    //   .positive("Registration number can't be negative")
+    //   .integer('Registration should be an integer!')
+    //   .required('Please provide your registration number'),
+    // //contact
+    contact:  yup
+    .string()
+    .required("Please provide your contact number!")
+    .matches(/^[0-9]{10}$/, 'Phone number must be 10 digits, ie 07XXXXXXXX '),
 
     //location
     location: yup.string().required('Please select your location! '),
@@ -77,7 +76,7 @@ function RegisterValidator() {
  
 
   //Fetch data
-  const { data, isLoading, error, obtainData } = useFetch()
+  const { data, isLoading, error, obtainData, setError, setData, setIsLoading } = useFetch()
   //Handle Submit
   const onSubmit = (data) => {
     let {
@@ -103,7 +102,7 @@ function RegisterValidator() {
 
   const name = watch('name')
   const email = watch('email')
-  const registration = watch('registration')
+  // const registration = watch('registration')
   const contact = watch('contact')
   const location = watch('location')
   const password = watch('password')
@@ -114,8 +113,29 @@ function RegisterValidator() {
  
   return (
     <div className='shadow p-4'>
-    {data && <Information msg={'Successfully Registered '+ name } temp={true} color={'success'}/>}
-    {isLoading && <Information msg={"Registering...Please Wait...."} color={'warning'} />}
+     
+
+      {data && (
+        <Information
+          msg={'Successfully Registered ' + name}
+          temp={true}
+          color={'success'}
+          clear={setData}
+        />
+      )}
+      {error && (
+        <Information
+          msg={error.response?.data?.aset}
+          temp={true}
+          color={'danger'}
+          clear={setError}
+          
+        />
+      )}
+      {isLoading && (
+        <Information msg={'Registering...Please Wait....'} color={'warning'}
+        clear={setIsLoading} />
+      )}
       <div className='flex flex-col gap-6 items-center mt-[29px] w-full '>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className='form-row row'>
@@ -123,7 +143,7 @@ function RegisterValidator() {
               <input
                 type='text'
                 className={`form-control ${errors.name ? 'is-invalid' : ''}`}
-                placeholder='Name of Picker/Organization'
+                placeholder='Name of Validator/Picker/Organization'
                 {...register('name')}
                 value={name}
               />
@@ -147,24 +167,7 @@ function RegisterValidator() {
                 <div className='text-success'></div>
               )}
             </div>
-            <div className='col-md-12 mb-3'>
-              <input
-                type='text'
-                className={`form-control ${
-                  errors.registration ? 'is-invalid' : ''
-                }`}
-                placeholder='Registration Number'
-                {...register('registration')}
-                value={registration}
-              />
-              {errors.registration ? (
-                <div className='invalid-feedback'>
-                  {errors.registration?.message}
-                </div>
-              ) : (
-                <div className='text-success'></div>
-              )}
-            </div>
+
             <div className='col-md-6 mb-3'>
               <input
                 type='text'
@@ -262,9 +265,9 @@ function RegisterValidator() {
           </div>
 
           <div className='flex flex-row justify-between mb-3'>
-           <button className='btn btn-success' type='submit'>
-           Register User
-           </button>
+            <button className='btn btn-success' type='submit'>
+              Register User
+            </button>
           </div>
         </form>
       </div>

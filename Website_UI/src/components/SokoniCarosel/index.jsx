@@ -16,7 +16,14 @@ import TimeUpdate from "components/TimeUpdate";
 import useFetch from "hooks";
 function SokoniCarosel() {
   const navigate = useNavigate()
-  const { dispatch, setPickerList, user_details, isPickerUpdated, formatDate } = useGlobalContext()
+  const {
+    dispatch,
+    setPickerList,
+    user_details,
+    isPickerUpdated,
+    formatDate,
+    isCollectionAdded,
+  } = useGlobalContext()
   const { data, isLoading, error, obtainData } = useFetch()
   React.useEffect(
     ()=>{
@@ -31,7 +38,7 @@ function SokoniCarosel() {
       },
     }
   )
-    }, [user_details, isPickerUpdated]
+    }, [user_details, isPickerUpdated, isCollectionAdded]
   )
   if (data){
     data.data.sort((a, b)=> new Date(b.latest_collection_date) -  new Date(a.latest_collection_date));
@@ -137,15 +144,16 @@ function SokoniCarosel() {
     return (amount) ? amount: 0;
   }
   const calculatePrice = (total_collection) => {
-    return formatNumberWithCommas((nullWrapper(carbonOffsetted(total_collection)) * 600000))
+    return formatNumberWithCommas(Math.round(nullWrapper(carbonOffsetted(total_collection)) * 600000))
   }
   return (
-    <div className='w-full'>
+    <div className='w-full  px-2'>
       <Swiper
         // install Swiper modules
         modules={[Navigation, Pagination, Scrollbar, A11y]}
         
         breakpoints={breakpoints}
+        spaceBetween={100}
         
         navigation
         pagination={{ clickable: true }}
@@ -158,9 +166,12 @@ function SokoniCarosel() {
             return (
               <SwiperSlide key={index}>
                 <div
-                  className={`relative w-[375px] h-[300px] cursor-pointer   rounded-xl overflow-x-visible bg-green-500  mx-auto mb-5 py-1`}
+                  className={`relative w-full h-[300px] cursor-pointer   rounded-xl overflow-x-visible bg-green-500  mx-auto mb-5 py-1`}
                   style={{ backgroundColor: '#38C18C' }}
                   onClick={() => {
+                    dispatch({
+                      type:'CLEAR_COLLECTION',
+                    })
                     dispatch({
                       type: 'CURRENT_CREDIT_DETAIL',
                       payload: {
@@ -213,7 +224,7 @@ function SokoniCarosel() {
                     className='absolute top-28 w-full h-[190px] p-[11px] rounded-xl flex flex-col items-center justify-center'
                     style={{ backgroundColor: '#D8DFE0' }}
                   >
-                    <div className='flex space-x-6 mb-4'>
+                    <div className='flex space-x-3 mb-4'>
                       <div className='flex flex-col'>
                         <div
                           className='inline-block fw-bold text-xs text-nowrap rounded-full pt-1 px-1 h-6 justify-center align-middle'

@@ -12,7 +12,7 @@ import TimeUpdate from "components/TimeUpdate";
 function SokoniDetail() {
   const navigate = useNavigate();
   const {credit, user_details, isCollectionAdded} = useGlobalContext();
-  
+  console.log(isCollectionAdded)
 
   const [modalOpen, setModalOpen] = useState(false);
   const [HistorymodalOpen, setHistoryModalOpen] = useState(false);
@@ -30,7 +30,7 @@ function SokoniDetail() {
 
   const calculatePrice = (total_collection) => {
     return formatNumberWithCommas(
-      nullWrapper(carbonOffsetted(total_collection)) * 600000
+     Math.round( nullWrapper(carbonOffsetted(total_collection)) * 600000)
     )
   }
 
@@ -76,6 +76,7 @@ function SokoniDetail() {
      user_details &&
      user_details?.user_data &&
      user_details.user_data.role_id === 'Validator'
+  const tempAmount = (data && data.data[0].id===isCollectionAdded.id) ? isCollectionAdded.amount:0 
 // bg-cover bg-repeat bg-white_A700 flex flex-col font-syne h-[800px] md:h-[1200px] sm:h-[1200px] items-center justify-start mx-auto p-[38px] sm:px-5 w-full
   return (
     <>
@@ -225,13 +226,16 @@ function SokoniDetail() {
                         {data && data.data[0].phone_number}
                         <div className='d-block'>
                           <i className='fas fa-eye me-1 text-primary'></i>
+                          {isCollectionAdded&&
                           <TimeUpdate
                             time={
-                              isCollectionAdded.amount === 0
+                              tempAmount=== 0
                                 ? data && data.data[0].latest_collection_date
-                                : new Date().toString()
+                                : Date.now()
                             }
+                            
                           />
+                          }
                         </div>
                       </Text>
                     </div>
@@ -277,8 +281,8 @@ function SokoniDetail() {
             >
               {isValidator && (
                 <>
-                  <div className='flex flex-col space-x-6 mb-4'>
-                    <div className='flex flex-col ml-5 mb-2'>
+                  <div className='flex flex-col space-x-4 mb-4'>
+                    <div className='flex flex-col ml-5 '>
                       <div
                         className=' inline-block  text-center rounded-full pt-1  h-7 w-32 justify-center align-middle   '
                         style={{
@@ -289,9 +293,9 @@ function SokoniDetail() {
                         Avarage daily
                       </div>
                       <Text className='text-center text-2xl  font-normal'>
-                        {(data &&
+                        {data &&
                           isCollectionAdded &&
-                          isCollectionAdded.amount) ||
+                         tempAmount  ||
                           nullWrapper(data.data[0].latest_collection)}{' '}
                         Kg
                       </Text>
@@ -307,10 +311,10 @@ function SokoniDetail() {
                         Total collected
                       </div>
                       <Text className='text-center text-2xl my-2 font-normal '>
-                        {data &&
-                          isCollectionAdded &&
-                          nullWrapper(data.data[0].amount_col_kg) +
-                            isCollectionAdded.amount}{' '}
+                        
+                          {
+                          (nullWrapper(data.data[0].amount_col_kg) +
+                            tempAmount)}
                         Kg
                       </Text>
                     </div>
@@ -340,11 +344,11 @@ function SokoniDetail() {
                       </div>
                       <Text className='text-center text-2xl font-normal '>
                         {data &&
-                          isCollectionAdded &&
+                          
                           nullWrapper(
                             carbonOffsetted(
                               data.data[0].amount_col_kg +
-                                isCollectionAdded.amount
+                                tempAmount
                             )
                           )}
                       </Text>
@@ -506,7 +510,7 @@ function SokoniDetail() {
                           <i className='fas fa-eye me-1 text-primary'></i>
                           <TimeUpdate
                             time={
-                              isCollectionAdded.amount === 0
+                              tempAmount === 0
                                 ? data && data.data[0].latest_collection_date
                                 : new Date().toString()
                             }
@@ -542,7 +546,7 @@ function SokoniDetail() {
                           nullWrapper(
                             calculatePrice(
                               data.data[0].amount_col_kg +
-                                isCollectionAdded.amount
+                                tempAmount
                             )
                           )}
                       </Text>
@@ -564,7 +568,7 @@ function SokoniDetail() {
                           nullWrapper(
                             carbonOffsetted(
                               data.data[0].amount_col_kg +
-                                isCollectionAdded.amount
+                                tempAmount
                             )
                           )}
                       </Text>

@@ -9,6 +9,7 @@ const ProtectedRoute = ({role, children}) => {
 
  React.useEffect(() => {
   if(stored_user_details){
+    console.log('dispatched......', stored_user_details)
    dispatch({ type: 'CREATE_TOKEN', payload: { user_details:stored_user_details } })
 }
 }, [])
@@ -26,6 +27,7 @@ const ProtectedRoute = ({role, children}) => {
       <Navigate to={'/'} />
     )
   }
+  
   return children
   // return React.cloneElement(children, { token: details.token })
  } 

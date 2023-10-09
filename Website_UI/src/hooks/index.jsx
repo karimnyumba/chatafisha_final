@@ -54,7 +54,7 @@ const useFetch = () => {
   //   fetchData()
   // }, [url, method, body, options])
 
-  return { data, isLoading, error, obtainData }
+  return { data, isLoading, error, obtainData, setData, setError, setIsLoading }
 }
 
 export default useFetch

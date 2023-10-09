@@ -22,7 +22,12 @@ const reducer =(state, action)=>{
   case 'OPEN_REGISTER_PICKER_MODAL':
       return {...state, openRegisterPickerModal:action.payload};
   case 'COLLECTION_ADDED':
-    return {...state, isCollectionAdded:{amount:action.payload.amount}};
+    
+    return {...state, isCollectionAdded:{amount:action.payload.amount +state.isCollectionAdded.amount, id:action.payload.id}};
+  case 'CLEAR_COLLECTION':
+    return {
+      ...state, isCollectionAdded:{amount:0, id:null}
+    }
   case 'UPDATE_PICKER':
     return {...state, isPickerUpdated:!state.isPickerUpdated};
 

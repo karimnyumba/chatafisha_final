@@ -9,10 +9,15 @@ import connectWallet from 'connect';
 function NavBar({sokoniPlaceOpen=false}) {
   const [isOpen, setIsOpen] = React.useState(false);
   const isSmall = useBreakpoint("sm", "down");
+  
   //global context
   const { user_details, dispatch, handleLogout, openRegisterPickerModal, setWeb3, setAccounts, setContractInstance, web3Instance, connectError, setConnectError } = useGlobalContext()
+
   //authentication: check from local storage
-  const isAuthenticated = (user_details?.token || validateLocalStorage()) ? true : false  
+  const stored_user_details = validateLocalStorage()
+  const isAuthenticated = (user_details?.token || stored_user_details) ? true : false  
+
+  
   const loginLogout = ()=>{
     //login and logout carried out by single function
     if(isAuthenticated){
@@ -137,18 +142,20 @@ function NavBar({sokoniPlaceOpen=false}) {
               </Text>
             </li>
 
-            {user_details?.user_data &&
-              (user_details.user_data.role_id === 'Validator' ) && sokoniPlaceOpen &&
+            {(user_details?.user_data|| stored_user_details?.user_data) &&
+              (user_details.user_data?.role_id === 'Validator' ||stored_user_details.user_data?.role_id ==='Validator' ) && sokoniPlaceOpen &&
               (
                   <li>
                     <div className='flex flex-col justify-center'>
                       <div
                         className='rounded-full cursor-pointer bg-green_403 ml-4  w-10 h-10  transform hover:scale-y-75 transition-transform'
-                        onClick={() =>
+                        onClick={() =>{
+                        setIsOpen(!isOpen)
                           dispatch({
                             type: 'OPEN_REGISTER_PICKER_MODAL',
                             payload: !openRegisterPickerModal,
                           })
+                        }
                         }
                       >
                         <i className='h-10  w-5 ml-[8.5px] mt-[9.5px] text-center fa fa-user-tie text-white' />

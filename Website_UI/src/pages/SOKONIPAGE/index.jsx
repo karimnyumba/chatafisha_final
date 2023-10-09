@@ -35,7 +35,7 @@ function SokoniPage() {
 
   return (
     <div
-      className='bg-cover bg-repeat bg-white_A700 flex flex-col font-syne h-auto sm:h-[100%] items-center justify-start mx-auto p-[38px] sm:px-5 w-full'
+      className='bg-cover bg-repeat bg-white_A700 flex flex-col font-syne h-auto sm:h-[100%] items-center justify-start mx-auto   w-full  '
       style={{ backgroundImage: "url('images/img_homepage.png')" }}
     >
       <NavBar sokoniPlaceOpen={true} />
@@ -103,7 +103,7 @@ function SokoniPage() {
             </strong>
           </Text>
         </div>
-        <div className='mt-10 sm:mt-2'>
+        <div className='mt-10 sm:mt-2 sm:px-5'>
           <div class='relative'>
             <div class='flex absolute inset-y-0 left-0 items-center pl-3 pr-3 pointer-events-none'>
               <svg
@@ -148,7 +148,9 @@ function SokoniPage() {
                       <small className='text-capitalize '>
                         {picker.firstname + ' ' + picker.last_name}
                       </small>
-                      <small className='text-muted d-block'>{picker.phone_no}</small>
+                      <small className='text-muted d-block'>
+                        {picker.phone_no}
+                      </small>
                     </div>
                   </div>
                 </div>
@@ -182,7 +184,7 @@ function SokoniPage() {
           </div>
         </div>
       </div>
-      <div className='flex flex-row md:gap-10 items-end justify-between mt-[22px] w-[80%] md:w-full'>
+      <div className='flex flex-row md:gap-10 items-end justify-between mt-[22px] w-[80%] md:w-full sm:px-3'>
         <div className=' inline-flex space-x-2 '>
           <svg
             width='14'
@@ -236,11 +238,9 @@ function SokoniPage() {
           />
         </div>
       </div>
-      <div className='flex flex-col items-center justify-start mt-[5px]  w-full'>
-        <div className='flex md:flex-col flex-row gap-[11px] items-start justify-start max-w-[1175px] overflow-auto sm:pr-5 sm:ml-[50px]  w-full '>
-          <SokoniCarosel />
-        </div>
-      </div>
+
+      <SokoniCarosel />
+
       <AddPicker
         onClose={closeModal}
         open={openRegisterPickerModal}

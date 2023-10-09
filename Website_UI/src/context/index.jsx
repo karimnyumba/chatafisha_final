@@ -11,7 +11,7 @@ error_list:[],
 pickers_list:[],
 blogs:[],
 openRegisterPickerModal: false,
-isCollectionAdded: {amount:0},
+isCollectionAdded: {amount:0, id:null},
 isPickerUpdated: false,
 }
 const AppProvider = ({children})=>{
