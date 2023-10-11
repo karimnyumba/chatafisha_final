@@ -9,6 +9,7 @@ import HistoryModal from "./HistoryModal";
 import { useParams } from "react-router-dom";
 import useFetch from "hooks";
 import TimeUpdate from "components/TimeUpdate";
+import { backend_url } from "api";
 function SokoniDetail() {
   const navigate = useNavigate();
   const {credit, user_details, isCollectionAdded} = useGlobalContext();
@@ -198,8 +199,9 @@ function SokoniDetail() {
                   <div className='flex'>
                     <div class='flex relative  justify-center items-center m-1 mr-2 text-xl rounded-full text-white'>
                       <Img
-                        src={data && data.data[0].profile_img}
+                        src={`${backend_url}${data && data.data[0].profile_img}`}
                         className=' w-20 h-20 rounded-full'
+                        crossOrigin='anonymous'
                       />
                     </div>
                     <div className='pl-2 mt-2'>
@@ -481,7 +483,8 @@ function SokoniDetail() {
                   <div className='flex justify-between mx-2'>
                     <div class='flex relative  justify-center items-center m-1 mr-2 text-xl rounded-full '>
                       <Img
-                        src={data && data.data[0].profile_img}
+                        src={`${backend_url}${data && data.data[0].profile_img}`}
+                        crossOrigin='anonymous'
                         className=' w-20 h-20 rounded-full'
                       />
                     </div>

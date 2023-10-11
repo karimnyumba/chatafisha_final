@@ -18,6 +18,7 @@ import  { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import 'swiper/css';
+import { backend_url } from "api";
 
 
 
@@ -293,9 +294,7 @@ const ImageModal = ({ images, imageAlt }) => {
             <button
               className='absolute top-2 right-2 text-white btn-close hover:text-gray-80 bg-danger p-2  '
               onClick={closeModal}
-            >
-              
-            </button>
+            ></button>
             <Swiper
               // install Swiper modules
               modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -310,8 +309,9 @@ const ImageModal = ({ images, imageAlt }) => {
               {images.map(({ image_url, imageID, active }, index) => (
                 <SwiperSlide key={imageID} className='swiper-slide'>
                   <img
-                    src={image_url}
+                    src={`${backend_url}${image_url}`}
                     alt={`${imageAlt} ${index}`}
+                    crossOrigin='anonymous'
                     className=' slide_image mx-auto'
                     style={{
                       width: '400px',

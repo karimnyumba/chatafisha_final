@@ -2,7 +2,7 @@ import React from "react";
 // import Swiper core and required modules
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 
-
+import { backend_url } from "api";
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -147,7 +147,7 @@ function SokoniCarosel() {
     return formatNumberWithCommas(Math.round(nullWrapper(carbonOffsetted(total_collection)) * 600000))
   }
   return (
-    <div className='w-full  px-2'>
+    <div className='w-full px-2'>
       <Swiper
         // install Swiper modules
         modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -170,7 +170,7 @@ function SokoniCarosel() {
                   style={{ backgroundColor: '#38C18C' }}
                   onClick={() => {
                     dispatch({
-                      type:'CLEAR_COLLECTION',
+                      type: 'CLEAR_COLLECTION',
                     })
                     dispatch({
                       type: 'CURRENT_CREDIT_DETAIL',
@@ -185,7 +185,8 @@ function SokoniCarosel() {
                     <div className='flex'>
                       <div class='flex relative  justify-center items-center m-1 mr-2 text-xl rounded-full text-white'>
                         <Img
-                          src={card.profile_img}
+                          src={`${backend_url}${card.profile_img}`}
+                          crossOrigin='anonymous' 
                           className='w-16 h-16 rounded-full'
                         />
                       </div>
